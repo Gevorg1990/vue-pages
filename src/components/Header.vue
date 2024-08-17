@@ -1,7 +1,7 @@
 <template>
   <div class="header j-spc-btwn">
     <div id="nav" class="df">
-      <router-link to="/">{{ $t('message.home') }}</router-link> |
+      <router-link to="/vue-pages">{{ $t('message.home') }}</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/test">test</router-link> |
     </div>
