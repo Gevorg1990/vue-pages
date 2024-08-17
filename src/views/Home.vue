@@ -1,61 +1,80 @@
 <template>
-  <div class="home">
-    <h2 class="home__header-title font-italiano"> The <mark>Perfect</mark> Baked Cake Everyday</h2>
+  <div class="home" :style="{ backgroundImage: 'url(' + currentImage + ')' }">
+    <h2 class="home__header-title font-italiano">
+      The <mark>Perfect</mark> Baked Cake Everyday
+    </h2>
     <span class="font-italiano db fs30">“Where there is cake, there is hope.”</span>
 
     <div class="home__soc-box">
-
       <div class="home__soc-box-wrapper">
-
-        <a class="home__soc-link home__soc-link--fb" href="https://www.facebook.com/gevorg.gasparyan.7528/" target="_blank"></a>
-        <a class="home__soc-link home__soc-link--ig" href="#" target="_blank"></a>
-        <a class="home__soc-link home__soc-link--tg" href="#" target="_blank"></a>
-
+        <a class="home__soc-link home__soc-link--fb" href="https://www.facebook.com/gevorg.gasparyan.7528/" target="_blank" aria-label="Facebook"></a>
+        <a class="home__soc-link home__soc-link--ig" href="#" target="_blank" aria-label="Instagram"></a>
+        <a class="home__soc-link home__soc-link--tg" href="#" target="_blank" aria-label="Telegram"></a>
       </div>
-
-
-
     </div>
   </div>
-
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import Carousel from '@/components/Carousel.vue'
+import { ref, onMounted, onUnmounted } from 'vue';
+
+// Import images
+import bg1 from '../assets/home-bg/bg1.png';
+import bg2 from '../assets/home-bg/bg2.png';
+import bg3 from '../assets/home-bg/bg3.png';
+
 export default {
   name: 'Home',
-  components: {
-    HelloWorld,
-    Carousel
-  },
 
-  data() {
+  setup() {
+    // Use the imported images
+    const imageUrls = [bg1, bg2, bg3];
+
+    const currentImage = ref(imageUrls[0]);
+    let intervalId;
+
+    const updateBackgroundImage = () => {
+      const newImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+      currentImage.value = newImageUrl;
+
+      document.querySelector('.home').classList.add('transitioning');
+      setTimeout(() => {
+        document.querySelector('.home').classList.remove('transitioning');
+      }, 1000); // Ensure this matches the transition duration in CSS
+    };
+
+    onMounted(() => {
+      updateBackgroundImage();
+      intervalId = setInterval(updateBackgroundImage, 10000);
+    });
+
+    onUnmounted(() => {
+      clearInterval(intervalId);
+    });
+
     return {
-      imageList: [
-        { src: '/images/home-bg/bg1.png', alt: 'Image 1' },
-        { src: '/images//home-bg/bg2.png', alt: 'Image 2' },
-        { src: '/images/home-bg/bg3.png', alt: 'Image 3' },
-      ]
-    }
-  }
-}
+      currentImage,
+    };
+  },
+};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .home {
   width: 100%;
   height: 100dvh;
-  background-image: url(../assets/home-bg/bg1.png);
-  transition: background-image 1s ease-in-out;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  justify-content: center;
+  transition: background-image 1s ease-in-out;
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
+
+  &.transitioning {
+    transition: background-image 1s ease-in-out;
+  }
 
   &__header-title {
     max-width: 600px;
@@ -68,16 +87,8 @@ export default {
       font-family: inherit;
       background: unset;
       color: #FF8886;
-      text-shadow:0 0 16px #FF8886;
-
-    }
-    /* Apply the animation to the mark element */
-
-
-
-    /* Apply the animation to the mark element */
-    mark {
-      animation: pulse 1.5s infinite; /* Adjust duration as needed */
+      text-shadow: 0 0 16px #FF8886;
+      animation: pulse 1.5s infinite;
     }
 
     @keyframes pulse {
@@ -91,8 +102,6 @@ export default {
         text-shadow: 0 0 16px rgba(255, 136, 134, 0.7);
       }
     }
-
-
   }
 
   &__soc-box {
@@ -120,7 +129,6 @@ export default {
       height: calc(30% - 75px);
       bottom: 0;
     }
-
   }
 
   &__soc-box-wrapper {
@@ -136,24 +144,20 @@ export default {
     transition: filter 0.3s ease;
 
     &--fb {
-      background: url("../assets/icons-soc/icon-fb.svg");
+      background: url('../assets/icons-soc/icon-fb.svg');
     }
 
     &--ig {
-      background: url("../assets/icons-soc/icon-ig.svg");
+      background: url('../assets/icons-soc/icon-ig.svg');
     }
 
     &--tg {
-      background: url("../assets/icons-soc/icon-tg.svg");
+      background: url('../assets/icons-soc/icon-tg.svg');
     }
 
     &:hover {
       filter: grayscale(0);
     }
-
-
   }
 }
-
-
 </style>
