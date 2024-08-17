@@ -132,14 +132,14 @@ export default {
 
 
   .icon-hy {
-    background-image: url("/images/icons-lng/icon-am.svg");
+    background-image: url("assets/icons-lng/icon-am.svg");
   }
   .icon-ru {
-    background-image: url("/images/icons-lng/icon-ru.svg");
+    background-image: url("assets/icons-lng/icon-ru.svg");
   }
 
   .icon-en {
-    background-image: url("/images/icons-lng/icon-en.svg");
+    background-image: url("assets/icons-lng/icon-en.svg");
   }
 
   &__lng-text {
