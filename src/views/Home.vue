@@ -47,7 +47,7 @@ export default {
 .home {
   width: 100%;
   height: 100dvh;
-  background-image: url(/images/home-bg/bg1.png);
+  background-image: url(../assets/home-bg/bg1.png);
   transition: background-image 1s ease-in-out;
   background-size: cover;
   background-repeat: no-repeat;
@@ -136,15 +136,15 @@ export default {
     transition: filter 0.3s ease;
 
     &--fb {
-      background: url("/images/icons-soc/icon-fb.svg");
+      background: url("../assets/icons-soc/icon-fb.svg");
     }
 
     &--ig {
-      background: url("/images/icons-soc/icon-ig.svg");
+      background: url("../assets/icons-soc/icon-ig.svg");
     }
 
     &--tg {
-      background: url("/images/icons-soc/icon-tg.svg");
+      background: url("../assets/icons-soc/icon-tg.svg");
     }
 
     &:hover {

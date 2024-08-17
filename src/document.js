@@ -2,9 +2,9 @@ const documentJs = {
     install(app) {
         // Array of background image URLs
         const imageUrls = [
-            '/images/home-bg/bg1.png',
-            '/images/home-bg/bg2.png',
-            '/images/home-bg/bg3.png',
+            '../assets/home-bg/bg1.png',
+            '../assets/home-bg/bg2.png',
+            '../assets/home-bg/bg3.png',
         ];
 
         // Function to update the background image
