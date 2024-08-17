@@ -1,12 +1,16 @@
 <template>
-  <div class="header j-spc-btwn">
-    <div id="nav" class="df">
-      <router-link to="/vue-pages">{{ $t('message.home') }}</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/test">test</router-link> |
-    </div>
-
+  <div class="header df a-center j-ctr">
     <LanguageSwitcher />
+
+    <div id="nav" class="nav df a-center">
+      <router-link class="router-link fs20" to="/vue-pages">{{ $t('message.home') }}</router-link>
+      <router-link class="router-link fs20" to="/about">About</router-link>
+
+      <img src="../../public/logo.svg" alt="logo">
+
+      <router-link class="router-link fs20" to="/test">test</router-link>
+      <router-link class="router-link fs20" to="/test2">test2</router-link>
+    </div>
   </div>
 
 </template>
@@ -32,13 +36,21 @@ export default {
 
 <style lang="scss">
 
-
 .header {
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 117px;
+  z-index: 3;
   width: 100%;
-  height: 80px;
-  display: flex;
-  align-items: center;
+}
+
+.nav {
+  gap: 80px;
+}
+
+.router-link {
+
 }
 
 .router-link-active {

@@ -1,15 +1,15 @@
 <template>
-  <nav class="nav pr">
-    <button class="nav__globe df a-center" :class="currentLanguageIcon" @click="toggleDropdown">
+  <nav class="language-box">
+    <button class="language-box__globe df a-center" :class="currentLanguageIcon" @click="toggleDropdown">
       <span class="nav__lng-text">{{ currentLanguageLabel }}</span>
     </button>
 
     <transition name="dropdown-transition">
-      <div class="nav__list tc dropdown" v-show="isDropdownOpen">
+      <div class="language-box__list tc dropdown" v-show="isDropdownOpen">
         <button
             v-for="lang in languages"
             :key="lang.code"
-            class="nav__lng-item db fs14"
+            class="language-box__lng-item db fs14"
             :class="{
               active: lang.code === currentLanguage,
               [`icon-${lang.code}`]: true
@@ -80,7 +80,9 @@ export default {
 </script>
 
 <style lang="scss">
-.nav {
+.language-box {
+  left: 13.5px;
+  position: absolute;
 
   &__list {
     position: absolute;
@@ -103,6 +105,7 @@ export default {
     align-items: center;
     padding-left: 32px;
     cursor: pointer;
+    color: $textColor1;
   }
 
   &__lng-item {

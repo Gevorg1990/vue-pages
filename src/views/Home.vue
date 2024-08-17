@@ -1,5 +1,5 @@
 <template>
-  <div class="home" :style="{ backgroundImage: 'url(' + currentImage + ')' }">
+  <div class="home pr" v-cloak :style="{ backgroundImage: 'url(' + currentImage + ')' }">
     <h2 class="home__header-title font-italiano">
       The <mark>Perfect</mark> Baked Cake Everyday
     </h2>
@@ -60,6 +60,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+[v-cloak] {
+  display: none;
+}
 .home {
   width: 100%;
   height: 100dvh;
@@ -68,6 +71,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center center;
   transition: background-image 1s ease-in-out;
+  min-height: 500px;
   display: flex;
   align-items: center;
   flex-direction: column;
