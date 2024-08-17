@@ -19,9 +19,9 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 // Import images
-import bg1 from '../assets/home-bg/bg1.png';
-import bg2 from '../assets/home-bg/bg2.png';
-import bg3 from '../assets/home-bg/bg3.png';
+import bg1 from '../assets/home-bg/bg1.webp';
+import bg2 from '../assets/home-bg/bg2.webp';
+import bg3 from '../assets/home-bg/bg3.webp';
 
 export default {
   name: 'Home',
@@ -63,6 +63,7 @@ export default {
 .home {
   width: 100%;
   height: 100dvh;
+  background-image: url("../assets/home-bg/bg1.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
