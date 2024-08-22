@@ -1,15 +1,25 @@
 <template>
   <div class="home pr" v-cloak :style="{ backgroundImage: 'url(' + currentImage + ')' }">
-    <h2 class="home__header-title font-italiano">
-      The <mark>Perfect</mark> Baked Cake Everyday
-    </h2>
+<!--    <h2 class="home__header-title font-italiano">-->
+<!--      The <mark>Perfect</mark> Baked Cake Everyday-->
+<!--    </h2> -->
+
+    <h2 class="home__header-title font-italiano" v-html="$t('message.home-title')"></h2>
     <span class="font-italiano db fs30">“Where there is cake, there is hope.”</span>
 
     <div class="home__soc-box">
-      <div class="home__soc-box-wrapper">
+      <div class="home__soc-box-wrapper pr">
         <a class="home__soc-link home__soc-link--fb" href="https://www.facebook.com/gevorg.gasparyan.7528/" target="_blank" aria-label="Facebook"></a>
         <a class="home__soc-link home__soc-link--ig" href="#" target="_blank" aria-label="Instagram"></a>
         <a class="home__soc-link home__soc-link--tg" href="#" target="_blank" aria-label="Telegram"></a>
+      </div>
+    </div>
+
+    <div class="home__cake-box">
+      <div class="home__cake-box-wrapper pr">
+        <a class="home__cake-link home__cake-link--1" href="#" ></a>
+        <a class="home__cake-link home__cake-link--2" href="#" ></a>
+        <a class="home__cake-link home__cake-link--3" href="#" ></a>
       </div>
     </div>
   </div>
@@ -32,10 +42,11 @@ export default {
 
     const currentImage = ref(imageUrls[0]);
     let intervalId;
+    let currentIndex = 0;
 
     const updateBackgroundImage = () => {
-      const newImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
-      currentImage.value = newImageUrl;
+      currentImage.value = imageUrls[currentIndex];
+      currentIndex = (currentIndex + 1) % imageUrls.length; // Move to the next image, loop back to start
 
       document.querySelector('.home').classList.add('transitioning');
       setTimeout(() => {
@@ -58,6 +69,7 @@ export default {
   },
 };
 </script>
+
 
 <style lang="scss" scoped>
 [v-cloak] {
@@ -88,7 +100,7 @@ export default {
     margin-bottom: 40px;
     line-height: 100px;
 
-    mark {
+    ::v-deep mark {
       font-family: inherit;
       background: unset;
       color: #FF8886;
@@ -109,11 +121,11 @@ export default {
     }
   }
 
-  &__soc-box {
+  &__soc-box,
+  &__cake-box {
     height: 100%;
     position: absolute;
     width: 30px;
-    left: 86px;
 
     &:before,
     &:after {
@@ -126,27 +138,73 @@ export default {
     }
 
     &:before {
-      height: calc(70% - 75px);
       top: 0;
     }
 
     &:after {
-      height: calc(30% - 75px);
       bottom: 0;
     }
   }
 
-  &__soc-box-wrapper {
-    position: relative;
-    top: calc(70% - 75px);
+  &__cake-box {
+    right: 86px;
+
+    &:before {
+      height: calc(25% - 75px);
+    }
+
+    &:after {
+      height: calc(75% - 75px);
+    }
   }
 
+  &__soc-box {
+    left: 86px;
+
+    &:before {
+      height: calc(75% - 75px);
+    }
+
+    &:after {
+      height: calc(25% - 75px);
+    }
+
+  }
+
+
+  &__cake-box-wrapper {
+    top: calc(25% - 60px);
+  }
+
+  &__soc-box-wrapper {
+    top: calc(75% - 60px);
+  }
+
+  &__cake-link,
   &__soc-link {
     filter: grayscale(1);
-    margin: 15px 0;
+    margin-bottom: 15px;
     width: 30px;
     height: 30px;
     transition: filter 0.3s ease;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      filter: grayscale(0);
+    }
+
+  }
+
+  &__cake-link {
+    &--1 {background: url('../assets/icons-cakes/icon-cake1.svg');}
+    &--2 {background: url('../assets/icons-cakes/icon-cake1.svg');}
+    &--3 {background: url('../assets/icons-cakes/icon-cake1.svg');}
+  }
+
+  &__soc-link {
 
     &--fb {
       background: url('../assets/icons-soc/icon-fb.svg');
@@ -160,9 +218,11 @@ export default {
       background: url('../assets/icons-soc/icon-tg.svg');
     }
 
-    &:hover {
-      filter: grayscale(0);
-    }
+  }
+
+
+  &__cake-box {
+
   }
 }
 </style>

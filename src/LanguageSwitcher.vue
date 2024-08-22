@@ -11,9 +11,9 @@
             :key="lang.code"
             class="language-box__lng-item db fs14"
             :class="{
-              active: lang.code === currentLanguage,
-              [`icon-${lang.code}`]: true
-            }"
+            active: lang.code === currentLanguage,
+            [`icon-${lang.code}`]: true
+          }"
             @click="changeLanguage(lang.code)"
         >
           {{ lang.label }}
@@ -29,9 +29,9 @@ export default {
     return {
       isDropdownOpen: false,
       languages: [
-        {code: "hy", label: "Հայ"},
-        {code: "ru", label: "Рус"},
-        {code: "en", label: "Eng"},
+        { code: 'hy', label: 'Հայ' },
+        { code: 'ru', label: 'Рус' },
+        { code: 'en', label: 'Eng' },
       ],
     };
   },
@@ -40,7 +40,7 @@ export default {
       const currentLang = this.languages.find(
           (lang) => lang.code === this.currentLanguage
       );
-      return currentLang ? currentLang.label : "Language";
+      return currentLang ? currentLang.label : 'Language';
     },
     currentLanguage() {
       return this.$i18n.locale;
@@ -48,18 +48,16 @@ export default {
     currentLanguageIcon() {
       return `icon-${this.currentLanguage}`;
     },
-    // currentUrl() {
-    //   // Construct the current URL with the language parameter
-    //   const basePath = this.$route.path.split('/').slice(2).join('/'); // Updated to handle routes correctly
-    //   return `/${this.currentLanguage}/${basePath}`;
-    // }
   },
   methods: {
     changeLanguage(lang) {
       this.$i18n.locale = lang;
-      localStorage.setItem("language", lang);
-      // this.$router.push({ path: this.currentUrl });
+      localStorage.setItem('language', lang);
+      this.updateBodyClass(lang); // Update the <body> class
       this.isDropdownOpen = false;
+    },
+    updateBodyClass(locale) {
+      document.body.className = `lang-${locale}`; // Update the <body> class
     },
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
@@ -72,6 +70,7 @@ export default {
   },
   mounted() {
     document.addEventListener('click', this.handleDocumentClick);
+    this.updateBodyClass(this.currentLanguage); // Set initial class on mount
   },
   beforeUnmount() {
     document.removeEventListener('click', this.handleDocumentClick);
@@ -133,16 +132,14 @@ export default {
     background-size: 18px;
   }
 
-
   .icon-hy {
-    background-image: url("assets/icons-lng/icon-am.svg");
+    background-image: url('assets/icons-lng/icon-am.svg');
   }
   .icon-ru {
-    background-image: url("assets/icons-lng/icon-ru.svg");
+    background-image: url('assets/icons-lng/icon-ru.svg');
   }
-
   .icon-en {
-    background-image: url("assets/icons-lng/icon-en.svg");
+    background-image: url('assets/icons-lng/icon-en.svg');
   }
 
   &__lng-text {
