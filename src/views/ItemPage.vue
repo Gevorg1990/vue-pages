@@ -12,10 +12,8 @@
           <h2>Comment Added Successfully!</h2>
           <p>Your comment has been added successfully.</p>
           <router-link :to="'/vue-pages'" style="color: red"> go Home comment block </router-link>
-
         </div>
       </div>
-
 
       <!-- Button to open the modal -->
       <button @click="openModal" type="button">Add Comment</button>
