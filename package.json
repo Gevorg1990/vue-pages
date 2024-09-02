@@ -2,7 +2,9 @@
   "name": "www.nuan",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://gevorg1990.github.io/vue-pages/",
   "scripts": {
+    "gh-pages-clean": "gh-pages-clean",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "deploy": "gh-pages -d dist"
@@ -28,3 +30,6 @@
     "sass-loader": "^10.5.2"
   }
 }
+
+
+

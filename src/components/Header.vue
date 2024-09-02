@@ -3,13 +3,9 @@
     <LanguageSwitcher />
 
     <div id="nav" class="nav df a-center">
-      <router-link class="router-link fs20" to="/vue-pages">home</router-link>
-      <router-link class="router-link fs20" to="/about">About</router-link>
-
+      <router-link class="router-link fs20" to="/vue-pages">{{ lng }}</router-link>
       <img src="../../public/logo.svg" alt="logo">
-
-      <router-link class="router-link fs20" to="/test">test</router-link>
-      <router-link class="router-link fs20" to="/test2">test2</router-link>
+      <router-link class="router-link fs20" to="/about">{{$t('menu.about')}}</router-link>
     </div>
   </div>
 
@@ -22,7 +18,7 @@ export default {
   },
   data() {
     return {
-
+      lng : ''
     }
   },
   methods: {
@@ -30,7 +26,12 @@ export default {
       this.$i18n.locale = lang;
     },
 
-  }
+  },
+  computed: {
+    lng() {
+      return this.$t('menu.home');
+    },
+  },
 }
 </script>
 

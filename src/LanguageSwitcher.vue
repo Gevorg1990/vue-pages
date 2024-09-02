@@ -1,6 +1,6 @@
 <template>
   <nav class="language-box">
-    <button class="language-box__globe df a-center" :class="currentLanguageIcon" @click="toggleDropdown">
+    <button class="language-box__btn-lang df a-center" :class="currentLanguageIcon" @click="toggleDropdown">
       <span class="nav__lng-text">{{ currentLanguageLabel }}</span>
     </button>
 
@@ -95,7 +95,7 @@ export default {
     overflow: hidden;
   }
 
-  &__globe {
+  &__btn-lang {
     background-size: 22px !important;
     background-position: left !important;
     height: 40px;
@@ -132,15 +132,9 @@ export default {
     background-size: 18px;
   }
 
-  .icon-hy {
-    background-image: url('assets/icons-lng/icon-am.svg');
-  }
-  .icon-ru {
-    background-image: url('assets/icons-lng/icon-ru.svg');
-  }
-  .icon-en {
-    background-image: url('assets/icons-lng/icon-en.svg');
-  }
+  .icon-hy {background-image: url('assets/icons-lng/icon-am.svg');}
+  .icon-ru {background-image: url('assets/icons-lng/icon-ru.svg');}
+  .icon-en {background-image: url('assets/icons-lng/icon-en.svg');}
 
   &__lng-text {
     color: $textColor1;
@@ -163,5 +157,6 @@ export default {
     opacity: 1;
     transform: translateY(0);
   }
+
 }
 </style>

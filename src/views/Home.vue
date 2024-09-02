@@ -1,11 +1,10 @@
 <template>
   <div class="home pr" v-cloak :style="{ backgroundImage: 'url(' + currentImage + ')' }">
-<!--    <h2 class="home__header-title font-italiano">-->
-<!--      The <mark>Perfect</mark> Baked Cake Everyday-->
-<!--    </h2> -->
 
-    <h2 class="home__header-title font-italiano" v-html="$t('message.home-title')"></h2>
-    <span class="font-italiano db fs30">“Where there is cake, there is hope.”</span>
+    <div class="home__title-box font-header-title tc">
+      <h2 class="home__header-title" v-html="$t('message.home-title')"></h2>
+      <span class="home__header-description db fs30">{{$t('message.home-description')}}</span>
+    </div>
 
     <div class="home__soc-box">
       <div class="home__soc-box-wrapper pr">
@@ -17,12 +16,16 @@
 
     <div class="home__cake-box">
       <div class="home__cake-box-wrapper pr">
-        <a class="home__cake-link home__cake-link--1" href="#" ></a>
-        <a class="home__cake-link home__cake-link--2" href="#" ></a>
-        <a class="home__cake-link home__cake-link--3" href="#" ></a>
+        <button class="home__cake-btn home__cake-btn--1" type="button" @click="scrollToSection('tartalet')"></button>
+        <button class="home__cake-btn home__cake-btn--2" type="button" @click="scrollToSection('Ccake')"></button>
+        <button class="home__cake-btn home__cake-btn--3" type="button" @click="scrollToSection('test')"></button>
       </div>
     </div>
   </div>
+
+  <Tartalet />
+
+
 </template>
 
 <script>
@@ -32,10 +35,11 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import bg1 from '../assets/home-bg/bg1.webp';
 import bg2 from '../assets/home-bg/bg2.webp';
 import bg3 from '../assets/home-bg/bg3.webp';
+import Tartalet from "../components/Tartalet";
 
 export default {
   name: 'Home',
-
+  components: {Tartalet},
   setup() {
     // Use the imported images
     const imageUrls = [bg1, bg2, bg3];
@@ -54,6 +58,7 @@ export default {
       }, 1000); // Ensure this matches the transition duration in CSS
     };
 
+
     onMounted(() => {
       updateBackgroundImage();
       intervalId = setInterval(updateBackgroundImage, 10000);
@@ -67,14 +72,30 @@ export default {
       currentImage,
     };
   },
+
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    scrollToSection(sectionId) {
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+
 };
 </script>
 
-
 <style lang="scss" scoped>
+
 [v-cloak] {
   display: none;
 }
+
 .home {
   width: 100%;
   height: 100dvh;
@@ -93,12 +114,15 @@ export default {
     transition: background-image 1s ease-in-out;
   }
 
+  &__title-box > * {
+    font-family: inherit;
+  }
+
   &__header-title {
     max-width: 600px;
-    font-size: 6rem;
     text-align: center;
+    line-height: 80px;
     margin-bottom: 40px;
-    line-height: 100px;
 
     ::v-deep mark {
       font-family: inherit;
@@ -125,7 +149,7 @@ export default {
   &__cake-box {
     height: 100%;
     position: absolute;
-    width: 30px;
+    width: 40px;
 
     &:before,
     &:after {
@@ -144,6 +168,7 @@ export default {
     &:after {
       bottom: 0;
     }
+
   }
 
   &__cake-box {
@@ -156,6 +181,7 @@ export default {
     &:after {
       height: calc(75% - 75px);
     }
+
   }
 
   &__soc-box {
@@ -171,7 +197,6 @@ export default {
 
   }
 
-
   &__cake-box-wrapper {
     top: calc(25% - 60px);
   }
@@ -180,12 +205,12 @@ export default {
     top: calc(75% - 60px);
   }
 
-  &__cake-link,
+  &__cake-btn,
   &__soc-link {
     filter: grayscale(1);
     margin-bottom: 15px;
-    width: 30px;
     height: 30px;
+    width: 40px;
     transition: filter 0.3s ease;
 
     &:last-child {
@@ -198,31 +223,27 @@ export default {
 
   }
 
-  &__cake-link {
-    &--1 {background: url('../assets/icons-cakes/icon-cake1.svg');}
-    &--2 {background: url('../assets/icons-cakes/icon-cake1.svg');}
-    &--3 {background: url('../assets/icons-cakes/icon-cake1.svg');}
+  &__cake-btn {
+    &--1 {background: url('../assets/icons-cakes/icon-cake1.svg') no-repeat center;}
+    &--2 {background: url('../assets/icons-cakes/icon-cake2.svg') no-repeat center;}
+    &--3 {background: url('../assets/icons-cakes/icon-cake1.svg') no-repeat center;}
   }
 
   &__soc-link {
 
     &--fb {
-      background: url('../assets/icons-soc/icon-fb.svg');
+      background: url('../assets/icons-soc/icon-fb.svg') no-repeat center;
     }
 
     &--ig {
-      background: url('../assets/icons-soc/icon-ig.svg');
+      background: url('../assets/icons-soc/icon-ig.svg') no-repeat center;
     }
 
     &--tg {
-      background: url('../assets/icons-soc/icon-tg.svg');
+      background: url('../assets/icons-soc/icon-tg.svg') no-repeat center;
     }
 
   }
 
-
-  &__cake-box {
-
-  }
 }
 </style>

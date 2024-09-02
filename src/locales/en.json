@@ -1,6 +1,16 @@
 {
+  "menu" : {
+    "home" : "Home",
+    "about" : "About"
+  },
+
   "message": {
     "home-title": "The <mark>Perfect</mark> Baked Cake Everyday",
+    "home-description": "“Where there is cake, there is hope.”",
     "text-info" : "Welcome to our new floor"
+  },
+  "cake": {
+    "name-1" : "En1",
+    "name-2" : "en2"
   }
 }

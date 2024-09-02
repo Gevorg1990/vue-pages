@@ -1,21 +1,21 @@
 <template>
-  <Carousel :itemsToShow="3.95" :wrapAround="true" :transition="500">
+  <Carousel
+      ref="carousel"
+      :itemsToShow="1"
+      :wrapAround="true"
+      :transition = "false"
+  >
     <Slide v-for="(img, index) in images" :key="index">
       <div class="carousel__item">
         <img :src="img.src" :alt="img.alt || `Slide image ${index}`">
       </div>
     </Slide>
-    <template #addons>
-      <Navigation />
-      <Pagination />
-    </template>
   </Carousel>
 </template>
 
-
 <script>
-import { defineComponent } from 'vue'
-import { Carousel, Pagination, Slide, Navigation } from 'vue3-carousel'
+import { defineComponent, onMounted, onBeforeUnmount, ref } from 'vue'
+import { Carousel, Slide } from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
 
@@ -24,57 +24,46 @@ export default defineComponent({
   components: {
     Carousel,
     Slide,
-    Pagination,
-    Navigation,
   },
   props: {
     images: {
       type: Array,
       required: true
     }
-  }
+  },
+  setup() {
+    const carousel = ref(null);
+
+    onMounted(() => {
+      const interval = setInterval(() => {
+        carousel.value.next(); // move to the next slide
+      }, 8000); // autoplay interval in milliseconds
+
+      onBeforeUnmount(() => {
+        clearInterval(interval); // clear interval on component unmount
+      });
+    });
+
+    return {
+      carousel,
+    };
+  },
 })
 </script>
-
-
-<style type="text/css" scoped>
+<style >
 .carousel__slide {
-  padding: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
 }
-
-.carousel__viewport {
-  perspective: 2000px;
-}
-
-.carousel__track {
-  transform-style: preserve-3d;
-}
-
-.carousel__slide--sliding {
-  transition: 0.5s;
-}
-
-.carousel__slide {
-  opacity: 0.9;
-  transform: rotateY(-20deg) scale(0.9);
-}
-
-.carousel__slide--active ~ .carousel__slide {
-  transform: rotateY(20deg) scale(0.9);
-}
-
-.carousel__slide--prev {
-  opacity: 1;
-  transform: rotateY(-10deg) scale(0.95);
-}
-
-.carousel__slide--next {
-  opacity: 1;
-  transform: rotateY(10deg) scale(0.95);
-}
-
 .carousel__slide--active {
   opacity: 1;
-  transform: rotateY(0) scale(1.1);
+  visibility: visible;
 }
+.carousel__viewport {
+  width: 200px;
+  height: 200px;
+}
+
+
 </style>
