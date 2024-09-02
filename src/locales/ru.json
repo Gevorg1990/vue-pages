@@ -12,6 +12,8 @@
   },
   "cake": {
     "name-1" : "RUS1",
-    "name-2" : "RUS2"
+    "description-1" : "description 1 RUSSIAN",
+    "name-2" : "RUS2",
+    "description-2" : "description 2 RUSSIAN"
   }
 }

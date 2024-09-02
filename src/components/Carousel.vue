@@ -50,7 +50,9 @@ export default defineComponent({
   },
 })
 </script>
-<style >
+
+
+<style type="scss">
 .carousel__slide {
   opacity: 0;
   visibility: hidden;
@@ -64,6 +66,4 @@ export default defineComponent({
   width: 200px;
   height: 200px;
 }
-
-
 </style>

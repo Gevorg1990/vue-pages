@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import Carousel from './Carousel.vue';
@@ -25,13 +25,17 @@ export default {
     const store = useStore();
     const router = useRouter();
 
-    // Use computed to reactively update items based on language changes
-    const items = computed(() => {
-      return store.getters.itemsTartalet.map(item => ({
+    const items = ref([]);
+
+    const updateItems = () => {
+      items.value = store.getters.itemsTartalet.map(item => ({
         ...item,
         name: i18n.global.t(item.nameKey)  // Translate dynamically
       }));
-    });
+    };
+
+    // Use watchEffect to reactively update items when the language changes
+    watchEffect(updateItems);
 
     const navigateToPage = (id) => {
       router.push({ name: 'ItemPage', params: { id } });

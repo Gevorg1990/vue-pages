@@ -25,6 +25,8 @@
 
   <Tartalet />
 
+  <Coments />
+
 
 </template>
 
@@ -36,10 +38,11 @@ import bg1 from '../assets/home-bg/bg1.webp';
 import bg2 from '../assets/home-bg/bg2.webp';
 import bg3 from '../assets/home-bg/bg3.webp';
 import Tartalet from "../components/Tartalet";
+import Coments from "../components/Coments";
 
 export default {
   name: 'Home',
-  components: {Tartalet},
+  components: {Coments, Tartalet},
   setup() {
     // Use the imported images
     const imageUrls = [bg1, bg2, bg3];
@@ -150,6 +153,7 @@ export default {
     height: 100%;
     position: absolute;
     width: 40px;
+    z-index: 10;
 
     &:before,
     &:after {

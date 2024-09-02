@@ -40,6 +40,7 @@ export default {
 .header {
   position: absolute;
   left: 50%;
+  top: 0;
   transform: translateX(-50%);
   height: 117px;
   z-index: 3;
