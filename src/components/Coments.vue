@@ -3,12 +3,12 @@
 
   <div id="comments" class="center">
     <h1>Comment System</h1>
-    <!--    <base href="http://localhost:3000/">-->
 
     <!-- Button to open the modal -->
     <button @click="openModal" type="button">Add Comment</button>
 
     <!-- The Modal -->
+    <transition name="modal-fade">
     <div v-if="isModalOpen" class="modal" @click="handleClickOutside">
       <div class="modal-content" @click.stop ref="modalContent">
         <span class="close" @click="closeModal">&times;</span>
@@ -76,7 +76,7 @@
 
       </div>
     </div>
-
+    </transition>
     <div class="comment-box">
       <!-- Display comments with pagination -->
       <div class="comment__item" :id="'comment-' + comment.id" v-for="comment in paginatedComments" :key="comment.id">
@@ -152,6 +152,8 @@
 
 
   <script>
+  import { v4 as uuidv4 } from 'uuid';
+
     // Helper functions for cookie management
     function getCookie(name) {
       const value = `; ${document.cookie}`;
@@ -177,7 +179,7 @@
           comments: [],
           commentCount: 0,
           averageRating: 0,
-          frontUserId: getCookie('frontUserId') || uuid.v4(),
+          frontUserId: getCookie('frontUserId') || uuidv4(),
           showPicker: false,
           isModalOpen: false,
           emojis: [
@@ -297,7 +299,7 @@
             } else {
               alert('Please select a valid image file.');
               this.userAvatar = null;
-              this.avatarPreview = 'avatar-img/avatar-default.png';
+              this.avatarPreview = 'avatars-img/avatar-default.png';
               this.avatarError = 'Invalid image file.';
             }
           }
@@ -360,7 +362,7 @@
               this.$refs.editableDiv.innerHTML = '';
               this.userName = '';
               this.userAvatar = null;
-              this.avatarPreview = 'avatar-img/avatar-default.png'; // Reset preview
+              this.avatarPreview = 'avatars-img/avatar-default.png'; // Reset preview
               this.closeModal();
 
               // Fetch comments and adjust pagination
@@ -524,7 +526,7 @@
           this.userName = '';
           this.globalRating = 5
           this.tempRating = 5
-          this.avatarPreview = 'avatar-img/avatar-default.png';
+          this.avatarPreview = 'avatars-img/avatar-default.png';
         },
         changePage(page) {
           if (page > 0 && page <= this.totalPages) {
@@ -545,12 +547,14 @@
         }
       },
       mounted() {
+
         if (!getCookie('frontUserId')) {
           setCookie('frontUserId', this.frontUserId, 365);
         }
         this.fetchComments().then(() => {
-          this.currentPage = 1;
+          this.currentPage = this.totalPages;
         });
+
       }
     }
   </script>
@@ -701,12 +705,6 @@ button.active {
   --star-background: #fc0;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 [v-cloak] {
   display: none;
 }
@@ -715,9 +713,6 @@ button.active {
   cursor: pointer;font-size: 20px;
   transition: all 0.3s ease;
 }
-
-
-
 
 .Stars {
   --percent: calc(var(--rating) / 5 * 100%);

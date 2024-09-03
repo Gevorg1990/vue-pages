@@ -6,19 +6,22 @@
       <h1>Comment System</h1>
 
       <!-- Success Modal -->
+      <transition name="modal-fade">
       <div v-if="isSuccessModalOpen" class="modal success-modal" style="color: green" @click="handleClickOutside">
         <div class="modal-content" @click.stop ref="successModalContent">
           <span class="close" @click="closeSuccessModal">&times;</span>
           <h2>Comment Added Successfully!</h2>
           <p>Your comment has been added successfully.</p>
-          <router-link :to="'/vue-pages'" style="color: red"> go Home comment block </router-link>
+          <router-link :to="{ path: '/vue-pages' }" @click.native="scrollToComments" style="color: red">Go Home and scroll to comments block</router-link>
         </div>
       </div>
+      </transition>
 
       <!-- Button to open the modal -->
       <button @click="openModal" type="button">Add Comment</button>
 
       <!-- The Modal -->
+      <transition name="modal-fade">
       <div v-if="isModalOpen" class="modal" @click="handleClickOutside">
         <div class="modal-content" @click.stop ref="modalContent">
           <span class="close" @click="closeModal">&times;</span>
@@ -83,6 +86,7 @@
 
         </div>
       </div>
+      </transition>
     </div>
 
     <div v-if="item">
@@ -105,6 +109,7 @@ import { ref, computed, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import i18n from "../i18n";
+import { v4 as uuidv4 } from 'uuid';
 
 // Helper functions for cookie management
 function getCookie(name) {
@@ -159,7 +164,7 @@ export default {
       comments: [],
       commentCount: 0,
       averageRating: 0,
-      frontUserId: getCookie('frontUserId') || uuid.v4(),
+      frontUserId: getCookie('frontUserId') || uuidv4(),
       showPicker: false,
       isModalOpen: false,
       emojis: [
@@ -236,6 +241,23 @@ export default {
     }
   },
   methods: {
+
+    scrollToComments() {
+      // Navigate to the home page
+      this.$router.push('/vue-pages');
+
+      // Use a timeout to ensure navigation happens before scrolling
+      this.$nextTick(() => {
+
+
+        setTimeout(() => {
+          const element = document.getElementById('comments');
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300); // Adjust delay if needed
+      });
+    },
     handleCommentInput() {
       this.commentText = this.$refs.editableDiv.innerText;
       this.commentLength = this.commentText.length + $('.editable-div').find('img').length;
@@ -277,7 +299,7 @@ export default {
         } else {
           alert('Please select a valid image file.');
           this.userAvatar = null;
-          this.avatarPreview = 'avatar-img/avatar-default.png';
+          this.avatarPreview = 'avatars-img/avatar-default.png';
           this.avatarError = 'Invalid image file.';
         }
       }
@@ -342,7 +364,7 @@ export default {
           this.$refs.editableDiv.innerHTML = '';
           this.userName = '';
           this.userAvatar = null;
-          this.avatarPreview = 'avatar-img/avatar-default.png'; // Reset preview
+          this.avatarPreview = 'avatars-img/avatar-default.png'; // Reset preview
           this.closeModal();
 
           // Fetch comments and adjust pagination
@@ -379,47 +401,6 @@ export default {
         }
       } catch (error) {
         console.error('Error fetching comments:', error);
-      }
-    },
-    async deleteComment(commentId) {
-      if (confirm('Are you sure you want to delete this comment?')) {
-        const commentElement = document.getElementById(`comment-${commentId}`);
-
-        // Check if the element exists
-        if (commentElement) {
-          // Apply the dust animation class
-          commentElement.classList.add('dust');
-
-          // Wait for the animation to finish
-          await new Promise((resolve) => setTimeout(resolve, 500));
-        }
-
-        try {
-          const response = await fetch(`http://localhost:3000/comments/${commentId}`, {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ userId: this.frontUserId })
-          });
-
-          if (!response.ok) throw new Error('Failed to delete comment');
-
-          // If the element exists, remove it from the DOM
-          if (commentElement) {
-            commentElement.remove();
-          }
-
-          // Optionally, refresh the comments list
-          await this.fetchComments();
-        } catch (error) {
-          console.error('Error deleting comment:', error);
-
-          // Revert the animation if there was an error
-          if (commentElement) {
-            commentElement.classList.remove('dust');
-          }
-        }
       }
     },
     async saveGlobalRating() {
@@ -512,13 +493,9 @@ export default {
       this.userName = '';
       this.globalRating = 5
       this.tempRating = 5
-      this.avatarPreview = 'avatar-img/avatar-default.png';
+      this.avatarPreview = 'avatars-img/avatar-default.png';
     },
-    changePage(page) {
-      if (page > 0 && page <= this.totalPages) {
-        this.currentPage = page;
-      }
-    },
+
     formatDate(dateString) {
       // Ensure the dateString is a valid ISO 8601 date string
       const date = new Date(dateString);
@@ -539,6 +516,38 @@ export default {
     this.fetchComments().then(() => {
       this.currentPage = 1;
     });
+
+
   }
 };
 </script>
+
+<style>
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-fade-enter {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Success modal slide animation */
+.modal.success-modal .modal-content {
+  top: 0;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+</style>
+
