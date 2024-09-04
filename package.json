@@ -10,6 +10,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@vueuse/core": "^11.0.3",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "jquery": "^3.7.1",

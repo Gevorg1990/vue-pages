@@ -13,6 +13,7 @@ const messages = {
 const savedLanguage = localStorage.getItem('language') || 'hy';
 
 const i18n = createI18n({
+    legacy: false, // Disable legacy mode
     locale: savedLanguage, // Use saved language or default to 'hy'
     fallbackLocale: 'hy', // Set fallback locale
     messages

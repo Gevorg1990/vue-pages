@@ -254,6 +254,7 @@ export default {
           const element = document.getElementById('comments');
           if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
+            this.currentPage = this.totalPages;
           }
         }, 300); // Adjust delay if needed
       });

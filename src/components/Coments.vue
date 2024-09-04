@@ -590,7 +590,6 @@
 }
 
 
-
 .filled {
   color: gold;
 }

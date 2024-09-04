@@ -16,9 +16,14 @@
 
     <div class="home__cake-box">
       <div class="home__cake-box-wrapper pr">
-        <button class="home__cake-btn home__cake-btn--1" type="button" @click="scrollToSection('tartalet')"></button>
-        <button class="home__cake-btn home__cake-btn--2" type="button" @click="scrollToSection('Ccake')"></button>
-        <button class="home__cake-btn home__cake-btn--3" type="button" @click="scrollToSection('test')"></button>
+        <button
+            class="home__cake-btn home__cake-btn--1"
+            v-tooltip="{ text: tooltipText, placement: 'left' }"
+            type="button"
+            @click="scrollToSection('tartalet')"
+        ></button>
+<!--        <button class="home__cake-btn home__cake-btn&#45;&#45;2"  v-tooltip="{ text: 'chescake', placement: 'left' }" type="button" @click="scrollToSection('Ccake')"></button>-->
+<!--        <button class="home__cake-btn home__cake-btn&#45;&#45;3"  v-tooltip="{ text: 'test', placement: 'left' }" type="button" @click="scrollToSection('test')"></button>-->
       </div>
     </div>
   </div>
@@ -26,7 +31,6 @@
   <Tartalet />
 
   <Coments />
-
 
 </template>
 
@@ -40,10 +44,13 @@ import bg3 from '../assets/home-bg/bg3.webp';
 import Tartalet from "../components/Tartalet";
 import Coments from "../components/Coments";
 
+
+
 export default {
   name: 'Home',
   components: {Coments, Tartalet},
   setup() {
+
     // Use the imported images
     const imageUrls = [bg1, bg2, bg3];
 
@@ -72,7 +79,7 @@ export default {
     });
 
     return {
-      currentImage,
+      currentImage
     };
   },
 
@@ -88,7 +95,13 @@ export default {
         target.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  }
+  },
+
+  computed: {
+    tooltipText() {
+      return this.$t('cake.title-1');
+    }
+  },
 
 };
 </script>
