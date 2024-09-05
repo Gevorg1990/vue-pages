@@ -4,6 +4,9 @@
   <div id="comments" class="center">
     <h1>Comment System</h1>
 
+
+
+    <AnimatedButton :notifyParent="openModal"/>
     <!-- Button to open the modal -->
     <button @click="openModal" type="button">Add Comment</button>
 
@@ -153,6 +156,7 @@
 
   <script>
   import { v4 as uuidv4 } from 'uuid';
+  import AnimatedButton from "./AnimatedButton";
 
     // Helper functions for cookie management
     function getCookie(name) {
@@ -171,6 +175,7 @@
       document.cookie = `${name}=${value}; ${expires}path=/`;
     }
     export default {
+      components: {AnimatedButton},
       data() {
         return {
           pageId : '',
@@ -223,27 +228,28 @@
           const pages = [];
           let startPage, endPage;
 
-          if (this.totalPages <= 5) {
-            // Show all pages if total is less than or equal to 5
+          if (this.totalPages <= 3) {
+            // Show all pages if total is less than or equal to 3
             startPage = 1;
             endPage = this.totalPages;
           } else {
             // Calculate the start and end page based on current page
-            if (this.currentPage <= 3) {
-              // Show first 5 pages
+            if (this.currentPage === 1) {
+              // If on the first page, show the first 3 pages
               startPage = 1;
-              endPage = 5;
-            } else if (this.currentPage + 2 >= this.totalPages) {
-              // Show last 5 pages
-              startPage = this.totalPages - 4;
+              endPage = 3;
+            } else if (this.currentPage === this.totalPages) {
+              // If on the last page, show the last 3 pages
+              startPage = this.totalPages - 2;
               endPage = this.totalPages;
             } else {
-              // Show current page with 2 pages before and after
-              startPage = this.currentPage - 2;
-              endPage = this.currentPage + 2;
+              // Otherwise, show the current page and 1 page before and after
+              startPage = this.currentPage - 1;
+              endPage = this.currentPage + 1;
             }
           }
 
+          // Create an array of page numbers
           for (let i = startPage; i <= endPage; i++) {
             pages.push(i);
           }
@@ -598,6 +604,10 @@
   color: lightgray;
 }
 
+.character-count {
+  color: $textColor2;
+}
+
 .pagination {
   margin: 10px 0;
   display: flex;
@@ -708,8 +718,12 @@ button.active {
   display: none;
 }
 
+form .star {
+  cursor: pointer;
+}
+
 .star {
-  cursor: pointer;font-size: 20px;
+  font-size: 20px;
   transition: all 0.3s ease;
 }
 
@@ -787,8 +801,12 @@ form {
 
 
 .comment__date,
-.comment__text{
+.comment__text {
   display: block;
+}
+
+.comment__text {
+  margin-bottom: 30px;
 }
 
 .comment__item {
@@ -839,11 +857,16 @@ form {
   padding: 10px 40px 10px 10px;
   margin-bottom: 10px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 1px solid rgba($bdColor3, .7);
   border-radius: 4px;
   overflow-y: auto;
   white-space: pre-wrap;
   color: black;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: $bdColor3;
+  }
 }
 
 /*AVATAR*/

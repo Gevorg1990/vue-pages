@@ -11,6 +11,7 @@ article,aside,canvas,details,embed,
 figure,figcaption,footer,header,hgroup,
 menu,nav,output,ruby,section,summary,
 time,mark,audio,video {
+    box-sizing: border-box;
     border: 0;
     font: inherit;
     margin: 0;
@@ -97,6 +98,12 @@ input, textarea {
     margin: 0;
     outline: 0;
     padding: 0;
+    transition: all 0.3s ease;
+
+    &:focus {
+        border-color: $bdColor3;
+    }
+
 }
 
 textarea {

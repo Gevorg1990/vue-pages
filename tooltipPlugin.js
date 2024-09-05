@@ -1,4 +1,3 @@
-// tooltipPlugin.js
 import { createApp, h } from 'vue';
 
 const Tooltip = {
@@ -6,7 +5,7 @@ const Tooltip = {
         app.directive('tooltip', {
             mounted(el, binding) {
                 let tooltipElement;
-                const offset = 10 ; // Adjust this value for spacing between the element and the tooltip
+                const offset = 10; // Adjust this value for spacing between the element and the tooltip
 
                 const createTooltip = () => {
                     if (tooltipElement) return;
@@ -66,14 +65,24 @@ const Tooltip = {
                     }
                 };
 
+                // Bind these methods to the element so they can be referenced in the unmounted hook
+                el.__showTooltip__ = showTooltip;
+                el.__hideTooltip__ = hideTooltip;
+                el.__positionTooltip__ = positionTooltip;
+
                 el.addEventListener('mouseenter', showTooltip);
                 el.addEventListener('mouseleave', hideTooltip);
                 window.addEventListener('resize', positionTooltip); // Update position on resize
             },
             unmounted(el) {
-                el.removeEventListener('mouseenter', showTooltip);
-                el.removeEventListener('mouseleave', hideTooltip);
-                window.removeEventListener('resize', positionTooltip); // Clean up on unmount
+                el.removeEventListener('mouseenter', el.__showTooltip__);
+                el.removeEventListener('mouseleave', el.__hideTooltip__);
+                window.removeEventListener('resize', el.__positionTooltip__);
+
+                // Clean up
+                delete el.__showTooltip__;
+                delete el.__hideTooltip__;
+                delete el.__positionTooltip__;
             }
         });
     }

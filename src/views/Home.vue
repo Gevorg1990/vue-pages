@@ -18,17 +18,30 @@
       <div class="home__cake-box-wrapper pr">
         <button
             class="home__cake-btn home__cake-btn--1"
-            v-tooltip="{ text: tooltipText, placement: 'left' }"
+            v-tooltip="{ text: $t('cake.title-1'), placement: 'left' }"
             type="button"
             @click="scrollToSection('tartalet')"
         ></button>
-<!--        <button class="home__cake-btn home__cake-btn&#45;&#45;2"  v-tooltip="{ text: 'chescake', placement: 'left' }" type="button" @click="scrollToSection('Ccake')"></button>-->
-<!--        <button class="home__cake-btn home__cake-btn&#45;&#45;3"  v-tooltip="{ text: 'test', placement: 'left' }" type="button" @click="scrollToSection('test')"></button>-->
+        <button
+            class="home__cake-btn home__cake-btn--2"
+            v-tooltip="{ text: $t('cake.title-1'), placement: 'left' }"
+            type="button"
+            @click="scrollToSection('tartalet')"
+        ></button>
+        <button
+            class="home__cake-btn home__cake-btn--3"
+            v-tooltip="{ text: $t('cake.title-1'), placement: 'left' }"
+            type="button"
+            @click="scrollToSection('tartalet')"
+        ></button>
+
       </div>
     </div>
   </div>
 
   <Tartalet />
+
+
 
   <Coments />
 
@@ -44,11 +57,9 @@ import bg3 from '../assets/home-bg/bg3.webp';
 import Tartalet from "../components/Tartalet";
 import Coments from "../components/Coments";
 
-
-
 export default {
   name: 'Home',
-  components: {Coments, Tartalet},
+  components: { Coments, Tartalet},
   setup() {
 
     // Use the imported images
@@ -97,12 +108,6 @@ export default {
     }
   },
 
-  computed: {
-    tooltipText() {
-      return this.$t('cake.title-1');
-    }
-  },
-
 };
 </script>
 
@@ -140,7 +145,7 @@ export default {
     line-height: 80px;
     margin-bottom: 40px;
 
-    ::v-deep mark {
+    :deep(mark)  {
       font-family: inherit;
       background: unset;
       color: #FF8886;

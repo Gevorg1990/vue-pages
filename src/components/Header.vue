@@ -56,6 +56,6 @@ export default {
 }
 
 .router-link-active {
-  color: red;
+  color: $textColor3;
 }
 </style>
