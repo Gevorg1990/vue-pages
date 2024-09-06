@@ -7,7 +7,7 @@ import ItemPage from '../views/ItemPage.vue';
 const routes = [
 
   {
-    path: '/vue-pages',
+    path: '/',
     name: 'Home',
     component: Home
   },

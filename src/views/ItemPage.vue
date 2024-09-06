@@ -5,16 +5,19 @@
     <div id="comments" class="center">
       <h1>Comment System</h1>
 
+      <AnimatedButton :notifyParent="openModal"/>
+
+
       <!-- Success Modal -->
       <transition name="modal-fade">
-      <div v-if="isSuccessModalOpen" class="modal success-modal" style="color: green" @click="handleClickOutside">
-        <div class="modal-content" @click.stop ref="successModalContent">
-          <span class="close" @click="closeSuccessModal">&times;</span>
-          <h2>Comment Added Successfully!</h2>
-          <p>Your comment has been added successfully.</p>
-          <router-link :to="{ path: '/vue-pages' }" @click.native="scrollToComments" style="color: red">Go Home and scroll to comments block</router-link>
+        <div v-if="isSuccessModalOpen" class="modal success-modal" style="color: green" @click="handleClickOutside">
+          <div class="modal-content" @click.stop ref="modalContent">
+            <span class="close" @click="closeSuccessModal">&times;</span>
+            <h2>Comment Added Successfully!</h2>
+            <p>Your comment has been added successfully.</p>
+            <router-link :to="{ path: '/vue-pages' }" @click.native="scrollToComments" style="color: red">Go Home and scroll to comments block</router-link>
+          </div>
         </div>
-      </div>
       </transition>
 
       <!-- Button to open the modal -->
@@ -96,11 +99,7 @@
       <!-- You can include more detailed information here -->
     </div>
 
-    <pre>{{pageId}}</pre>
 
-    <!-- <div v-else> -->
-    <!-- <p>Loading...</p> -->
-    <!-- </div> -->
   </div>
 </template>
 
@@ -110,6 +109,7 @@ import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import i18n from "../i18n";
 import { v4 as uuidv4 } from 'uuid';
+import AnimatedButton from "../components/AnimatedButton";
 
 // Helper functions for cookie management
 function getCookie(name) {
@@ -129,6 +129,7 @@ function setCookie(name, value, days) {
 }
 
 export default {
+  components: {AnimatedButton},
   setup() {
     const store = useStore();
     const route = useRoute();
@@ -244,7 +245,7 @@ export default {
 
     scrollToComments() {
       // Navigate to the home page
-      this.$router.push('/vue-pages');
+      this.$router.push('/');
 
       // Use a timeout to ensure navigation happens before scrolling
       this.$nextTick(() => {
@@ -312,7 +313,6 @@ export default {
       this.avatarPreview = avatar.src;
       this.clearAvatarError(); // Clear avatar error when a valid avatar is selected
       this.showAvatarPicker = false;
-      console.log('Selected avatar:', avatar.src);
     },
 
     // Call this method when the user types in the name field
@@ -328,11 +328,11 @@ export default {
       const commentText = this.$refs.editableDiv.innerHTML.trim();
 
       if (!this.userName) {
-        this.nameError = 'Name is required.';
+        this.nameError = this.$t('error-message.name');
       }
 
       if (!commentText) {
-        this.commentError = 'Comment cannot be empty.';
+        this.commentError = this.$t('error-message.comment');
       }
 
       if (!this.userAvatar) {
@@ -382,9 +382,9 @@ export default {
       }
     },
 
-  closeSuccessModal() {
-    this.isSuccessModalOpen = false;
-  },
+    closeSuccessModal() {
+      this.isSuccessModalOpen = false;
+    },
     async fetchComments() {
       try {
         const response = await fetch('http://localhost:3000/comments');
@@ -495,6 +495,7 @@ export default {
       this.globalRating = 5
       this.tempRating = 5
       this.avatarPreview = 'avatars-img/avatar-default.png';
+      this.isSuccessModalOpen = false
     },
 
     formatDate(dateString) {

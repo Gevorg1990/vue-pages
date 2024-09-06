@@ -3,7 +3,7 @@
     <LanguageSwitcher />
 
     <div id="nav" class="nav df a-center">
-      <router-link class="router-link fs20" to="/vue-pages">{{ lng }}</router-link>
+      <router-link class="router-link fs20" to="/">{{ lng }}</router-link>
       <img src="../../public/logo.svg" alt="logo">
       <router-link class="router-link fs20" to="/about">{{$t('menu.about')}}</router-link>
     </div>

@@ -18,5 +18,10 @@
     "description-1" : "description 1 ARMENIAN",
     "name-2" : "Տեստ 2",
     "description-2" : "description 2 ARMENIAN"
+  },
+
+  "error-message" : {
+    "name" : "Անունը պարտադիր է լրացնել։",
+    "comment" : "Մեկնաբանություն գրված չէ։"
   }
 }

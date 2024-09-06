@@ -15,7 +15,7 @@
       &:nth-child(#{$i}) {
         padding: #{random(3) + 2}px;
         left: #{-25 + ($i * 4)}px;
-        top: 50px;
+        top: 40px;
       }
     }
     @for $i from 20 through 40 {

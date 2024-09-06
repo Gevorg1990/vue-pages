@@ -2,7 +2,7 @@
   <div class="button pr">
     <label :for="'button'" @click="notifyParent">
       <div class="button_inner q">
-       add
+        <img :src="iconGroup" alt="icon-group">
          <div class="b_l_quad">
           <div
               class="button_spots"
@@ -27,10 +27,12 @@ export default {
   },
   data() {
     return {
+      iconGroup : require('@/assets/icon-group.svg'),
       icons: [
         require('@/assets/icon-star.svg'),
         require('@/assets/icon-heart.svg'),
         require('@/assets/icon-like.svg'),
+        require('@/assets/icon-emoji.svg'),
       ]
     }
   },

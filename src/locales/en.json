@@ -15,5 +15,10 @@
     "description-1" : "description 1 England",
     "name-2" : "en2",
     "description-2" : "description 2 England"
+  },
+
+  "error-message" : {
+    "name" : "The name must be filled in.",
+    "comment" : "No comment was written."
   }
 }

@@ -16,5 +16,9 @@
     "description-1" : "description 1 RUSSIAN",
     "name-2" : "RUS2",
     "description-2" : "description 2 RUSSIAN"
+  },
+  "error-message" : {
+    "name" : "Имя должно быть заполнено.",
+    "comment" : "Комментария не было написано."
   }
 }

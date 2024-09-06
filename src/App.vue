@@ -1,5 +1,5 @@
 <template>
-      <base href="http://localhost:8084/vue-pages">
+      <base href="http://localhost:8081/">
 
     <Header />
 
