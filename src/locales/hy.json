@@ -6,18 +6,27 @@
   },
 
   "message": {
-    "home-title": "Կատարյալ <mark>թխելու</mark> տորթ ամեն օրվա համար",
+    "home-title": "Կատարյալ {highlight} թխելու {highlightEnd} տորթ ամեն օրվա համար",
     "home-description": "“Որտեղ տորթ կա, այնտեղ հույս կա:”",
 
     "text-info" : "Ողջունւմ ենք ձեզ մեր նոր հարտակում"
   },
 
-  "cake": {
-    "title-1" : "Տարտալետ",
-    "name-1" : "տեստ 1",
-    "description-1" : "description 1 ARMENIAN",
-    "name-2" : "Տեստ 2",
-    "description-2" : "description 2 ARMENIAN"
+  "cake-1": {
+    "name" : "Տարտալետ մրգային",
+    "n1" : "Lemon",
+    "n2" : "Malina",
+    "n3" : "Grefrut",
+    "description-1" : "description 1 ARMENIAN ---------",
+    "description-2" : "description 2 ARMENIAN ---------",
+    "description-3" : "description 3 ARMENIAN ---------"
+  },
+  "cake-2": {
+    "name" : "Տարտալետ ընկույզով",
+    "n1" : "ha ",
+    "n2" : "ha ha",
+    "description-1" : "description 1 hjdhjkfkdsfhkjsdhf",
+    "description-2" : "description 2 dfdsfsddsfdsfdsfds"
   },
 
   "error-message" : {

@@ -5,6 +5,7 @@
       <li v-for="(item, idx) in items" :key="item.id" @click="navigateToPage(item.id)">
         <Carousel :images="item.images" />
         <p>{{ item.name }}</p>
+
       </li>
     </ul>
   </div>
@@ -30,7 +31,7 @@ export default {
     const updateItems = () => {
       items.value = store.getters.itemsTartalet.map(item => ({
         ...item,
-        name: i18n.global.t(item.nameKey)  // Translate dynamically
+        name: i18n.global.t(item.nameKey)
       }));
     };
 

@@ -3,11 +3,11 @@
       ref="carousel"
       :itemsToShow="1"
       :wrapAround="true"
-      :transition = "false"
+      :transition = 0
   >
     <Slide v-for="(img, index) in images" :key="index">
       <div class="carousel__item">
-        <img :src="img.src" :alt="img.alt || `Slide image ${index}`">
+        <img :src="img.src" >
       </div>
     </Slide>
   </Carousel>

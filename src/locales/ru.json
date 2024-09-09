@@ -10,12 +10,21 @@
 
     "text-info" : "Добро пожаловать на нашу новую платформу"
   },
-  "cake": {
-    "title-1" : "Тарталетка",
-    "name-1" : "RUS1",
-    "description-1" : "description 1 RUSSIAN",
-    "name-2" : "RUS2",
-    "description-2" : "description 2 RUSSIAN"
+  "cake-1": {
+    "name" : "Տարտալետ մրգային RU",
+    "n1" : "Lemon",
+    "n2" : "Malina",
+    "n3" : "Grefrut",
+    "description-1" : "description 1 ARMENIAN ---------",
+    "description-2" : "description 2 ARMENIAN ---------",
+    "description-3" : "description 3 ARMENIAN ---------"
+  },
+  "cake-2": {
+    "name" : "Տարտալետ ընկույզով RU",
+    "n1" : "ha ",
+    "n2" : "ha ha",
+    "description-1" : "description 1 hjdhjkfkdsfhkjsdhf",
+    "description-2" : "description 2 dfdsfsddsfdsfdsfds"
   },
   "error-message" : {
     "name" : "Имя должно быть заполнено.",

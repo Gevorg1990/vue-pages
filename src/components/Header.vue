@@ -3,7 +3,7 @@
     <LanguageSwitcher />
 
     <div id="nav" class="nav df a-center">
-      <router-link class="router-link fs20" to="/">{{ lng }}</router-link>
+      <router-link class="router-link fs20" to="/"> {{$t('menu.home')}} </router-link>
       <img src="../../public/logo.svg" alt="logo">
       <router-link class="router-link fs20" to="/about">{{$t('menu.about')}}</router-link>
     </div>
@@ -28,9 +28,9 @@ export default {
 
   },
   computed: {
-    lng() {
-      return this.$t('menu.home');
-    },
+    // lng() {
+    //   return this.$t('menu.home');
+    // },
   },
 }
 </script>

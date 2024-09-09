@@ -2,7 +2,7 @@
   <div class="home pr" v-cloak :style="{ backgroundImage: 'url(' + currentImage + ')' }">
 
     <div class="home__title-box font-header-title tc">
-      <h2 class="home__header-title" v-html="$t('message.home-title')"></h2>
+      <h2 class="home__header-title" v-html="translatedTitle"></h2>
       <span class="home__header-description db fs30">{{$t('message.home-description')}}</span>
     </div>
 
@@ -18,19 +18,19 @@
       <div class="home__cake-box-wrapper pr">
         <button
             class="home__cake-btn home__cake-btn--1"
-            v-tooltip="{ text: $t('cake.title-1'), placement: 'left' }"
+            v-tooltip="{ text: $t('cake-1.name'), placement: 'left' }"
             type="button"
             @click="scrollToSection('tartalet')"
         ></button>
         <button
             class="home__cake-btn home__cake-btn--2"
-            v-tooltip="{ text: $t('cake.title-1'), placement: 'left' }"
+            v-tooltip="{ text: $t('cake-1.name'), placement: 'left' }"
             type="button"
             @click="scrollToSection('tartalet')"
         ></button>
         <button
             class="home__cake-btn home__cake-btn--3"
-            v-tooltip="{ text: $t('cake.title-1'), placement: 'left' }"
+            v-tooltip="{ text: $t('cake-1.name'), placement: 'left' }"
             type="button"
             @click="scrollToSection('tartalet')"
         ></button>
@@ -41,14 +41,13 @@
 
   <Tartalet />
 
-
-
   <Coments />
 
 </template>
 
 <script>
 import { ref, onMounted, onUnmounted } from 'vue';
+import DOMPurify from 'dompurify';
 
 // Import images
 import bg1 from '../assets/home-bg/bg1.webp';
@@ -107,6 +106,17 @@ export default {
       }
     }
   },
+  computed: {
+    translatedTitle() {
+      // Replace placeholders with actual HTML tags
+      const rawTitle = this.$t('message.home-title', {
+        highlight: '<mark>',
+        highlightEnd: '</mark>'
+      });
+      // Sanitize the final result
+      return DOMPurify.sanitize(rawTitle, { ALLOWED_TAGS: ['mark'], ALLOWED_ATTR: [] });
+    }
+  }
 
 };
 </script>

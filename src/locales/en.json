@@ -9,12 +9,21 @@
     "home-description": "“Where there is cake, there is hope.”",
     "text-info" : "Welcome to our new floor"
   },
-  "cake": {
-    "title-1" : "Tartlet",
-    "name-1" : "En1",
-    "description-1" : "description 1 England",
-    "name-2" : "en2",
-    "description-2" : "description 2 England"
+  "cake-1": {
+    "name" : "Տարտալետ մրգային EN",
+    "n1" : "Lemon",
+    "n2" : "Malina",
+    "n3" : "Grefrut",
+    "description-1" : "description 1 ARMENIAN ---------",
+    "description-2" : "description 2 ARMENIAN ---------",
+    "description-3" : "description 3 ARMENIAN ---------"
+  },
+  "cake-2": {
+    "name" : "Տարտալետ ընկույզով EN",
+    "n1" : "ha ",
+    "n2" : "ha ha",
+    "description-1" : "description 1 hjdhjkfkdsfhkjsdhf",
+    "description-2" : "description 2 dfdsfsddsfdsfdsfds"
   },
 
   "error-message" : {

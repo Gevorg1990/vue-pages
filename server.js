@@ -80,7 +80,7 @@ app.get('/comments', (req, res) => {
 app.post('/comments', upload.single('avatar'), (req, res) => {
 
     try {
-        const { text, rating, userId, name, pageId } = req.body;
+        const { text, rating, userId, name, pageId, selectedTab } = req.body;
         const avatarUrl = req.file ? `/uploads/${req.file.filename}` : req.body.avatar;
 
         const numericRating = Number(rating);
@@ -92,6 +92,7 @@ app.post('/comments', upload.single('avatar'), (req, res) => {
                 userId,
                 name,
                 pageId,
+                selectedTab,
                 avatar: avatarUrl,
                 id: uuidv4(),
                 date: new Date().toISOString(),
