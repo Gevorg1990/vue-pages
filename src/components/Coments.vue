@@ -5,8 +5,27 @@
     <h1>Comment System</h1>
 
 
+<div class="df" style="gap: 30px; margin-bottom: 40px;">
+  <div
+      class="Stars"
+      :style="{ '--rating': averageRating }"
+      aria-label="Rating of this product is {{ averageRating }} out of 5."
+  >
+  </div>
 
-    <AnimatedButton :notifyParent="openModal"/>
+  <div style="display: flex; gap:15px">
+    <p class="rating-info df a-center">
+      <img :src="starsIcon" alt="people-stars">
+      {{ averageRating }}
+    </p>
+    <p class="rating-info df a-center">
+      <img :src="peopleIcon" alt="people-icon">
+      {{ commentCount }}
+    </p>
+  </div>
+  <AnimatedButton :notifyParent="openModal"/>
+
+</div>
 
     <!-- Success Modal -->
     <transition name="modal-fade">
@@ -130,41 +149,25 @@
     </div>
     <!-- Pagination Controls -->
     <div v-if="totalPages > 1" class="pagination">
-      <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Previous</button>
+      <button class="pagination__prev" @click="changePage(currentPage - 1)" :disabled="currentPage === 1">&#10094;</button>
 
       <!-- Show first page and ellipses if needed -->
-      <button v-if="showFirstEllipsis" @click="changePage(1)">1</button>
-      <button v-if="showFirstEllipsis" disabled>...</button>
+      <button class="pagination__item" v-if="showFirstEllipsis" @click="changePage(1)">1</button>
+      <button class="pagination__item" v-if="showFirstEllipsis" disabled>...</button>
 
       <!-- Page number buttons -->
-      <button v-for="page in visiblePages" :key="page" @click="changePage(page)" :class="{ active: currentPage === page }">
+      <button class="pagination__item" v-for="page in visiblePages" :key="page" @click="changePage(page)" :class="{ active: currentPage === page }">
         {{ page }}
       </button>
 
       <!-- Show ellipses and last page if needed -->
-      <button v-if="showLastEllipsis" disabled>...</button>
-      <button v-if="showLastEllipsis" @click="changePage(totalPages)">{{ totalPages }}</button>
+      <button class="pagination__item" v-if="showLastEllipsis" disabled>...</button>
+      <button class="pagination__item" v-if="showLastEllipsis" @click="changePage(totalPages)">{{ totalPages }}</button>
 
-      <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Next</button>
+      <button class="pagination__next" @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">&#10095;</button>
     </div>
 
-    <div
-        class="Stars"
-        :style="{ '--rating': averageRating }"
-        aria-label="Rating of this product is {{ averageRating }} out of 5."
-    >
-    </div>
 
-    <div style="display: flex; gap:15px">
-      <p class="rating-info df a-center">
-        <img :src="starsIcon" alt="people-stars">
-        {{ averageRating }}
-      </p>
-      <p class="rating-info df a-center">
-        <img :src="peopleIcon" alt="people-icon">
-        {{ commentCount }}
-      </p>
-    </div>
   </div>
 
 </template>
@@ -642,9 +645,56 @@
 }
 
 .pagination {
-  margin: 10px 0;
+  margin: 30px 0;
   display: flex;
   justify-content: center;
+  gap: 5px;
+
+  &__prev,
+  &__next,
+  &__item {
+    color: $textColor1;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  &__item.active {
+    background-color: $bgColor4;
+  }
+
+  &__prev[disabled],
+  &__next[disabled],
+  &__item[disabled]{
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  &__prev[disabled],
+  &__next[disabled] {
+    color: rgba($textColor3, .2);
+  }
+
+  &__item:not(button[disabled],button.active,&__prev,&__next):hover {
+    background-color: rgba($bgColor4, .6);
+  }
+
+  & &__prev,
+  & &__next {
+    @include font-size(16);
+
+    &:hover {
+      color: $textColor3;
+    }
+
+  }
+
 }
 
 .img-box-file {
@@ -844,11 +894,12 @@ form {
 }
 
 .comment__item {
+  background: rgba($bgColor1, .1);
   min-height: 60px;
-  border: 1px solid #aaa;
+  border-radius: 6px;
+  border: 1px solid $bdColor2;
   box-sizing: border-box;
   padding: 20px;
-
 }
 
 .comment__delete-btn,

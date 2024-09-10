@@ -4,6 +4,7 @@ const Tooltip = {
     install(app) {
         app.directive('tooltip', {
             mounted(el, binding) {
+
                 let tooltipElement;
                 const offset = 10; // Adjust this value for spacing between the element and the tooltip
 

@@ -55,9 +55,6 @@ export default {
       localStorage.setItem('language', lang);
       this.updateBodyClass(lang); // Update the <body> class
       this.isDropdownOpen = false;
-
-      // Reload the page
-      window.location.reload();
     },
     updateBodyClass(locale) {
       document.body.className = `lang-${locale}`; // Update the <body> class

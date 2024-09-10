@@ -71,10 +71,15 @@ export default {
     const updateBackgroundImage = () => {
       currentImage.value = imageUrls[currentIndex];
       currentIndex = (currentIndex + 1) % imageUrls.length; // Move to the next image, loop back to start
+      let home = document.querySelector('.home')
 
       document.querySelector('.home').classList.add('transitioning');
       setTimeout(() => {
-        document.querySelector('.home').classList.remove('transitioning');
+
+        if(home.length) {
+          home.classList.remove('transitioning');
+        }
+
       }, 1000); // Ensure this matches the transition duration in CSS
     };
 
@@ -115,7 +120,7 @@ export default {
       });
       // Sanitize the final result
       return DOMPurify.sanitize(rawTitle, { ALLOWED_TAGS: ['mark'], ALLOWED_ATTR: [] });
-    }
+    },
   }
 
 };

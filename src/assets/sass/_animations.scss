@@ -65,9 +65,6 @@
     margin: auto;
     font-weight: 100;
     cursor: pointer;
-    border: 1px solid #FFFFFF;
-    color: white;
-    text-align: center;
     transition: all .3s, box-shadow .2s, transform .2s .2s;
 
     i.l {
@@ -77,12 +74,11 @@
       color: #00C4FF;
       font-size: 25px;
       opacity: 0;
-      transition: left .3s 0s, top .3s 0s, opacity .3s 0s;
+      transition: left .3s 0s, top .3s 0s, opacity .3s 0s, background-color 0.3s ease;
     }
 
     &:hover {
-      color: black;
-      background: $bgColor1;
+      background: $bgColor4;
     }
 
     &:hover .button_spots {
