@@ -33,6 +33,7 @@ watch(
         localStorage.setItem('language', newLocale); // Save the new language to localStorage
         updateBodyClass(newLocale); // Update the <body> class
     }
+
 );
 
 export default i18n;

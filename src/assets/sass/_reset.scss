@@ -436,6 +436,7 @@ input:-webkit-autofill:active {
 }
 
 .tooltip {
+    position: absolute;
     padding: 8px;
     background-color: #333;
     color: white;

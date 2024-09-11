@@ -18,19 +18,22 @@
       <div class="home__cake-box-wrapper pr">
         <button
             class="home__cake-btn home__cake-btn--1"
-            v-tooltip="{ text: $t('cake-1.name'), placement: 'left' }"
+            @mouseover="showTooltip($t('cake-1.name'), $event)"
+            @mouseleave="hideTooltip"
             type="button"
             @click="scrollToSection('tartalet')"
         ></button>
         <button
             class="home__cake-btn home__cake-btn--2"
-            v-tooltip="{ text: $t('cake-1.name'), placement: 'left' }"
+            @mouseover="showTooltip($t('cake-2.name'), $event)"
+            @mouseleave="hideTooltip"
             type="button"
             @click="scrollToSection('tartalet')"
         ></button>
         <button
             class="home__cake-btn home__cake-btn--3"
-            v-tooltip="{ text: $t('cake-1.name'), placement: 'left' }"
+            @mouseover="showTooltip($t('cake-2.name'), $event)"
+            @mouseleave="hideTooltip"
             type="button"
             @click="scrollToSection('tartalet')"
         ></button>
@@ -43,6 +46,14 @@
 
   <Coments />
 
+  <div
+      v-if="tooltipVisible"
+      class="tooltip"
+      :style="{ left: tooltipPosition.left, top: tooltipPosition.top }"
+      ref="tooltip"
+  >
+    {{ tooltipText }}
+  </div>
 </template>
 
 <script>
@@ -100,7 +111,9 @@ export default {
 
   data() {
     return {
-
+      tooltipText: '', // Holds the tooltip text
+      tooltipVisible: false, // Controls tooltip visibility
+      tooltipPosition: { left: 0, top: 0 }, // Position of the tooltip
     }
   },
   methods: {
@@ -109,7 +122,31 @@ export default {
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
-    }
+    },
+    showTooltip(text, event) {
+      this.tooltipText = text;
+      this.tooltipVisible = true;
+
+      this.$nextTick(() => {
+        const buttonRect = event.target.getBoundingClientRect();
+        const tooltipElement = this.$refs.tooltip;
+
+        if (tooltipElement) {
+          const tooltipRect = tooltipElement.getBoundingClientRect();
+
+          this.tooltipPosition = {
+            left: buttonRect.left + window.scrollX - tooltipRect.width - 10 + 'px',
+            top: buttonRect.top + window.scrollY + (buttonRect.height - tooltipRect.height) / 2 + 'px',
+          };
+        } else {
+          console.error('Tooltip element not found.');
+        }
+      });
+    },
+
+    hideTooltip() {
+      this.tooltipVisible = false;
+    },
   },
   computed: {
     translatedTitle() {
@@ -120,7 +157,7 @@ export default {
       });
       // Sanitize the final result
       return DOMPurify.sanitize(rawTitle, { ALLOWED_TAGS: ['mark'], ALLOWED_ATTR: [] });
-    },
+    }
   }
 
 };
