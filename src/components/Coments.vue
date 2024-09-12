@@ -5,7 +5,7 @@
     <h1>Comment System</h1>
 
 
-<div class="df" style="gap: 30px; margin-bottom: 40px;">
+<div class="df" style="gap: 40px; margin-bottom: 40px;">
   <div
       class="Stars"
       :style="{ '--rating': averageRating }"
@@ -108,7 +108,7 @@
     <div class="comment-box">
       <!-- Display comments with pagination -->
       <div class="comment__item" :id="'comment-' + comment.id" v-for="comment in paginatedComments" :key="comment.id">
-        <div style="display: flex; flex-direction: column; height: 100%;">
+        <div style="display: flex; flex-direction: column; height: 100%; position: relative;">
           <!-- Display avatar -->
           <div style="display: flex; align-items: center; margin-bottom: 20px; gap: 20px">
             <img v-if="comment.avatar" :src="comment.avatar" alt="User Avatar" class="avatar">
@@ -124,7 +124,7 @@
             </svg>
           </router-link>
 
-          <span class="comment__text" v-html="comment.text"></span>
+          <span class="comment__text">{{comment.text}}</span>
 
           <div style="margin-top: auto;">
             <div class="stars">
@@ -234,7 +234,6 @@
           commentLength: 0,
           maxCommentLength: 300,
           isSuccessModalOpen: false // New state for success modal
-
         };
       },
 
@@ -607,7 +606,6 @@
   border: 1px solid silver;
 }
 
-
 .editable-div[contenteditable]:empty:before {
   content: attr(data-placeholder);
   color: #aaa;
@@ -724,14 +722,9 @@
 .comment-box {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 40px;
   max-width: 1440px;
   margin: auto;
-}
-
-.comment-box div {
-  flex:  0 1 calc(25% - 23px);
-  position: relative;
 }
 
 .line-clamp {
@@ -765,12 +758,6 @@
 
 .anim {
   color: #F30F0F;
-}
-
-
-
-button.active {
-  background: #F30F0F;
 }
 
 /* delete anim item */
@@ -897,9 +884,23 @@ form {
   background: rgba($bgColor1, .1);
   min-height: 60px;
   border-radius: 6px;
-  border: 1px solid $bdColor2;
   box-sizing: border-box;
   padding: 20px;
+  flex:  0 1 calc(25% - 30px);
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    right: 30px;
+    bottom: -30px;
+    z-index: 1;
+    width: 0;
+    height: 0;
+    border-top: 30px solid rgba($bgColor1, .1);
+    border-left: 50px solid transparent;
+  }
+
 }
 
 .comment__delete-btn,

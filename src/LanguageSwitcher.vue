@@ -1,6 +1,7 @@
 <template>
   <nav class="language-box">
-    <button class="language-box__btn-lang df a-center" :class="currentLanguageIcon" @click="toggleDropdown">
+    <button class="language-box__btn-lang df a-center"   :class="[currentLanguageIcon, { 'dropdown-open': isDropdownOpen }]"
+            @click="toggleDropdown">
       <span class="nav__lng-text">{{ currentLanguageLabel }}</span>
     </button>
 
@@ -86,8 +87,7 @@ export default {
 
   &__list {
     position: absolute;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    //background-color: #fff;
     z-index: 10;
     border-radius: 6px;
     top: 100%;
@@ -106,19 +106,30 @@ export default {
     padding-left: 32px;
     cursor: pointer;
     color: $textColor1;
+    transition: color 0.3s ease;
+
+    &.dropdown-open,
+    &:hover {
+      color: $textColor3;
+
+    }
+
   }
 
   &__lng-item {
+    background-color: $bgColor1;
     padding: 8px 8px 8px 28px;
     width: 100%;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s ease;
 
     &:not(.active):hover {
-      background-color: silver;
+      color: $textColor1;
+      background-color: rgba($bgColor4, 1);
     }
 
     &.active {
-      color: #5bba47;
+      background: rgba($bgColor3, 1);
+      color: $textColor1;
       cursor: default;
       user-select: none;
       pointer-events: none;

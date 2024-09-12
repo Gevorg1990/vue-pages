@@ -82,9 +82,7 @@ app.post('/comments', upload.single('avatar'), (req, res) => {
     try {
         const { text, rating, userId, name, pageId, selectedTab } = req.body;
         const avatarUrl = req.file ? `/uploads/${req.file.filename}` : req.body.avatar;
-
         const numericRating = Number(rating);
-
         if (text && !isNaN(numericRating) && numericRating >= 1 && numericRating <= 5 && userId) {
             const newComment = {
                 text,

@@ -543,7 +543,40 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+
+.tabs {
+  margin-bottom: 40px;
+
+  button {
+    border: 1px solid transparent;
+    @include font-size(18);
+    height: 40px;
+    margin-right: 30px;
+    background-color: $bgColor1;
+    padding: 0 20px;
+    border-radius: 6px;
+    transition: border-color 0.3s ease, color 0.3s ease;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+  }
+
+  button.active {
+    border-color: $bdColor2;
+    color: $textColor3;
+  }
+
+  button:not(button.active):hover {
+    color: rgba($textColor3, 0.4);
+    border-color: rgba($bdColor2, .4);
+  }
+
+
+
+}
 .modal {
   position: fixed;
   top: 50%;
