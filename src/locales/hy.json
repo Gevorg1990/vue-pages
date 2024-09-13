@@ -1,5 +1,4 @@
 {
-
   "menu" : {
     "home" : "Գլխավոր",
     "about" : "Մեր մասին"
@@ -8,29 +7,57 @@
   "message": {
     "home-title": "Կատարյալ {highlight} թխելու {highlightEnd} տորթ ամեն օրվա համար",
     "home-description": "“Որտեղ տորթ կա, այնտեղ հույս կա:”",
-
     "text-info" : "Ողջունւմ ենք ձեզ մեր նոր հարտակում"
   },
 
-  "cake-1": {
-    "name" : "Տարտալետ մրգային",
-    "n1" : "Lemon",
-    "n2" : "Malina",
-    "n3" : "Grefrut",
-    "description-1" : "description 1 ARMENIAN ---------",
-    "description-2" : "description 2 ARMENIAN ---------",
-    "description-3" : "description 3 ARMENIAN ---------"
+  "Tartalet" : {
+
+    "species" : "տարտալետ",
+
+    "item-1": {
+      "name" : "Տարտալետ մրգային",
+      "sundry-1" : "Lemon",
+      "sundry-2" : "Malina",
+      "sundry-3" : "Grefrut",
+      "description-1" : "description 1 ARMENIAN ---------",
+      "description-2" : "description 2 ARMENIAN ---------",
+      "description-3" : "description 3 ARMENIAN ---------"
+    },
+
+    "item-2": {
+      "name" : "Տարտալետ թխվածքներ",
+      "sundry-1" : "Պանրային 1",
+      "sundry-2" : "Պանրային 2 ",
+      "description-1" : "Պանրային 1  description հայ",
+      "description-2" : "Պանրային թ  dfdsfsddsfdsfdsfds հայ"
+    }
+
   },
-  "cake-2": {
-    "name" : "Տարտալետ ընկույզով",
-    "n1" : "ha ",
-    "n2" : "ha ha",
-    "description-1" : "description 1 hjdhjkfkdsfhkjsdhf",
-    "description-2" : "description 2 dfdsfsddsfdsfdsfds"
+
+  "Cheesecake" : {
+    "species" : "պանրային",
+
+    "item-1" : {
+      "name" : "Ճիցկայք պանրային",
+      "sundry-1" : "Պանրային 1 111",
+      "sundry-2" : "Պանրային 2 111",
+      "description-1" : "Պանրային 1  description հայ",
+      "description-2" : "Պանրային թ  dfdsfsddsfdsfdsfds հայ"
+    },
+
+    "item-2" : {
+      "name" : "Ճիցկայք պանրային",
+      "sundry-1" : "Պանրային 1 222",
+      "sundry-2" : "Պանրային 2 222",
+      "description-1" : "Պանրային 1  description հայ 222",
+      "description-2" : "Պանրային թ  dfdsfsddsfdsfdsfds հայ 222"
+    }
   },
+
 
   "error-message" : {
     "name" : "Անունը պարտադիր է լրացնել։",
     "comment" : "Մեկնաբանություն գրված չէ։"
   }
+
 }

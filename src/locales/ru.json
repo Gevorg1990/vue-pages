@@ -10,21 +10,48 @@
 
     "text-info" : "Добро пожаловать на нашу новую платформу"
   },
-  "cake-1": {
-    "name" : "Տարտալետ մրգային RU",
-    "n1" : "Lemon",
-    "n2" : "Malina",
-    "n3" : "Grefrut",
-    "description-1" : "description 1 ARMENIAN ---------",
-    "description-2" : "description 2 ARMENIAN ---------",
-    "description-3" : "description 3 ARMENIAN ---------"
+  "Tartalet" : {
+
+    "species" : "тарталет",
+
+    "item-1": {
+      "name" : "Տարտալետ մրգային",
+      "sundry-1" : "Lemon",
+      "sundry-2" : "Malina",
+      "sundry-3" : "Grefrut",
+      "description-1" : "description 1 ARMENIAN ---------",
+      "description-2" : "description 2 ARMENIAN ---------",
+      "description-3" : "description 3 ARMENIAN ---------"
+    },
+
+    "item-2": {
+      "name" : "Տարտալետ թխվածքներ",
+      "sundry-1" : "Պանրային 1",
+      "sundry-2" : "Պանրային 2 ",
+      "description-1" : "Պանրային 1  description հայ",
+      "description-2" : "Պանրային թ  dfdsfsddsfdsfdsfds հայ"
+    }
+
   },
-  "cake-2": {
-    "name" : "Տարտալետ ընկույզով RU",
-    "n1" : "ha ",
-    "n2" : "ha ha",
-    "description-1" : "description 1 hjdhjkfkdsfhkjsdhf RU",
-    "description-2" : "description 2 dfdsfsddsfdsfdsfds RU"
+
+  "Cheesecake" : {
+    "species" : "сыр",
+
+    "item-1" : {
+      "name" : "Ճիցկայք պանրային",
+      "sundry-1" : "Պանրային 1 111",
+      "sundry-2" : "Պանրային 2 111",
+      "description-1" : "Պանրային 1  description հայ",
+      "description-2" : "Պանրային թ  dfdsfsddsfdsfdsfds հայ"
+    },
+
+    "item-2" : {
+      "name" : "Ճիցկայք պանրային",
+      "sundry-1" : "Պանրային 1 222",
+      "sundry-2" : "Պանրային 2 222",
+      "description-1" : "Պանրային 1  description հայ 222",
+      "description-2" : "Պանրային թ  dfdsfsddsfdsfdsfds հայ 222"
+    }
   },
   "error-message" : {
     "name" : "Имя должно быть заполнено.",

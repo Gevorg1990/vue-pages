@@ -17,4 +17,5 @@ app.use(router);
 app.use(documentJs);
 app.use(i18n);
 // app.use(Tooltip);
+
 app.mount('#app');

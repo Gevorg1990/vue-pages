@@ -52,7 +52,10 @@
 
   <Tartalet />
 
+  <Cheesecake />
+
   <Coments />
+
 
   <div
       v-if="tooltipVisible"
@@ -74,10 +77,11 @@ import bg2 from '../assets/home-bg/bg2.webp';
 import bg3 from '../assets/home-bg/bg3.webp';
 import Tartalet from "../components/Tartalet";
 import Coments from "../components/Coments";
+import Cheesecake from "../components/Cheesecake";
 
 export default {
   name: 'Home',
-  components: { Coments, Tartalet},
+  components: {Cheesecake, Coments, Tartalet},
   setup() {
 
     // Use the imported images
@@ -355,13 +359,11 @@ export default {
     .scroll-prompt-arrow > div {
       width: 30px;
       height: 30px;
-      border-radius: 4px;
       border-right: 8px solid $bdColor2;
       border-bottom: 8px solid $bdColor2;
       transform: rotate(45deg) translateZ(1px);
     }
   }
-
   @keyframes opacity {
     0% {
       opacity: 0;
@@ -406,7 +408,7 @@ export default {
     100% {
       opacity: 1;
     }
-    
+
   }
 
   @keyframes bounce {
@@ -454,6 +456,5 @@ export default {
       transform: translateY(30px);
     }
   }
-
 }
 </style>

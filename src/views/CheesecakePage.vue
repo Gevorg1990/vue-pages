@@ -28,70 +28,70 @@
 
       <!-- The Modal -->
       <transition name="modal-fade">
-      <div v-if="isModalOpen" class="modal" @click="handleClickOutside">
-        <div class="modal-content" @click.stop ref="modalContent">
-          <span class="close" @click="closeModal">&times;</span>
-          <form @submit.prevent="addComment">
-            <div class="img-box-file" @mouseleave="showAvatarPicker = false">
-              <div class="avatar-box">
-                <input type="file"  @change="handleFileChange" id="file" name="avatar" accept="image/*" style="display: none">
-                <label for="file" style="cursor: pointer; poition: relative;" @mouseover="showAvatarPicker = true">
-                  <img :src="avatarPreview || 'avatars-img/avatar-default.png'" alt="avatar" class="avatar">
-                  <div v-if="showAvatarPicker" class="avatar-picker" style="display: flex; width: 250px">
-                    <div v-for="avatar in avatars" :key="avatar.src" @click.stop.prevent="selectAvatar(avatar)" class="avatar-item">
-                      <img :src="avatar.src" :alt="avatar.alt" class="avatar-preview">
+        <div v-if="isModalOpen" class="modal" @click="handleClickOutside">
+          <div class="modal-content" @click.stop ref="modalContent">
+            <span class="close" @click="closeModal">&times;</span>
+            <form @submit.prevent="addComment">
+              <div class="img-box-file" @mouseleave="showAvatarPicker = false">
+                <div class="avatar-box">
+                  <input type="file"  @change="handleFileChange" id="file" name="avatar" accept="image/*" style="display: none">
+                  <label for="file" style="cursor: pointer; poition: relative;" @mouseover="showAvatarPicker = true">
+                    <img :src="avatarPreview || 'avatars-img/avatar-default.png'" alt="avatar" class="avatar">
+                    <div v-if="showAvatarPicker" class="avatar-picker" style="display: flex; width: 250px">
+                      <div v-for="avatar in avatars" :key="avatar.src" @click.stop.prevent="selectAvatar(avatar)" class="avatar-item">
+                        <img :src="avatar.src" :alt="avatar.alt" class="avatar-preview">
+                      </div>
                     </div>
-                  </div>
-                </label>
-                <span v-if="avatarError" class="error"></span>
-              </div>
+                  </label>
+                  <span v-if="avatarError" class="error"></span>
+                </div>
 
 
-              <div>
-                <input class="input__name" type="text" @input="handleNameInput" v-model="userName" placeholder="Your Name">
-                <span v-if="nameError" class="error">{{ nameError }}</span>
-              </div>
-
-            </div>
-            <div class="editable-div-box">
-
-              <div class="editable-div-box-wrapper">
-                <div
-                    class="editable-div"
-                    contenteditable="true"
-                    ref="editableDiv"
-                    @input="handleCommentInput"
-                    data-placeholder="Type your comment here..."
-                    @keydown="limitTextLength"
-                    @focus="showPicker = false"
-                ></div>
-                <span v-if="commentError" class="error">{{ commentError }}</span>
-              </div>
-
-              <div class="character-count" style="color: black"> <span  class="text-length">{{ commentLength }}</span>/300</div>
-              <div class="emoji-picker">
-                <button @click="togglePicker" type="button">
-                  <img src="https://static.xx.fbcdn.net/images/emoji.php/v9/t3a/1/30/1f60d.png" alt="">
-                </button>
-                <div v-if="showPicker" class="emoji-list">
-                  <div v-for="emoji in emojis" :key="emoji.src" @click="selectEmoji(emoji)" class="emoji-item">
-                    <img :src="emoji.src" :alt="emoji.alt" />
-                  </div>
+                <div>
+                  <input class="input__name" type="text" @input="handleNameInput" v-model="userName" placeholder="Your Name">
+                  <span v-if="nameError" class="error">{{ nameError }}</span>
                 </div>
 
               </div>
-            </div>
+              <div class="editable-div-box">
 
-            <div class="stars">
+                <div class="editable-div-box-wrapper">
+                  <div
+                      class="editable-div"
+                      contenteditable="true"
+                      ref="editableDiv"
+                      @input="handleCommentInput"
+                      data-placeholder="Type your comment here..."
+                      @keydown="limitTextLength"
+                      @focus="showPicker = false"
+                  ></div>
+                  <span v-if="commentError" class="error">{{ commentError }}</span>
+                </div>
+
+                <div class="character-count" style="color: black"> <span  class="text-length">{{ commentLength }}</span>/300</div>
+                <div class="emoji-picker">
+                  <button @click="togglePicker" type="button">
+                    <img src="https://static.xx.fbcdn.net/images/emoji.php/v9/t3a/1/30/1f60d.png" alt="">
+                  </button>
+                  <div v-if="showPicker" class="emoji-list">
+                    <div v-for="emoji in emojis" :key="emoji.src" @click="selectEmoji(emoji)" class="emoji-item">
+                      <img :src="emoji.src" :alt="emoji.alt" />
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="stars">
                   <span v-for="star in 5" :key="star" class="star" :class="{ filled: star <= tempRating, empty: star > tempRating }" @mouseover="hoverRating(star)" @mouseleave="resetRating" @click="setRating(star)">
                       ★
                   </span>
-            </div>
-            <button type="submit">Add Comment</button>
-          </form>
+              </div>
+              <button type="submit">Add Comment</button>
+            </form>
 
+          </div>
         </div>
-      </div>
       </transition>
     </div>
 
@@ -154,10 +154,9 @@ export default {
     const selectedTab = ref(Number(route.query.tab) || 1);
 
     const items = computed(() => {
-      return store.getters.itemsTartalet.map(item => ({
+      return store.getters.itemsCheesecake.map(item => ({
         ...item,
         name: i18n.global.t(item.nameKey), // Translate name using nameKey
-
         des: Array.isArray(item.des) ? item.des.map(d => i18n.global.t(d)) : [i18n.global.t(item.des)],
         sort: Array.isArray(item.sort) ? item.sort.map(d => i18n.global.t(d)) : [i18n.global.t(item.sort)]
       }));
@@ -182,7 +181,7 @@ export default {
   },
   data() {
     return {
-      pageId : "tartalet/" + this.item.id,
+      pageId : 'cheesecake/'+ this.item.id,
       globalRating: 5,
       tempRating: 5,
       comments: [],

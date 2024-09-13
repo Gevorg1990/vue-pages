@@ -26,6 +26,8 @@
 
 <script>
 
+import {watch} from "vue";
+
 export default {
   data() {
     return {
@@ -55,7 +57,7 @@ export default {
     changeLanguage(lang) {
       this.$i18n.locale = lang;
       localStorage.setItem('language', lang);
-      this.updateBodyClass(lang); // Update the <body> class
+      this.updateBodyClass(lang);
       this.isDropdownOpen = false;
     },
     updateBodyClass(locale) {
