@@ -174,11 +174,12 @@
 
 
   <script>
-  import { v4 as uuidv4 } from 'uuid';
   import AnimatedButton from "./AnimatedButton";
   import i18n from "../i18n";
 
-    // Helper functions for cookie management
+  import { v4 as uuidv4 } from 'uuid';
+
+  // Helper functions for cookie management
     function getCookie(name) {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);

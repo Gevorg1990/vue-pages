@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import i18n from '@/i18n'; // Make sure to import your i18n instance
 
-// Get the translated 'Tartalet' value using the global i18n instance
 // const tartaletPath = i18n.global.t('Tartalet.species');
 // const cheesecakePath = i18n.global.t('Cheesecake.species');
 
