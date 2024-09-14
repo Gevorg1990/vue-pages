@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: 'https://gevorg1990.github.io/vue-pages/',
+    publicPath: '/', // for github https://gevorg1990.github.io/vue-pages/
     css: {
         loaderOptions: {
             sass: {
