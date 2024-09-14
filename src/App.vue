@@ -1,5 +1,5 @@
 <template>
-      <base href="http://localhost:8080/">
+<!--      <base href="http://localhost:8080/">-->
 
     <Header />
 
