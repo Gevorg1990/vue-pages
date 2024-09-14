@@ -309,11 +309,11 @@ export default {
 
   }
 
-  &__cake-btn {
-    &--1 {background: url('../assets/icons-cakes/icon-cake1.svg') no-repeat center;}
-    &--2 {background: url('../assets/icons-cakes/icon-cake2.svg') no-repeat center;}
-    &--3 {background: url('../assets/icons-cakes/icon-cake1.svg') no-repeat center;}
-  }
+  //&__cake-btn {
+  //  &--1 {background: url('../assets/icons-cakes/icon-cake1.svg') no-repeat center;}
+  //  &--2 {background: url('../assets/icons-cakes/icon-cake2.svg') no-repeat center;}
+  //  &--3 {background: url('../assets/icons-cakes/icon-cake1.svg') no-repeat center;}
+  //}
 
   &__soc-link {
 

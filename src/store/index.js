@@ -18,7 +18,6 @@ const store = createStore({
               'Tartalet.item-1.description-3'
           ],
           images: [
-            // { src: './tartlets-img/t1.jpg'},
             { src: 'https://picsum.photos/id/15/200/200/'},
             { src: 'https://picsum.photos/id/20/200/200/'}
           ]
