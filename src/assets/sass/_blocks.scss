@@ -1,0 +1,34 @@
+.cake {
+  .title {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .list {
+    display: flex;
+    gap: 40px;
+  }
+
+  &.center {
+    padding: 60px 30px;
+  }
+
+  .item {
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid $bdColor2;
+    border-radius: 6px;
+    flex: 0 0 25%;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 0 15px 0 $bgColor4;
+    }
+
+  }
+
+  .item-name {
+    box-sizing: border-box;
+    padding: 20px;
+  }
+}

@@ -18,17 +18,17 @@
       <div class="home__cake-box-wrapper pr">
         <button
             class="home__cake-btn home__cake-btn--1"
-            @mouseover="showTooltip($t('cake-1.name'), $event)"
+            @mouseover="showTooltip($t('Tartalet.item-1.name'), $event)"
             @mouseleave="hideTooltip"
             type="button"
             @click="scrollToSection('tartalet')"
         ></button>
         <button
             class="home__cake-btn home__cake-btn--2"
-            @mouseover="showTooltip($t('cake-2.name'), $event)"
+            @mouseover="showTooltip($t('Tartalet.item-2.name'), $event)"
             @mouseleave="hideTooltip"
             type="button"
-            @click="scrollToSection('tartalet')"
+            @click="scrollToSection('cheesecake')"
         ></button>
         <button
             class="home__cake-btn home__cake-btn--3"
@@ -55,7 +55,6 @@
   <Cheesecake />
 
   <Coments />
-
 
   <div
       v-if="tooltipVisible"
@@ -189,11 +188,12 @@ export default {
   background-repeat: no-repeat;
   background-position: center center;
   transition: background-image 1s ease-in-out;
-  min-height: 500px;
+  min-height: 680px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+
 
   &.transitioning {
     transition: background-image 1s ease-in-out;

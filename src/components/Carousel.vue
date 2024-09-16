@@ -52,18 +52,22 @@ export default defineComponent({
 </script>
 
 
-<style type="scss">
+<style type="scss" lang="scss">
 .carousel__slide {
   opacity: 0;
   visibility: hidden;
   transition: opacity 1s ease, visibility 1s ease;
 }
+.carousel__item {
+  max-height: 260px;
+}
+
 .carousel__slide--active {
   opacity: 1;
   visibility: visible;
 }
 .carousel__viewport {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
 }
 </style>

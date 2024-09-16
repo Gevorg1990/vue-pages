@@ -37,7 +37,6 @@ export default {
     }
   },
   methods: {
-    // Renamed method to avoid conflict
     notifyParentHandler() {
       this.notifyParent();
     }

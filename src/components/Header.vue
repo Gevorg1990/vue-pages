@@ -42,13 +42,25 @@ export default {
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  height: 117px;
-  z-index: 3;
+  height: 100px;
+  z-index: 11;
   width: 100%;
+
+  &:before {
+    content: "";
+    top: 0;
+    background: url("../../public/Vector.png") repeat-x;
+    background-size: contain;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+  }
+
 }
 
 .nav {
   gap: 80px;
+  z-index: 1;
 }
 
 .router-link {

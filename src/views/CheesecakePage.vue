@@ -1,9 +1,7 @@
 <template>
-  <div style="margin-top: 400px;">
-    <h1>Item Details</h1>
+  <div class="center" style="padding-top: 200px;">
 
-    <div id="comments" class="center">
-      <h1>Comment System</h1>
+    <div id="comments" class="">
 
       <AnimatedButton :notifyParent="openModal"/>
 
@@ -96,7 +94,7 @@
     </div>
 
     <div v-if="item">
-      <h2>{{ item.name }}</h2> <!-- Display the translated name -->
+      <h2 class="item__name fs28">{{ item.name }}</h2>
 
       <!-- Tab navigation -->
       <div class="tabs">
@@ -105,7 +103,7 @@
             :key="index"
             :class="{ active: selectedTab === index + 1 }"
             @click="changeTab(index)">
-          {{ item.sort[index] }} <!-- Display text corresponding to each tab index -->
+          {{ item.sort[index] }}
         </button>
       </div>
 
@@ -544,6 +542,10 @@ export default {
 
 <style lang="scss">
 
+.item__name {
+  margin-bottom: 20px;
+}
+
 .tabs {
   margin-bottom: 40px;
 
@@ -569,11 +571,8 @@ export default {
   }
 
   button:not(button.active):hover {
-    color: rgba($textColor3, 0.4);
     border-color: rgba($bdColor2, .4);
   }
-
-
 
 }
 .modal {

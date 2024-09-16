@@ -12,10 +12,11 @@
   },
   "Tartalet" : {
 
-    "species" : "тарталет",
+
+    "title" : "тарталет",
 
     "item-1": {
-      "name" : "Տարտալետ մրգային",
+      "name" : "Տարտալետ մրգային ru",
       "sundry-1" : "Lemon",
       "sundry-2" : "Malina",
       "sundry-3" : "Grefrut",
@@ -35,10 +36,10 @@
   },
 
   "Cheesecake" : {
-    "species" : "сыр",
+    "title" : "сыр",
 
     "item-1" : {
-      "name" : "Ճիցկայք պանրային",
+      "name" : "Ճիցկայք պանրային ru",
       "sundry-1" : "Պանրային 1 111",
       "sundry-2" : "Պանրային 2 111",
       "description-1" : "Պանրային 1  description հայ",
@@ -46,7 +47,7 @@
     },
 
     "item-2" : {
-      "name" : "Ճիցկայք պանրային",
+      "name" : "Ճիցկայք պանրային ru",
       "sundry-1" : "Պանրային 1 222",
       "sundry-2" : "Պանրային 2 222",
       "description-1" : "Պանրային 1  description հայ 222",

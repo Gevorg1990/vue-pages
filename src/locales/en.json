@@ -11,7 +11,7 @@
   },
   "Tartalet" : {
 
-    "species" : "tartalet",
+    "title" : "Tartalet",
 
     "item-1": {
       "name" : "Տարտալետ մրգային",
@@ -34,7 +34,7 @@
   },
 
   "Cheesecake" : {
-    "species" : "cheese",
+    "title" : "Cheese",
 
     "item-1" : {
       "name" : "Ճիցկայք պանրային",

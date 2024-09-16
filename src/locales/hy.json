@@ -12,12 +12,12 @@
 
   "Tartalet" : {
 
-    "species" : "տարտալետ",
+    "title" : "Տարտալետ",
 
     "item-1": {
       "name" : "Տարտալետ մրգային",
-      "sundry-1" : "Lemon",
-      "sundry-2" : "Malina",
+      "sundry-1" : "Lemons",
+      "sundry-2" : "Malinas",
       "sundry-3" : "Grefrut",
       "description-1" : "description 1 ARMENIAN ---------",
       "description-2" : "description 2 ARMENIAN ---------",
@@ -35,7 +35,7 @@
   },
 
   "Cheesecake" : {
-    "species" : "պանրային",
+    "title" : "Պանրային",
 
     "item-1" : {
       "name" : "Ճիցկայք պանրային",

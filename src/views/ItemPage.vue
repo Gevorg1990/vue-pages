@@ -1,9 +1,7 @@
 <template>
-  <div style="margin-top: 400px;">
-    <h1>Item Details</h1>
+  <div class="tartalet cake center" style="padding-top: 200px;">
 
-    <div id="comments" class="center">
-      <h1>Comment System</h1>
+    <div id="comments" class="  ">
 
       <AnimatedButton :notifyParent="openModal"/>
 
@@ -95,8 +93,8 @@
       </transition>
     </div>
 
-    <div v-if="item">
-      <h2>{{ item.name }}</h2> <!-- Display the translated name -->
+    <div class="" v-if="item">
+      <h3 class="item__name fs28">{{ item.name }}</h3> <!-- Display the translated name -->
 
       <!-- Tab navigation -->
       <div class="tabs">
@@ -545,6 +543,10 @@ export default {
 
 <style lang="scss">
 
+.item__name {
+  margin-bottom: 20px;
+}
+
 .tabs {
   margin-bottom: 40px;
 
@@ -570,10 +572,8 @@ export default {
   }
 
   button:not(button.active):hover {
-    color: rgba($textColor3, 0.4);
     border-color: rgba($bdColor2, .4);
   }
-
 
 
 }

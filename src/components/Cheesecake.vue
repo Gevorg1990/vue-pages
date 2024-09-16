@@ -1,11 +1,10 @@
 <template>
-  <div class="tartalet center" id="tartalet">
-    <h2 class="tartalet__title">test tartalet</h2>
-    <ul>
-      <li v-for="(item, idx) in items" :key="item.id" @click="navigateToPage(item.id)">
+  <div class="cheesecake center cake" id="cheesecake">
+    <h2 class="cheesecake__title title">{{ $t("Cheesecake.title") }}</h2>
+    <ul class="cheesecake__list list">
+      <li class="cheesecake__item item" v-for="(item, idx) in items" :key="item.id" @click="navigateToPage(item.id)">
         <Carousel :images="item.images" />
-        <p>{{ item.name }}</p>
-
+        <p class="cheesecake__item-name item-name">{{ item.name }}</p>
       </li>
     </ul>
   </div>
@@ -50,20 +49,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.tartalet {
-  &.center {
-    padding: 60px 30px;
-  }
+<style lang="scss" >
+.cheesecake {
 
-  &__title {
-    font-size: 32px;
-    margin-bottom: 20px;
-  }
 
-  ul {
-    display: flex;
-    gap: 40px;
-  }
 }
 </style>

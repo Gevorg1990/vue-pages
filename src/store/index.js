@@ -18,8 +18,9 @@ const store = createStore({
               'Tartalet.item-1.description-3'
           ],
           images: [
-            { src: 'https://picsum.photos/id/15/200/200/'},
-            { src: 'https://picsum.photos/id/20/200/200/'}
+            { src: 'https://picsum.photos/id/15/600/600/'},
+            { src: 'https://picsum.photos/id/20/600/600/'},
+            { src: 'https://picsum.photos/id/20/600/600/'}
           ]
         },
         {
@@ -34,8 +35,8 @@ const store = createStore({
               'Tartalet.item-2.description-2',
           ],
           images: [
-            { src: 'https://picsum.photos/id/43/200/200/'},
-            { src: 'https://picsum.photos/id/78/200/200/'},
+            { src: 'https://picsum.photos/id/43/600/600/'},
+            { src: 'https://picsum.photos/id/78/600/600/'},
           ]
         },
       ],
@@ -54,9 +55,9 @@ const store = createStore({
             'Cheesecake.item-1.description-2',
           ],
           images: [
-            { src: 'https://picsum.photos/id/20/200/200/'},
-            { src: 'https://picsum.photos/id/25/200/200/'},
-            { src: 'https://picsum.photos/id/95/200/200/'}
+            { src: 'https://picsum.photos/id/20/600/600/'},
+            { src: 'https://picsum.photos/id/25/600/600/'},
+            { src: 'https://picsum.photos/id/95/600/600/'}
           ]
         },
         {
@@ -71,8 +72,8 @@ const store = createStore({
             'Cheesecake.item-2.description-2',
           ],
           images: [
-            { src: 'https://picsum.photos/id/10/200/200/'},
-            { src: 'https://picsum.photos/id/15/200/200/'},
+            { src: 'https://picsum.photos/id/10/600/600/'},
+            { src: 'https://picsum.photos/id/15/600/600/'},
           ]
         },
       ]
