@@ -1,6 +1,6 @@
 <template>
   <base href="http://localhost:8081/">
-  <div style="background-image: url('./test.svg'); background-size: 100%; background-repeat: repeat-y; min-height: 100vh">
+  <div style="background-image: url('./test2.svg'); background-color: #211103; background-size: 100%; background-repeat: repeat-y; min-height: 100vh">
 
     <Header />
 
