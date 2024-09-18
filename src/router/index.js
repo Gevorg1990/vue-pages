@@ -17,8 +17,8 @@ const routes = [
   },
   {
     path: `/tartalet/:id`, // Use the global translation function
-    name: 'ItemPage',
-    component: () => import('@/views/ItemPage.vue'),
+    name: 'tartaletcakePage',
+    component: () => import('@/views/TartaletcakePage.vue'),
   },
   {
     path: `/cheesecake/:id`,

@@ -59,7 +59,7 @@
             </div>
 
 
-            <div>
+            <div class="input__box">
               <input class="input__name" type="text" @input="handleNameInput" v-model="userName" placeholder="Your Name">
               <span v-if="nameError" class="error">{{ nameError }}</span>
             </div>
@@ -110,7 +110,7 @@
       <div class="comment__item" :id="'comment-' + comment.id" v-for="comment in paginatedComments" :key="comment.id">
         <div style="display: flex; flex-direction: column; height: 100%; position: relative;">
           <!-- Display avatar -->
-          <div style="display: flex; align-items: center; margin-bottom: 20px; gap: 20px">
+          <div style="display: flex; align-items: center; margin-bottom: 20px; gap: 20px" :data-color="comment.id" :data-avatar="comment.avatar.replace(/.*\/(avatar\d+)\.png$/, '$1')">
             <img v-if="comment.avatar" :src="comment.avatar" alt="User Avatar" class="avatar">
             <strong style="font-size: 20px">{{ comment.name }}</strong>
           </div>
@@ -221,6 +221,15 @@
             {src: 'avatars-img/avatar1.png', alt: 'Avatar 1'},
             {src: 'avatars-img/avatar2.png', alt: 'Avatar 2'},
             {src: 'avatars-img/avatar3.png', alt: 'Avatar 3'},
+            {src: 'avatars-img/avatar4.png', alt: 'Avatar 4'},
+            {src: 'avatars-img/avatar5.png', alt: 'Avatar 5'},
+            {src: 'avatars-img/avatar6.png', alt: 'Avatar 6'},
+            {src: 'avatars-img/avatar7.png', alt: 'Avatar 7'},
+            {src: 'avatars-img/avatar8.png', alt: 'Avatar 8'},
+            {src: 'avatars-img/avatar9.png', alt: 'Avatar 9'},
+            {src: 'avatars-img/avatar10.png', alt: 'Avatar 10'},
+            {src: 'avatars-img/avatar11.png', alt: 'Avatar 11'},
+            {src: 'avatars-img/avatar12.png', alt: 'Avatar 12'},
             // Add more avatars if needed
           ],
           userAvatar: null,
@@ -600,11 +609,11 @@
 }
 
 .input__name {
-  height: 50px;
+  height: 42px;
   border-radius: 6px;
   min-width: 220px;
   padding: 0 10px;
-  border: 1px solid silver;
+  border: 1px solid rgba(#aaa, 1);
 }
 
 .editable-div[contenteditable]:empty:before {
@@ -697,7 +706,12 @@
 }
 
 .img-box-file {
-  position:relative; display: flex; gap: 40px; align-items: center; margin-bottom: 30px;
+  position:relative;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .error {
@@ -941,16 +955,28 @@ form {
   min-height: 150px;
   padding: 10px 40px 10px 10px;
   box-sizing: border-box;
-  border: 1px solid rgba($bdColor3, .7);
+  border: 1px solid rgba(#aaa, 1);
   border-radius: 4px;
   overflow-y: auto;
   white-space: pre-wrap;
   color: black;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
   &:focus {
-    border-color: $bdColor3;
+    box-shadow: 0 0 10px rgba($bgColor4, .6);
+    border-color: rgba($bdColor2, 1);
   }
+
+}
+
+.input__box {
+  border-radius: 6px;
+  transition: box-shadow 0.3s ease;
+
+  &:has(input:focus){
+    box-shadow: 0 0 10px rgba($bgColor4, 0.6);
+  }
+
 }
 
 /*AVATAR*/
@@ -959,12 +985,14 @@ form {
   position: absolute;
   top: 100%;
   left: 0;
+  border-radius: 6px;
   background-color: #fff;
-  border: 1px solid #888;
+  border: 1px solid #aaa;
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  max-width: 268px;
   z-index: 2;
 }
 
@@ -972,11 +1000,92 @@ form {
   border: 2px solid transparent;
   cursor: pointer;
   border-radius: 50%;
-  transition: border-color 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .avatar-item:hover {
-  border-color: green;
+
+  &:nth-child(1) {
+    box-shadow: 0 0 10px #FFB142;
+  }
+  &:nth-child(4),
+  &:nth-child(2) {
+    box-shadow: 0 0 10px #68CBF2;
+  }
+  &:nth-child(3) {
+    box-shadow: 0 0 10px #E6392B;
+  }
+  &:nth-child(5) {
+    box-shadow: 0 0 10px #435C94;
+  }
+  &:nth-child(6) {
+    box-shadow: 0 0 10px #FA515E;
+  }
+  &:nth-child(10),
+  &:nth-child(7) {
+    box-shadow: 0 0 10px #52AAD7;
+  }
+  &:nth-child(8) {
+     box-shadow: 0 0 10px #FD7533;
+  }
+  &:nth-child(9) {
+     box-shadow: 0 0 10px #9491CA;
+  }
+  &:nth-child(11) {
+     box-shadow: 0 0 10px #449D6D;
+  }
+  &:nth-child(12) {
+     box-shadow: 0 0 10px #74D6D5;
+  }
+
+}
+
+.avatar-box label > img[src="avatars-img/avatar1.png"],
+[data-avatar="avatar1"] img {
+    box-shadow: 0 0 20px #FFB142;
+}
+.avatar-box label > img[src="avatars-img/avatar2.png"],
+.avatar-box label > img[src="avatars-img/avatar4.png"],
+[data-avatar="avatar2"] img,
+[data-avatar="avatar4"] img {
+    box-shadow: 0 0 20px #68CBF2;
+}
+
+.avatar-box label > img[src="avatars-img/avatar3.png"],
+[data-avatar="avatar3"] img {
+    box-shadow: 0 0 20px #E6392B;
+}
+
+.avatar-box label > img[src="avatars-img/avatar5.png"],
+[data-avatar="avatar5"] img{
+    box-shadow: 0 0 20px #435C94;
+}
+
+.avatar-box label > img[src="avatars-img/avatar6.png"],
+[data-avatar="avatar6"] img {
+    box-shadow: 0 0 20px #FA515E;
+}
+
+.avatar-box label > img[src="avatars-img/avatar7.png"],
+.avatar-box label > img[src="avatars-img/avatar10.png"],
+[data-avatar="avatar7"] img,
+[data-avatar="avatar10"] img {
+    box-shadow: 0 0 20px #52AAD7;
+}
+
+.avatar-box label > img[src="avatars-img/avatar8.png"],
+[data-avatar="avatar8"] img {
+    box-shadow: 0 0 20px #FD7533;
+}
+
+.avatar-box label > img[src="avatars-img/avatar11.png"],
+[data-avatar="avatar11"] img {
+    box-shadow: 0 0 20px #449D6D;
+}
+
+.avatar-box label > img[src="avatars-img/avatar12.png"],
+[data-avatar="avatar12"] img {
+    box-shadow: 0 0 20px #74D6D5;
 }
 
 .avatar-box {
@@ -995,6 +1104,7 @@ form {
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  box-shadow: 0 0 20px;
 }
 
 .avatar-preview {
@@ -1015,15 +1125,6 @@ form {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   padding-top: 60px;
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto;
-  padding: 40px;
-  border: 1px solid #888;
-  max-width: 500px;
-  position: relative;
 }
 
 .close {

@@ -33,3 +33,27 @@
 // };
 //
 // export default documentJs;
+// Function to generate a random number between a given range
+// function getRandom(min, max) {
+//     return Math.random() * (max - min) + min;
+// }
+//
+// // Function to animate each rectangle randomly
+// function animateRectangles() {
+//     const rects = document.querySelectorAll('.animated-rect');
+//     rects.forEach(rect => {
+//         // Randomize position, duration, and direction
+//         const newX = getRandom(-200, 2000);
+//         const newY = getRandom(-200, 1100);
+//         const duration = getRandom(1, 5) + 's';
+//
+//         rect.style.transition = `transform ${duration}, x ${duration}, y ${duration}`;
+//
+//         // Apply random new x and y positions
+//         rect.setAttribute('x', newX);
+//         rect.setAttribute('y', newY);
+//     });
+// }
+//
+// // Repeat the animation indefinitely
+// setInterval(animateRectangles, 8000);

@@ -1,9 +1,12 @@
 <template>
-      <base href="http://localhost:8081/">
+  <base href="http://localhost:8081/">
+  <div style="background-image: url('./test.svg'); background-size: 100%; background-repeat: repeat-y; min-height: 100vh">
 
     <Header />
 
     <router-view/>
+  </div>
+
 
 </template>
 
@@ -30,5 +33,8 @@ export default {
 </script>
 
 <style lang="scss">
+
+  /* CSS for falling animation */
+
 
 </style>

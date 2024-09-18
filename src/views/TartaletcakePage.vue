@@ -547,61 +547,9 @@ export default {
   margin-bottom: 20px;
 }
 
-.tabs {
-  margin-bottom: 40px;
-
-  button {
-    border: 1px solid transparent;
-    @include font-size(18);
-    height: 40px;
-    margin-right: 30px;
-    background-color: $bgColor1;
-    padding: 0 20px;
-    border-radius: 6px;
-    transition: border-color 0.3s ease, color 0.3s ease;
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-  }
-
-  button.active {
-    border-color: $bdColor2;
-    color: $textColor3;
-  }
-
-  button:not(button.active):hover {
-    border-color: rgba($bdColor2, .4);
-  }
 
 
-}
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  transition: opacity 0.3s ease;
-}
 
-.modal-fade-enter-active,
-.modal-fade-leave-active {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
 
-.modal-fade-enter {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-/* Success modal slide animation */
-.modal.success-modal .modal-content {
-  top: 0;
-  z-index: 10;
-  transition: opacity 0.3s ease;
-}
 </style>
 

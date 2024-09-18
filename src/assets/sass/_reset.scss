@@ -46,6 +46,7 @@ table {
 }
 
 html {
+
     @include rootFontSize(16);
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
@@ -54,7 +55,6 @@ html {
 
 html, body {
     scroll-behavior: smooth;
-    background: radial-gradient(circle, rgba(66,44,32,1) 0%, rgba(144,104,64,1) 100%);
     height: 100%;
 }
 
@@ -63,6 +63,8 @@ body {
     //display: flex;
     //-webkit-flex-direction: column;
     //flex-direction: column;
+    //background: radial-gradient(circle, rgba(66,44,32,1) 0%, rgba(144,104,64,1) 100%);
+
     color: $textColor1;
     line-height: normal;
 
@@ -101,7 +103,7 @@ input, textarea {
     transition: all 0.3s ease;
 
     &:focus {
-        border-color: $bdColor3;
+        border-color: rgba($bdColor2, 1);
     }
 
 }
@@ -461,3 +463,54 @@ input:-webkit-autofill:active {
     right: -6px;
 }
 
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background-color: $bgColor1;
+    margin: auto;
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 500px;
+    position: relative;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-fade-enter {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Success modal slide animation */
+.modal.success-modal .modal-content {
+    top: 0;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+//<rect x="56" y="1055" width="67" height="123" fill="url(#pattern1_108_15)">-->
+//<!--&lt;!&ndash;                    <animateTransform&ndash;&gt;-->
+//<!--&lt;!&ndash;                            attributeName="transform"&ndash;&gt;-->
+//<!--&lt;!&ndash;                            type="translate"&ndash;&gt;-->
+//<!--&lt;!&ndash;                            values="0 0; 12 12; 0 0"&ndash;&gt;-->
+//<!--&lt;!&ndash;                            dur="10s"&ndash;&gt;-->
+//<!--&lt;!&ndash;                            repeatCount="indefinite" />&ndash;&gt;-->
+//<!--&lt;!&ndash;                    <animateTransform&ndash;&gt;-->
+//<!--&lt;!&ndash;                            attributeName="transform"&ndash;&gt;-->
+//<!--&lt;!&ndash;                            type="rotate"&ndash;&gt;-->
+//<!--&lt;!&ndash;                            values="0 56 1055; 30 56 1055; 0 56 1055"&ndash;&gt;-->
+//<!--&lt;!&ndash;                            keyTimes="0; 0.5; 1"&ndash;&gt;-->
+//<!--&lt;!&ndash;                            dur="10s"&ndash;&gt;-->
+//<!--&lt;!&ndash;                            repeatCount="indefinite" />&ndash;&gt;-->
+//<!--                </rect>-->

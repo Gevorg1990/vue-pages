@@ -38,7 +38,7 @@ export default {
     watchEffect(updateItems);
 
     const navigateToPage = (id) => {
-      router.push({ name: 'ItemPage', params: { id } });
+      router.push({ name: 'tartaletcakePage', params: { id } });
     };
 
     return {
@@ -50,9 +50,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tartalet {
 
-
-
-}
 </style>
