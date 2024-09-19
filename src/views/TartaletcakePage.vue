@@ -35,7 +35,7 @@
                 <input type="file"  @change="handleFileChange" id="file" name="avatar" accept="image/*" style="display: none">
                 <label for="file" style="cursor: pointer; poition: relative;" @mouseover="showAvatarPicker = true">
                   <img :src="avatarPreview || 'avatars-img/avatar-default.png'" alt="avatar" class="avatar">
-                  <div v-if="showAvatarPicker" class="avatar-picker" style="display: flex; width: 250px">
+                  <div v-if="showAvatarPicker" class="avatar-picker">
                     <div v-for="avatar in avatars" :key="avatar.src" @click.stop.prevent="selectAvatar(avatar)" class="avatar-item">
                       <img :src="avatar.src" :alt="avatar.alt" class="avatar-preview">
                     </div>
@@ -45,7 +45,7 @@
               </div>
 
 
-              <div>
+              <div class="input__box">
                 <input class="input__name" type="text" @input="handleNameInput" v-model="userName" placeholder="Your Name">
                 <span v-if="nameError" class="error">{{ nameError }}</span>
               </div>
@@ -85,7 +85,7 @@
                       ★
                   </span>
             </div>
-            <button type="submit">Add Comment</button>
+            <button class="btn btn--submit" type="submit">Add Comment</button>
           </form>
 
         </div>
@@ -190,17 +190,37 @@ export default {
       showPicker: false,
       isModalOpen: false,
       emojis: [
-        {src: 'https://static.xx.fbcdn.net/images/emoji.php/v9/t3a/1/30/1f60d.png', alt: '😍'},
-        {src: 'https://static.xx.fbcdn.net/images/emoji.php/v9/t90/1/30/1f929.png', alt: '🤩'},
-        {src: 'https://static.xx.fbcdn.net/images/emoji.php/v9/ta5/1/30/1f973.png', alt: '🥳'},
-        {src: 'https://static.xx.fbcdn.net/images/emoji.php/v9/t3a/1/30/1f60d.png', alt: '🥺'},
+        {src: 'emojis/1.gif', alt: '🤩'},
+        {src: 'emojis/2.gif', alt: '🥳'},
+        {src: 'emojis/3.gif', alt: '🥰'},
+        {src: 'emojis/4.gif', alt: '😃'},
+        {src: 'emojis/5.gif', alt: '🎂'},
+        {src: 'emojis/7.gif', alt: '🤯'},
+        {src: 'emojis/6.gif', alt: '🪩'},
+        {src: 'emojis/8.gif', alt: '🌟'},
+        {src: 'emojis/9.gif', alt: '👏'},
+        {src: 'emojis/10.gif', alt: '👍'},
+        {src: 'emojis/11.gif', alt: '🎁'},
+        {src: 'emojis/12.gif', alt: '🎉'},
+        {src: 'emojis/13.gif', alt: '💥'},
+        {src: 'emojis/14.gif', alt: '🐝'},
+        {src: 'emojis/15.gif', alt: '🎯'},
+        {src: 'emojis/16.gif', alt: '❣'},
       ],
       showAvatarPicker: false,
       avatars: [
         {src: 'avatars-img/avatar1.png', alt: 'Avatar 1'},
         {src: 'avatars-img/avatar2.png', alt: 'Avatar 2'},
         {src: 'avatars-img/avatar3.png', alt: 'Avatar 3'},
-        // Add more avatars if needed
+        {src: 'avatars-img/avatar4.png', alt: 'Avatar 4'},
+        {src: 'avatars-img/avatar5.png', alt: 'Avatar 5'},
+        {src: 'avatars-img/avatar6.png', alt: 'Avatar 6'},
+        {src: 'avatars-img/avatar7.png', alt: 'Avatar 7'},
+        {src: 'avatars-img/avatar8.png', alt: 'Avatar 8'},
+        {src: 'avatars-img/avatar9.png', alt: 'Avatar 9'},
+        {src: 'avatars-img/avatar10.png', alt: 'Avatar 10'},
+        {src: 'avatars-img/avatar11.png', alt: 'Avatar 11'},
+        {src: 'avatars-img/avatar12.png', alt: 'Avatar 12'},
       ],
       userAvatar: null,
       avatarPreview: '',
@@ -546,10 +566,6 @@ export default {
 .item__name {
   margin-bottom: 20px;
 }
-
-
-
-
 
 </style>
 

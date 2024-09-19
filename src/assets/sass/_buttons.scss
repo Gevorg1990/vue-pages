@@ -14,10 +14,25 @@
     padding: 0 30px;
   }
 
-  // Custom
-  .main-content--fmc1 &--big-yellow {
-    margin-bottom: 50px;
+
+  &--submit {
+    border-radius: 6px;
+    color: $textColor2;
+    height: 40px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #aaa;
+    transition: box-shadow 0.3s ease, border 0.3s ease;
+
+    &:hover {
+      border-color: rgba(#14FF00, .6);
+      box-shadow: 0 0 10px #14FF00;
+    }
+
   }
+
 
 }
 

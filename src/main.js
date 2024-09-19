@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import $ from 'jquery';
-import documentJs from './document'; // Ensure the path is correct
+import documentJs from './document';
 import i18n from './i18n';
 import Tooltip from "../tooltipPlugin";
 

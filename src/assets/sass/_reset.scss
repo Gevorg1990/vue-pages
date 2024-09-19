@@ -32,12 +32,14 @@ header {
     z-index: 3;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: '';
-    content: none;
+:root {
+    --star-size: 40px;
+    --star-color: #fff;
+    --star-background: #fc0;
+}
+
+[v-cloak] {
+    display: none;
 }
 
 table {
@@ -59,27 +61,8 @@ html, body {
 }
 
 body {
-    //display: -webkit-flex;
-    //display: flex;
-    //-webkit-flex-direction: column;
-    //flex-direction: column;
-    //background: radial-gradient(circle, rgba(66,44,32,1) 0%, rgba(144,104,64,1) 100%);
-
     color: $textColor1;
     line-height: normal;
-
-    &.en .top-box__logo {
-        background-position: left -50px;
-        height: 41px;
-        width: 150px;
-    }
-
-    &.ru .top-box__logo {
-        background-position: left -98px;
-        height: 41px;
-        width: 210px;
-    }
-
 }
 
 input, textarea, button {
@@ -102,8 +85,12 @@ input, textarea {
     padding: 0;
     transition: all 0.3s ease;
 
+    &::placeholder {
+        @include font-size(14);
+    }
+
     &:focus {
-        border-color: rgba($bdColor2, 1);
+        border-color: rgba(#14FF00, .6);
     }
 
 }

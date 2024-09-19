@@ -30,10 +30,14 @@
     <!-- Success Modal -->
     <transition name="modal-fade">
       <div v-if="isSuccessModalOpen" class="modal success-modal" style="color: green" @click="handleClickOutside">
-        <div class="modal-content" @click.stop ref="modalContent">
+        <div class="modal-content tc" @click.stop ref="modalContent">
           <span class="close" @click="closeSuccessModal">&times;</span>
+
+          <svg style="width: 50px; margin-bottom: 30px" xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" viewBox="0 0 50 50" xml:space="preserve">
+<circle style="fill:#25AE88;" cx="25" cy="25" r="25"/>
+            <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="  38,15 22,33 12,25 "/>
+</svg>
           <h2>Comment Added Successfully!</h2>
-          <p>Your comment has been added successfully.</p>
         </div>
       </div>
     </transition>
@@ -47,7 +51,7 @@
           <div class="img-box-file" @mouseleave="showAvatarPicker = false">
             <div class="avatar-box">
               <input type="file"  @change="handleFileChange" id="file" name="avatar" accept="image/*" style="display: none">
-              <label for="file" style="cursor: pointer; poition: relative;" @mouseover="showAvatarPicker = true">
+              <label for="file" style="cursor: pointer; poition: relative;" @mouseover="showAvatarPicker = true;  showPicker = false;">
                 <img :src="avatarPreview || 'avatars-img/avatar-default.png'" alt="avatar" class="avatar">
                 <div v-if="showAvatarPicker" class="avatar-picker oh df">
                   <div v-for="avatar in avatars" :key="avatar.src" @click.stop.prevent="selectAvatar(avatar)" class="avatar-item">
@@ -66,8 +70,7 @@
 
           </div>
           <div class="editable-div-box">
-
-            <div class="editable-div-box-wrapper">
+          <div class="editable-div-box-wrapper">
               <div
                   class="editable-div"
                   contenteditable="true"
@@ -80,18 +83,20 @@
               <span v-if="commentError" class="error">{{ commentError }}</span>
             </div>
 
-            <div class="character-count"> <span class="text-length">{{ commentLength }}</span>/300</div>
-            <div class="emoji-picker">
-              <button @click="togglePicker" type="button">
-                <img src="https://static.xx.fbcdn.net/images/emoji.php/v9/t3a/1/30/1f60d.png" alt="">
-              </button>
-              <div v-if="showPicker" class="emoji-list">
-                <div v-for="emoji in emojis" :key="emoji.src" @click="selectEmoji(emoji)" class="emoji-item">
-                  <img :src="emoji.src" :alt="emoji.alt" />
+          <div class="character-count">
+            <span class="text-length">{{ commentLength }}</span> /300
+          </div>
+              <div class="emoji-picker">
+                <button @click="togglePicker" type="button">
+                  <img :src="emojis[1].src" alt="🥳">
+                </button>
+                <div v-if="showPicker" class="emoji-list">
+                  <div v-for="emoji in emojis" :key="emoji.src" @click="selectEmoji(emoji)" class="emoji-item">
+                    <img :src="emoji.src" :alt="emoji.alt" />
+                  </div>
                 </div>
-              </div>
 
-            </div>
+              </div>
           </div>
 
           <div class="stars">
@@ -99,7 +104,7 @@
                   ★
               </span>
           </div>
-          <button type="submit">Add Comment</button>
+          <button class="btn btn--submit" type="submit">Add Comment</button>
         </form>
 
       </div>
@@ -124,7 +129,7 @@
             </svg>
           </router-link>
 
-          <span class="comment__text">{{comment.text}}</span>
+          <span class="comment__text" v-html="comment.text"></span>
 
           <div style="margin-top: auto;">
             <div class="stars">
@@ -173,7 +178,7 @@
 </template>
 
 
-  <script>
+<script>
   import AnimatedButton from "./AnimatedButton";
   import i18n from "../i18n";
 
@@ -211,10 +216,22 @@
           peopleIcon: require('@/assets/icon-peoples.svg'),
           starsIcon: require('@/assets/icon-stars.svg'),
           emojis: [
-            {src: 'https://static.xx.fbcdn.net/images/emoji.php/v9/t3a/1/30/1f60d.png', alt: '😍'},
-            {src: 'https://static.xx.fbcdn.net/images/emoji.php/v9/t90/1/30/1f929.png', alt: '🤩'},
-            {src: 'https://static.xx.fbcdn.net/images/emoji.php/v9/ta5/1/30/1f973.png', alt: '🥳'},
-            {src: 'https://static.xx.fbcdn.net/images/emoji.php/v9/t3a/1/30/1f60d.png', alt: '🥺'},
+            {src: 'emojis/1.gif', alt: '🤩'},
+            {src: 'emojis/2.gif', alt: '🥳'},
+            {src: 'emojis/3.gif', alt: '🥰'},
+            {src: 'emojis/4.gif', alt: '😃'},
+            {src: 'emojis/5.gif', alt: '🎂'},
+            {src: 'emojis/7.gif', alt: '🤯'},
+            {src: 'emojis/6.gif', alt: '🪩'},
+            {src: 'emojis/8.gif', alt: '🌟'},
+            {src: 'emojis/9.gif', alt: '👏'},
+            {src: 'emojis/10.gif', alt: '👍'},
+            {src: 'emojis/11.gif', alt: '🎁'},
+            {src: 'emojis/12.gif', alt: '🎉'},
+            {src: 'emojis/13.gif', alt: '💥'},
+            {src: 'emojis/14.gif', alt: '🐝'},
+            {src: 'emojis/15.gif', alt: '🎯'},
+            {src: 'emojis/16.gif', alt: '❣'},
           ],
           showAvatarPicker: false,
           avatars: [
@@ -313,6 +330,7 @@
           this.userAvatar = avatar.src;
           this.avatarPreview = avatar.src;
           this.showAvatarPicker = false;
+          this.clearAvatarError();
         },
 
         clearNameError() {
@@ -524,7 +542,7 @@
           }
 
           // Create the emoji node and insert it at the range
-          const imgTag = `<img style="vertical-align: middle; width: 20px; margin: 0 2px;" src="${emoji.src}" alt="${emoji.alt}" />`;
+          const imgTag = `<img src="${emoji.src}" alt="${emoji.alt}" />`;
           const emojiNode = new DOMParser().parseFromString(imgTag, 'text/html').body.firstChild;
 
           // Ensure emoji is inserted only within the editableDiv
@@ -596,9 +614,6 @@
   </script>
 
 
-
-
-
 <style lang="scss" >
 
 .go-page {
@@ -653,7 +668,7 @@
 }
 
 .pagination {
-  margin: 30px 0;
+  padding: 30px 0;
   display: flex;
   justify-content: center;
   gap: 5px;
@@ -715,7 +730,7 @@
 }
 
 .error {
-  color: red;
+  color: #FF0000;
   @include font-size(12);
   margin-top: 5px;
   display: block;
@@ -724,10 +739,6 @@
 
 .editable-div-box {
   position: relative;
-}
-
-.editable-div-box-wrapper:has(.error) .editable-div {
-  margin-bottom: 0;
 }
 
 .editable-div-box-wrapper {
@@ -752,8 +763,8 @@
 .emoji-picker button {
   background: unset;
   border: none;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 }
 
@@ -761,11 +772,11 @@
   filter: grayscale(0);
 }
 
-.emoji-picker button img {
-  width: 100%;
-  filter: grayscale(1);
-  transition: filter 0.3s ease;
-}
+//.emoji-picker button img {
+//  width: 100%;
+//  filter: grayscale(1);
+//  transition: filter 0.3s ease;
+//}
 
 .text-length {
   transition: color 0.3s ease;
@@ -773,35 +784,6 @@
 
 .anim {
   color: #F30F0F;
-}
-
-/* delete anim item */
-@keyframes dustDisappear {
-  0% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: blur(0px);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.5) translateY(-20px);
-    filter: blur(2px);
-  }
-}
-
-.dust {
-  animation: dustDisappear 0.5s forwards;
-}
-
-
-:root {
-  --star-size: 40px;
-  --star-color: #fff;
-  --star-background: #fc0;
-}
-
-[v-cloak] {
-  display: none;
 }
 
 form .star {
@@ -833,15 +815,13 @@ form {
 }
 
 .stars {
-  display: flex;
-  gap: 5px;
-  color: gold;
-  font-size: 1.2em;
+  margin-bottom: 15px;
 }
 
 .filled {
   color: gold;
 }
+
 .empty {
   color: lightgray;
 }
@@ -866,10 +846,12 @@ form {
   display: flex;
   flex-wrap: wrap;
   background: #fff;
-  border: 1px solid #ccc;
+  border-radius: 6px;
+  border: 1px solid #aaa;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   padding: 5px;
   right: 0;
+  top: 110%;
   min-width: 204px;
   position: absolute;
 }
@@ -893,6 +875,7 @@ form {
 
 .comment__text {
   margin-bottom: 30px;
+  word-break: break-all;
 }
 
 .comment__item {
@@ -950,6 +933,17 @@ form {
   content: attr(data-placeholder);
 }
 
+.editable-div-box-wrapper:has(.error) .editable-div {
+  box-shadow: 0 0 6px #FF0000;
+  border-color: rgba(#FF0000, .6);
+  margin-bottom: 0;
+}
+
+.editable-div-box-wrapper:not(:has(.error)) .editable-div:focus {
+    box-shadow: 0 0 10px rgba(#14FF00, .6);
+    border-color: rgba(#14FF00, .6);
+}
+
 .editable-div {
   width: 100%;
   min-height: 150px;
@@ -962,19 +956,37 @@ form {
   color: black;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
-  &:focus {
-    box-shadow: 0 0 10px rgba($bgColor4, .6);
-    border-color: rgba($bdColor2, 1);
+  &[data-placeholder] {
+    @include font-size(14)
   }
 
+}
+
+.editable-div img,
+.comment__text img {
+  width: 20px;
+  margin: 0 2px;
+}
+
+.comment__text img {
+  width: 30px;
 }
 
 .input__box {
   border-radius: 6px;
   transition: box-shadow 0.3s ease;
 
-  &:has(input:focus){
-    box-shadow: 0 0 10px rgba($bgColor4, 0.6);
+  &:not(:has(.error)):has(input:focus){
+    box-shadow: 0 0 10px rgba(#14FF00, 0.6);
+  }
+
+  &:has(.error){
+    box-shadow: 0 0 6px #FF0000;
+
+    input {
+      border-color: rgba(#FF0000, .6);
+    }
+
   }
 
 }
@@ -1095,9 +1107,10 @@ form {
 }
 
 .avatar-box:has(.error) {
-  outline: 1px solid red;
-
+  box-shadow: 0 0 6px #FF0000;
+  outline: 1px solid rgba(#FF0000, .6);
 }
+
 
 
 .avatar {
@@ -1123,7 +1136,7 @@ form {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba($bgColor2, 0.4);
   padding-top: 60px;
 }
 
@@ -1135,11 +1148,12 @@ form {
   position: absolute;
   right: 20px;
   top: 5px;
+  transition: color 0.3s ease;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: $textColor2;
   text-decoration: none;
   cursor: pointer;
 }
