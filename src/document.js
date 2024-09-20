@@ -1,59 +1,11 @@
-// const documentJs = {
-//     install(app) {
-//         // Array of background image URLs
-//         const imageUrls = [
-//             '../assets/home-bg/bg1.png',
-//             '../assets/home-bg/bg2.png',
-//             '../assets/home-bg/bg3.png',
-//         ];
-//
-//         // Function to update the background image
-//         function updateBackgroundImage() {
-//             // Select a random image from the array
-//             const newImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
-//
-//             // Apply the transition class to trigger the transition effect
-//             $('.home').addClass('transitioning');
-//
-//             // Set a timeout to remove the class after the transition ends
-//             setTimeout(() => {
-//                 $('.home').css({
-//                     'background-image': `url(${newImageUrl})`,
-//                 }).removeClass('transitioning');
-//             }, 0);
-//         }
-//
-//         // Set an interval to change the background image every 3 seconds
-//         setInterval(updateBackgroundImage, 10000);
-//
-//         // Call the function immediately to set the first background image
-//         updateBackgroundImage();
-//     },
-//     // Other properties or methods if needed
-// };
-//
-// export default documentJs;
-// Function to generate a random number between a given range
-// function getRandom(min, max) {
-//     return Math.random() * (max - min) + min;
-// }
-//
-// // Function to animate each rectangle randomly
-// function animateRectangles() {
-//     const rects = document.querySelectorAll('.animated-rect');
-//     rects.forEach(rect => {
-//         // Randomize position, duration, and direction
-//         const newX = getRandom(-200, 2000);
-//         const newY = getRandom(-200, 1100);
-//         const duration = getRandom(1, 5) + 's';
-//
-//         rect.style.transition = `transform ${duration}, x ${duration}, y ${duration}`;
-//
-//         // Apply random new x and y positions
-//         rect.setAttribute('x', newX);
-//         rect.setAttribute('y', newY);
-//     });
-// }
-//
-// // Repeat the animation indefinitely
-// setInterval(animateRectangles, 8000);
+
+
+import $ from 'jquery';
+
+
+// ./document.js
+const documentJs = () => {
+
+};
+
+export default documentJs;

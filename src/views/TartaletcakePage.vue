@@ -115,6 +115,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -124,6 +125,7 @@ import { useStore } from 'vuex';
 import i18n from "../i18n";
 import { v4 as uuidv4 } from 'uuid';
 import AnimatedButton from "../components/AnimatedButton";
+
 
 // Helper functions for cookie management
 function getCookie(name) {
@@ -566,6 +568,7 @@ export default {
 .item__name {
   margin-bottom: 20px;
 }
+
 
 </style>
 
