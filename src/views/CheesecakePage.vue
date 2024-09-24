@@ -273,7 +273,10 @@ export default {
         setTimeout(() => {
           const element = document.getElementById('comments');
           if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: "start",
+            });
             this.currentPage = this.totalPages;
           }
         }, 300); // Adjust delay if needed

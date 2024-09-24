@@ -12,6 +12,7 @@ const store = createStore({
             'Tartalet.item-1.sundry-2',
             'Tartalet.item-1.sundry-3',
           ],
+          count:['700', '800', '1000'],
           des: [
               'Tartalet.item-1.description-1',
               'Tartalet.item-1.description-2',
@@ -30,6 +31,7 @@ const store = createStore({
             'Tartalet.item-2.sundry-1',
             'Tartalet.item-2.sundry-2',
           ],
+          count:['300', '7000'],
           des: [
               'Tartalet.item-2.description-1',
               'Tartalet.item-2.description-2',
@@ -49,9 +51,11 @@ const store = createStore({
           sort: [
             'Cheesecake.item-1.sundry-1',
             'Cheesecake.item-1.sundry-2',
+            'Cheesecake.item-1.sundry-2',
           ],
           des: [
             'Cheesecake.item-1.description-1',
+            'Cheesecake.item-1.description-2',
             'Cheesecake.item-1.description-2',
           ],
           images: [
@@ -83,8 +87,14 @@ const store = createStore({
     itemsTartalet(state) {
       return state.itemsTartalet;
     },
+    tartaletCounts(state) {
+      return state.itemsTartalet.flatMap(item => item.count);
+    },
     itemsCheesecake(state) {
       return state.itemsCheesecake;
+    },
+    cheesecakeCounts(state) {
+      return state.itemsCheesecake.flatMap(item => item.count);
     }
   }
 });

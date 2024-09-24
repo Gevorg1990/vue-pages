@@ -8,9 +8,13 @@
 
     <div class="home__soc-box">
       <div class="home__soc-box-wrapper pr">
-        <a class="home__soc-link home__soc-link--fb" href="https://www.facebook.com/gevorg.gasparyan.7528/" target="_blank" aria-label="Facebook"></a>
+        <a class="home__soc-link home__soc-link--fb" href="https://www.facebook.com/gevorg.gasparyan.7528/" target="_blank" aria-label="Facebook"
+           @mouseover="showTooltip($t('go to Facebook'), $event, 'right')"
+           @mouseleave="hideTooltip"
+        ></a>
         <a class="home__soc-link home__soc-link--ig" href="#" target="_blank" aria-label="Instagram"></a>
         <a class="home__soc-link home__soc-link--tg" href="#" target="_blank" aria-label="Telegram"></a>
+        <a class="home__soc-link home__soc-link--phone" href="tel:+37555024477" aria-label="Phone"></a>
       </div>
     </div>
 
@@ -18,21 +22,21 @@
       <div class="home__cake-box-wrapper pr">
         <button
             class="home__cake-btn home__cake-btn--1"
-            @mouseover="showTooltip($t('Tartalet.item-1.name'), $event)"
+            @mouseover="showTooltip($t('Tartalet.item-1.name'), $event, 'left')"
             @mouseleave="hideTooltip"
             type="button"
             @click="scrollToSection('tartalet')"
         ></button>
         <button
             class="home__cake-btn home__cake-btn--2"
-            @mouseover="showTooltip($t('Tartalet.item-2.name'), $event)"
+            @mouseover="showTooltip($t('Tartalet.item-2.name'), $event, 'left')"
             @mouseleave="hideTooltip"
             type="button"
             @click="scrollToSection('cheesecake')"
         ></button>
         <button
             class="home__cake-btn home__cake-btn--3"
-            @mouseover="showTooltip($t('cake-2.name'), $event)"
+            @mouseover="showTooltip($t('cake-2.name'), $event, 'left')"
             @mouseleave="hideTooltip"
             type="button"
             @click="scrollToSection('tartalet')"
@@ -58,7 +62,7 @@
 
   <div
       v-if="tooltipVisible"
-      class="tooltip"
+      :class=" `tooltip tooltip-${tooltipPositionClass}`"
       :style="{ left: tooltipPosition.left, top: tooltipPosition.top }"
       ref="tooltip"
   >
@@ -125,18 +129,24 @@ export default {
       tooltipText: '', // Holds the tooltip text
       tooltipVisible: false, // Controls tooltip visibility
       tooltipPosition: { left: 0, top: 0 }, // Position of the tooltip
+      tooltipPositionClass: 'right' // Default position
     }
   },
   methods: {
     scrollToSection(sectionId) {
       const target = document.getElementById(sectionId);
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: "start",
+        });
       }
     },
-    showTooltip(text, event) {
+    showTooltip(text, event, position) {
+
       this.tooltipText = text;
       this.tooltipVisible = true;
+      this.tooltipPositionClass = position;
 
       this.$nextTick(() => {
         const buttonRect = event.target.getBoundingClientRect();
@@ -145,17 +155,37 @@ export default {
         if (tooltipElement) {
           const tooltipRect = tooltipElement.getBoundingClientRect();
 
-          this.tooltipPosition = {
-            left: buttonRect.left + window.scrollX - tooltipRect.width - 10 + 'px',
-            top: buttonRect.top + window.scrollY + (buttonRect.height - tooltipRect.height) / 2 + 'px',
-          };
+          if (position === 'right') {
+            this.tooltipPosition = {
+              left: buttonRect.left + buttonRect.width + window.scrollX + 10 + 'px',
+              top: buttonRect.top + window.scrollY + (buttonRect.height - tooltipRect.height) / 2 + 'px',
+            };
+          } else if (position === 'left') {
+            this.tooltipPosition = {
+              left: buttonRect.left + window.scrollX - tooltipRect.width - 10 + 'px',
+              top: buttonRect.top + window.scrollY + (buttonRect.height - tooltipRect.height) / 2 + 'px',
+            };
+          } else if (position === 'top') {
+            this.tooltipPosition = {
+              left: buttonRect.left + window.scrollX + (buttonRect.width - tooltipRect.width) / 2 + 'px',
+              top: buttonRect.top + window.scrollY - tooltipRect.height - 10 + 'px',
+            };
+          } else if (position === 'bottom') {
+            this.tooltipPosition = {
+              left: buttonRect.left + window.scrollX + (buttonRect.width - tooltipRect.width) / 2 + 'px',
+              top: buttonRect.top + window.scrollY + buttonRect.height + 10 + 'px',
+            };
+          } else {
+            console.error('Invalid position specified.');
+          }
         } else {
           console.error('Tooltip element not found.');
         }
       });
     },
 
-    hideTooltip() {
+
+    hideTooltip(event) {
       this.tooltipVisible = false;
     },
   },
@@ -193,6 +223,9 @@ export default {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  box-shadow: inset 0 0 50px, 0 0 115px;
+  border-radius: 0 0 100px 100px;
+  overflow: hidden;
 
 
   &.transitioning {
@@ -274,11 +307,11 @@ export default {
     left: 86px;
 
     &:before {
-      height: calc(75% - 75px);
+      height: calc(75% - 97.5px);
     }
 
     &:after {
-      height: calc(25% - 75px);
+      height: calc(25% - 97.5px);
     }
 
   }
@@ -288,7 +321,7 @@ export default {
   }
 
   &__soc-box-wrapper {
-    top: calc(75% - 60px);
+    top: calc(75% - 82px);
   }
 
   &__cake-btn,
@@ -329,6 +362,10 @@ export default {
       background: url('../assets/icons-soc/icon-tg.svg') no-repeat center;
     }
 
+    &--phone {
+      background: url('../assets/icons-soc/icon-phone.svg') no-repeat center;
+    }
+
   }
 
 
@@ -364,6 +401,7 @@ export default {
       transform: rotate(45deg) translateZ(1px);
     }
   }
+
   @keyframes opacity {
     0% {
       opacity: 0;

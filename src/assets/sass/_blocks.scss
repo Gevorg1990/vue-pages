@@ -14,6 +14,7 @@
   }
 
   .item {
+    backdrop-filter: blur(3px);
     cursor: pointer;
     overflow: hidden;
     border: 1px solid $bdColor2;
@@ -64,6 +65,7 @@
 }
 
 .tab-content {
+  margin-bottom: 60px;
   gap: 60px;
   display: flex;
 }

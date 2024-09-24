@@ -880,6 +880,7 @@ form {
 
 .comment__item {
   background: rgba($bgColor1, .1);
+  backdrop-filter: blur(3px);
   min-height: 60px;
   border-radius: 6px;
   box-sizing: border-box;
@@ -891,11 +892,11 @@ form {
     content: "";
     position: absolute;
     right: 30px;
-    bottom: -30px;
+    bottom: -25px;
     z-index: 1;
     width: 0;
     height: 0;
-    border-top: 30px solid rgba($bgColor1, .1);
+    border-top: 25px solid rgba($bgColor1, .1);
     border-left: 50px solid transparent;
   }
 

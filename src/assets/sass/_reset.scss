@@ -407,6 +407,13 @@ input:-webkit-autofill:active {
 
 }
 
+.el-center {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 // Font sizes
 @include font-size(0, 0);
 @include font-size(10, 30);
@@ -420,12 +427,23 @@ input:-webkit-autofill:active {
     content: '';
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
 .modal {
     z-index: 11 !important;
 }
 
 .tooltip {
-    position: absolute;
+    position: fixed;
     padding: 8px;
     background-color: #333333;
     color: white;
@@ -437,7 +455,7 @@ input:-webkit-autofill:active {
     white-space: nowrap;
 }
 
-.tooltip:before {
+.tooltip-left:before {
     content: '';
     width: 0;
     height: 0;
@@ -448,6 +466,19 @@ input:-webkit-autofill:active {
     top: 50%;
     transform: translateY(-50%);
     right: -6px;
+}
+
+.tooltip-right:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #333;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -6px;
 }
 
 .modal {
@@ -485,19 +516,3 @@ input:-webkit-autofill:active {
     z-index: 10;
     transition: opacity 0.3s ease;
 }
-
-//<rect x="56" y="1055" width="67" height="123" fill="url(#pattern1_108_15)">-->
-//<!--&lt;!&ndash;                    <animateTransform&ndash;&gt;-->
-//<!--&lt;!&ndash;                            attributeName="transform"&ndash;&gt;-->
-//<!--&lt;!&ndash;                            type="translate"&ndash;&gt;-->
-//<!--&lt;!&ndash;                            values="0 0; 12 12; 0 0"&ndash;&gt;-->
-//<!--&lt;!&ndash;                            dur="10s"&ndash;&gt;-->
-//<!--&lt;!&ndash;                            repeatCount="indefinite" />&ndash;&gt;-->
-//<!--&lt;!&ndash;                    <animateTransform&ndash;&gt;-->
-//<!--&lt;!&ndash;                            attributeName="transform"&ndash;&gt;-->
-//<!--&lt;!&ndash;                            type="rotate"&ndash;&gt;-->
-//<!--&lt;!&ndash;                            values="0 56 1055; 30 56 1055; 0 56 1055"&ndash;&gt;-->
-//<!--&lt;!&ndash;                            keyTimes="0; 0.5; 1"&ndash;&gt;-->
-//<!--&lt;!&ndash;                            dur="10s"&ndash;&gt;-->
-//<!--&lt;!&ndash;                            repeatCount="indefinite" />&ndash;&gt;-->
-//<!--                </rect>-->
