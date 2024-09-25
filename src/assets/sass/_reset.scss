@@ -442,6 +442,23 @@ input[type=number] {
     z-index: 11 !important;
 }
 
+.modal-info {
+    color: rgba(20, 255, 0, 0.6);
+}
+
+.success-modal svg {
+    width: 50px;
+
+    circle {
+        fill:rgba(20, 255, 0, 0.6);
+    }
+
+}
+
+svg#success {
+    margin-bottom: 30px;
+}
+
 .tooltip {
     position: fixed;
     padding: 8px;
@@ -512,6 +529,8 @@ input[type=number] {
 
 /* Success modal slide animation */
 .modal.success-modal .modal-content {
+    background: rgba(255, 255, 255, .1);
+    backdrop-filter: blur(3px);
     top: 0;
     z-index: 10;
     transition: opacity 0.3s ease;

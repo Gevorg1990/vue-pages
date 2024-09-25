@@ -2,7 +2,7 @@
   <div class="tartalet center cake" id="tartalet">
     <h2 class="tartalet__title title">{{ $t('Tartalet.title') }}</h2>
     <ul class="tartalet__list list">
-      <li class="tartalet__item item" v-for="(item, idx) in items" :key="item.id" @click="navigateToPage(item.id)">
+      <li class="tartalet__item item" v-for="item in items" :key="item.id" @click="navigateToPage(item.id)">
         <Carousel :images="item.images" />
         <p class="tartalet__item-name item-name">{{ item.name }}</p>
       </li>
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { computed, ref, watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import Carousel from './Carousel.vue';
-import i18n from '/src/i18n.js'; // Adjust the path to where your i18n instance is defined
+import i18n from '/src/i18n.js';
 
 export default {
   components: {
@@ -34,7 +34,6 @@ export default {
       }));
     };
 
-    // Use watchEffect to reactively update items when the language changes
     watchEffect(updateItems);
 
     const navigateToPage = (id) => {
@@ -48,7 +47,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-
-</style>

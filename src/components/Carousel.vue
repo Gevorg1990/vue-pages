@@ -52,7 +52,8 @@ export default defineComponent({
 </script>
 
 
-<style type="scss" lang="scss">
+<style type="scss" lang="scss" scoped>
+
 .carousel__slide {
   opacity: 0;
   visibility: hidden;

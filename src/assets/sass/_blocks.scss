@@ -38,8 +38,8 @@
   margin-bottom: 40px;
 
   button {
-    border: 1px solid transparent;
     @include font-size(18);
+    border: 1px solid transparent;
     height: 40px;
     margin-right: 30px;
     background-color: $bgColor1;
@@ -65,9 +65,17 @@
 }
 
 .tab-content {
+
   margin-bottom: 60px;
   gap: 60px;
   display: flex;
+
+  &__img-box {
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 375px;
+  }
+
 }
 
 

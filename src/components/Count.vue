@@ -2,21 +2,19 @@
   <div class="pr" v-cloak style="height: 290px;">
     <div class="counter el-center" >
 
-
       <!-- Discount buttons -->
       <div class="discount-buttons pa">
-        <button @click="applyDiscount(10)" :class="{'active': selectedDiscount === 10}">10%</button>
-        <button @click="applyDiscount(15)" :class="{'active': selectedDiscount === 15}">15%</button>
-        <button @click="applyDiscount(20)" :class="{'active': selectedDiscount === 20}">20%</button>
+        <button class="octagon" @click="applyDiscount(10)" :class="{'active': selectedDiscount === 10}">-10%</button>
+        <button @click="applyDiscount(15)" :class="{'active': selectedDiscount === 15}">-15%</button>
+        <button @click="applyDiscount(20)" :class="{'active': selectedDiscount === 20}">-20%</button>
       </div>
 
-      <div class="test">
-        <div class="test2 df j-ctr">
+      <div class="buttons-box">
+        <div class="buttons-box__wrapper df j-ctr">
           <button class="decrement" @click="decrement" :disabled="value <= min">-</button>
           <input type="number" v-model.number="value" readonly @input="validateInput" />
           <button class="increment" @click="increment" :disabled="value >= max">+</button>
         </div>
-
 
         <div class="total">
           <p class="value fs24" :class="{'original-total': value >= 10}">Total: {{ total.toFixed(0) }}
@@ -44,8 +42,6 @@
           </p>
         </div>
       </div>
-
-
     </div>
   </div>
 
@@ -61,10 +57,10 @@ export default {
   },
   data() {
     return {
-      value: 10, // Initial value
+      value: 10,
       min: 4,
       max: 30,
-      selectedDiscount: 10, // No discount selected by default
+      selectedDiscount: 10,
     };
   },
   computed: {
@@ -73,9 +69,9 @@ export default {
     },
     discountedTotal() {
       if (this.selectedDiscount > 0) {
-        return this.total * (1 - this.selectedDiscount / 100); // Apply selected discount
+        return this.total * (1 - this.selectedDiscount / 100);
       }
-      return this.total; // No discount
+      return this.total;
     },
   },
   methods: {
@@ -97,30 +93,30 @@ export default {
       } else if (this.value > this.max) {
         this.value = this.max;
       }
-      this.updateDiscount(); // Update discount when manually changing input value
+      this.updateDiscount();
     },
     applyDiscount(percentage) {
       this.selectedDiscount = percentage;
 
       // Always change the input value based on the discount
       if (percentage === 10) {
-        this.value = 10; // Set value to 10 for 10% discount
+        this.value = 10;
       } else if (percentage === 15) {
-        this.value = 15; // Set value to 15 for 15% discount
+        this.value = 15;
       } else if (percentage === 20) {
-        this.value = 20; // Set value to 20 for 20% discount
+        this.value = 20;
       }
     },
     updateDiscount() {
       // Update the selected discount based on the current value
       if (this.value >= 20) {
-        this.selectedDiscount = 20; // 20% discount
+        this.selectedDiscount = 20;
       } else if (this.value >= 15) {
-        this.selectedDiscount = 15; // 15% discount
+        this.selectedDiscount = 15;
       } else if (this.value >= 10) {
-        this.selectedDiscount = 10; // 10% discount
+        this.selectedDiscount = 10;
       } else {
-        this.selectedDiscount = 0; // No discount
+        this.selectedDiscount = 0;
       }
     },
   },
@@ -138,7 +134,7 @@ export default {
   width: 390px;
 }
 
-.test {
+.buttons-box {
   background: rgba(255, 255, 255, 0.1);
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
@@ -147,13 +143,11 @@ export default {
   width: 390px;
   height: 290px;
   padding-top: 50px;
-
   position: absolute;
   bottom: -60px;
-  border-bottom: unset;
   text-align: center;
 
-  .test2 {
+  &__wrapper {
     height: 30px;
     width: max-content;
     margin: 0 auto 10px;
@@ -225,7 +219,7 @@ input {
 
 .original-total {
   text-decoration: line-through;
-  color: red;
+  color: #FF0000;
 }
 
 .discount-buttons {
@@ -257,6 +251,7 @@ input {
 }
 
 .discount-buttons button {
+  @include font-size(20);
   padding: 10px;
   border: 1px solid #ccc;
   background-color: #f0f0f0;

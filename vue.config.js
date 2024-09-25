@@ -5,6 +5,8 @@ module.exports = {
             sass: {
                 additionalData: `@import "@/assets/sass/app.scss";`
             }
-        }
+        },
+        extract: process.env.NODE_ENV === 'production', // Extract CSS in production
+
     },
 }

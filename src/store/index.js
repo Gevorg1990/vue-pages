@@ -53,6 +53,7 @@ const store = createStore({
             'Cheesecake.item-1.sundry-2',
             'Cheesecake.item-1.sundry-2',
           ],
+          count:['450', '900', '1280'],
           des: [
             'Cheesecake.item-1.description-1',
             'Cheesecake.item-1.description-2',
@@ -71,6 +72,7 @@ const store = createStore({
             'Cheesecake.item-2.sundry-1',
             'Cheesecake.item-2.sundry-2',
           ],
+          count:['1600', '200', '1200'],
           des: [
             'Cheesecake.item-2.description-1',
             'Cheesecake.item-2.description-2',

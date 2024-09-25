@@ -27,20 +27,11 @@
 
 </div>
 
-    <!-- Success Modal -->
-    <transition name="modal-fade">
-      <div v-if="isSuccessModalOpen" class="modal success-modal" style="color: green" @click="handleClickOutside">
-        <div class="modal-content tc" @click.stop ref="modalContent">
-          <span class="close" @click="closeSuccessModal">&times;</span>
+    <SuccessModal
+        :isSuccessModalOpen="isSuccessModalOpen"
+        @close-modal="closeModal"
+    />
 
-          <svg style="width: 50px; margin-bottom: 30px" xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" viewBox="0 0 50 50" xml:space="preserve">
-<circle style="fill:#25AE88;" cx="25" cy="25" r="25"/>
-            <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="  38,15 22,33 12,25 "/>
-</svg>
-          <h2>Comment Added Successfully!</h2>
-        </div>
-      </div>
-    </transition>
 
     <!-- The Modal -->
     <transition name="modal-fade">
@@ -182,7 +173,10 @@
   import AnimatedButton from "./AnimatedButton";
   import i18n from "../i18n";
 
+
+
   import { v4 as uuidv4 } from 'uuid';
+  import SuccessModal from "./Modal-Success";
 
   // Helper functions for cookie management
     function getCookie(name) {
@@ -201,7 +195,7 @@
       document.cookie = `${name}=${value}; ${expires}path=/`;
     }
     export default {
-      components: {AnimatedButton},
+      components: {SuccessModal, AnimatedButton},
       data() {
         return {
           pageId : '',
@@ -213,8 +207,8 @@
           frontUserId: getCookie('frontUserId') || uuidv4(),
           showPicker: false,
           isModalOpen: false,
-          peopleIcon: require('@/assets/icon-peoples.svg'),
-          starsIcon: require('@/assets/icon-stars.svg'),
+          peopleIcon: require('@/assets/icons/icon-peoples.svg'),
+          starsIcon: require('@/assets/icons/icon-stars.svg'),
           emojis: [
             {src: 'emojis/1.gif', alt: '🤩'},
             {src: 'emojis/2.gif', alt: '🥳'},
@@ -614,7 +608,7 @@
   </script>
 
 
-<style lang="scss" >
+<style lang="scss">
 
 .go-page {
   position: absolute;

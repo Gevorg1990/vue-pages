@@ -56,5 +56,8 @@
   "error-message" : {
     "name" : "The name must be filled in.",
     "comment" : "No comment was written."
+  },
+  "modal-success" : {
+    "info-text" : "Comment added successfully."
   }
 }

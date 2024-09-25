@@ -27,12 +27,12 @@ export default {
   },
   data() {
     return {
-      iconGroup: require('@/assets/icon-group.svg'),
+      iconGroup: require('@/assets/icons/icon-group.svg'),
       icons: [
-        require('@/assets/icon-star.svg'),
-        require('@/assets/icon-heart.svg'),
-        require('@/assets/icon-like.svg'),
-        require('@/assets/icon-emoji.svg'),
+        require('@/assets/icons/icon-star.svg'),
+        require('@/assets/icons/icon-heart.svg'),
+        require('@/assets/icons/icon-like.svg'),
+        require('@/assets/icons/icon-emoji.svg'),
       ]
     }
   },

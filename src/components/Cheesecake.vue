@@ -2,7 +2,7 @@
   <div class="cheesecake center cake" id="cheesecake">
     <h2 class="cheesecake__title title">{{ $t("Cheesecake.title") }}</h2>
     <ul class="cheesecake__list list">
-      <li class="cheesecake__item item" v-for="(item, idx) in items" :key="item.id" @click="navigateToPage(item.id)">
+      <li class="cheesecake__item item" v-for="item in items" :key="item.id" @click="navigateToPage(item.id)">
         <Carousel :images="item.images" />
         <p class="cheesecake__item-name item-name">{{ item.name }}</p>
       </li>
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import { computed, ref, watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import Carousel from './Carousel.vue';
-import i18n from '/src/i18n.js'; // Adjust the path to where your i18n instance is defined
+import i18n from '/src/i18n.js';
 
 export default {
   components: {
@@ -48,10 +48,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" >
-.cheesecake {
-
-
-}
-</style>
