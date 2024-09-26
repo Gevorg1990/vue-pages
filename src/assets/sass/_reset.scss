@@ -48,7 +48,7 @@ table {
 }
 
 html {
-
+    scroll-padding-top: 140px;
     @include rootFontSize(16);
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
@@ -416,7 +416,7 @@ input:-webkit-autofill:active {
 
 // Font sizes
 @include font-size(0, 0);
-@include font-size(10, 30);
+@include font-size(10, 32);
 
 .gm-ui-hover-effect:before,
 .select2-search:before,

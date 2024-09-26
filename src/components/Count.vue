@@ -4,7 +4,7 @@
 
       <!-- Discount buttons -->
       <div class="discount-buttons pa">
-        <button class="octagon" @click="applyDiscount(10)" :class="{'active': selectedDiscount === 10}">-10%</button>
+        <button @click="applyDiscount(10)" :class="{'active': selectedDiscount === 10}">-10%</button>
         <button @click="applyDiscount(15)" :class="{'active': selectedDiscount === 15}">-15%</button>
         <button @click="applyDiscount(20)" :class="{'active': selectedDiscount === 20}">-20%</button>
       </div>

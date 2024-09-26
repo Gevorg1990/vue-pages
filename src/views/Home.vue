@@ -60,6 +60,8 @@
 
   <Coments />
 
+  <Hexigon />
+
   <div
       v-if="tooltipVisible"
       :class=" `tooltip tooltip-${tooltipPositionClass}`"
@@ -81,10 +83,11 @@ import bg3 from '../assets/home-bg/bg3.webp';
 import Tartalet from "../components/Tartalet";
 import Coments from "../components/Coments";
 import Cheesecake from "../components/Cheesecake";
+import Hexigon from "../components/Hexigon";
 
 export default {
   name: 'Home',
-  components: {Cheesecake, Coments, Tartalet},
+  components: {Hexigon, Cheesecake, Coments, Tartalet},
   setup() {
 
     // Use the imported images
