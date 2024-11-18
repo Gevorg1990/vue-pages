@@ -102,8 +102,8 @@
         <figure class="tab-content__img-box">
           <img :src="item.images[selectedTab - 1].src" :alt="`Image ${selectedTab + 1}`" />
         </figure>
-        <p>{{ item.des[selectedTab - 1] }}</p>
-
+<!--        <p>{{ item.sort[selectedTab - 1] }}</p>-->
+        <button @click="saveItem">Save Item</button>
       </div>
     </div>
     <Count :buyNumber="buyNumber" />
@@ -292,6 +292,24 @@ export default {
     }
   },
   methods: {
+    async saveItem() {
+      try {
+        const response = await fetch('http://localhost:3000/api/items', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.item),
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data.message);
+      } catch (error) {
+        console.error('Error saving item:', error);
+      }
+    },
     handleCommentInput() {
       this.commentText = this.$refs.editableDiv.innerText;
       this.commentLength = this.commentText.length + $('.editable-div').find('img').length;

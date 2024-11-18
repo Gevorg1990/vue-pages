@@ -161,6 +161,21 @@ app.post('/global-rating', (req, res) => {
     }
 });
 
+// Simulated database
+const items = [];
+
+// Endpoint to save item data
+app.post('/api/items', (req, res) => {
+    const newItem = req.body;
+    items.push(newItem);
+    res.status(201).json({ message: 'Item saved successfully!', item: newItem });
+});
+
+// Endpoint to retrieve saved items
+app.get('/api/items', (req, res) => {
+    res.json(items);
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
