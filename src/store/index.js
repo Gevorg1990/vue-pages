@@ -6,17 +6,17 @@ const store = createStore({
       itemsTartalet: [
         {
           id: 1,
-          nameKey: 'Tartalet.item-1.name',
+          nameKey: 'Tart.item-1.name',
           sort: [
-            'Tartalet.item-1.sundry-1',
-            'Tartalet.item-1.sundry-2',
-            'Tartalet.item-1.sundry-3',
+            'Tart.item-1.sundry-1',
+            'Tart.item-1.sundry-2',
+            'Tart.item-1.sundry-3',
           ],
-          count:['700', '800', '1000'],
+          count:['1000', '800', '1000'],
           des: [
-              'Tartalet.item-1.description-1',
-              'Tartalet.item-1.description-2',
-              'Tartalet.item-1.description-3'
+              'Tart.item-1.description-1',
+              'Tart.item-1.description-2',
+              'Tart.item-1.description-3'
           ],
           images: [
             { src: 'https://picsum.photos/id/15/600/600/'},
@@ -26,15 +26,15 @@ const store = createStore({
         },
         {
           id: 2,
-          nameKey: 'Tartalet.item-2.name',
+          nameKey: 'Tart.item-2.name',
           sort: [
-            'Tartalet.item-2.sundry-1',
-            'Tartalet.item-2.sundry-2',
+            'Tart.item-2.sundry-1',
+            'Tart.item-2.sundry-2',
           ],
           count:['300', '7000'],
           des: [
-              'Tartalet.item-2.description-1',
-              'Tartalet.item-2.description-2',
+              'Tart.item-2.description-1',
+              'Tart.item-2.description-2',
           ],
           images: [
             { src: 'https://picsum.photos/id/43/600/600/'},

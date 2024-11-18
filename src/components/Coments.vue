@@ -106,9 +106,9 @@
       <div class="comment__item" :id="'comment-' + comment.id" v-for="comment in paginatedComments" :key="comment.id">
         <div style="display: flex; flex-direction: column; height: 100%; position: relative;">
           <!-- Display avatar -->
-          <div style="display: flex; align-items: center; margin-bottom: 20px; gap: 20px" :data-color="comment.id" :data-avatar="comment.avatar.replace(/.*\/(avatar\d+)\.png$/, '$1')">
+          <div style="display: flex; align-items: center; margin-bottom: 20px; padding-right: 20px; gap: 20px" :data-color="comment.id" :data-avatar="comment.avatar.replace(/.*\/(avatar\d+)\.png$/, '$1')">
             <img v-if="comment.avatar" :src="comment.avatar" alt="User Avatar" class="avatar">
-            <strong style="font-size: 20px">{{ comment.name }}</strong>
+            <strong style="font-size: 20px; overflow-wrap: anywhere">{{ comment.name }}</strong>
           </div>
 
           <router-link
@@ -766,12 +766,6 @@
   filter: grayscale(0);
 }
 
-//.emoji-picker button img {
-//  width: 100%;
-//  filter: grayscale(1);
-//  transition: filter 0.3s ease;
-//}
-
 .text-length {
   transition: color 0.3s ease;
 }
@@ -908,11 +902,11 @@ form {
 }
 
 .comment__delete-btn {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   position: absolute;
-  right: 4px;
-  top: 8px;
+  right: 8px;
+  top: 12px;
 }
 
 .comment__delete-btn:hover svg rect {
@@ -1099,18 +1093,18 @@ form {
   border-radius: 50%;
   width: 60px;
   height: 60px;
+
+  &:has(.error) {
+    box-shadow: 0 0 6px #FF0000;
+    outline: 1px solid rgba(#FF0000, .6);
+  }
+
 }
-
-.avatar-box:has(.error) {
-  box-shadow: 0 0 6px #FF0000;
-  outline: 1px solid rgba(#FF0000, .6);
-}
-
-
 
 .avatar {
   width: 60px;
   height: 60px;
+  object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 0 20px;
 }
@@ -1121,13 +1115,9 @@ form {
 }
 
 /*MODAL */
-
-/* Modal Styles */
 .modal {
   position: fixed;
   z-index: 1;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;

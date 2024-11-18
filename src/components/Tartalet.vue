@@ -1,10 +1,10 @@
 <template>
-  <div class="tartalet center cake" id="tartalet">
-    <h2 class="tartalet__title title">{{ $t('Tartalet.title') }}</h2>
-    <ul class="tartalet__list list">
-      <li class="tartalet__item item" v-for="item in items" :key="item.id" @click="navigateToPage(item.id)">
+  <div class="tart center cake" id="tart">
+    <h2 class="tart__title title">{{ $t('Tart.title') }}</h2>
+    <ul class="tart__list list">
+      <li class="tart__item item" v-for="item in items" :key="item.id" @click="navigateToPage(item.id)">
         <Carousel :images="item.images" />
-        <p class="tartalet__item-name item-name">{{ item.name }}</p>
+        <p class="tart__item-name item-name">{{ item.name }}</p>
       </li>
     </ul>
   </div>

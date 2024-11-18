@@ -58,25 +58,31 @@
     <div class='hex a1'></div>
     <div class='hex a1'></div>
 
-    <a href="#empty" class="overlay" @click="removeHash"></a>
-    <div id="empty"></div>
 
+    <a href="#empty" class="overlay" style="width: 0; height: 0;" @click="removeHash"></a>
+    <div id="empty"></div>
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    removeHash() {
+      // Let the browser scroll, but reset the scroll position afterward
+      this.$nextTick(() => {
+        const scrollX = window.scrollX; // Save current horizontal scroll position
+        const scrollY = window.scrollY; // Save current vertical scroll position
 
-    methods: {
-      removeHash() {
-        // Get the current URL
-        let currentUrl = window.location.href;
-
-        setTimeout(function (){
+        setTimeout(() => {
+          // Remove the hash from the URL
+          let currentUrl = window.location.href;
           let newUrl = currentUrl.split('#')[0];
           window.history.pushState(null, '', newUrl);
-        })
 
+          // Restore the scroll position
+          window.scrollTo(scrollX, scrollY);
+        }, 0);
+      });
     }
   }
 }
@@ -171,6 +177,7 @@ $bg: #faf2e8;
 
     }
     &:target {
+      scroll-padding-top: 140px;
       z-index: 10;
       a.hex {
         transition: transform 0.5s;

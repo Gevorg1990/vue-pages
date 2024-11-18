@@ -64,10 +64,19 @@ export default {
 }
 
 .router-link {
+  transition: text-shadow 0.3s ease;
+
+  &-active {
+    user-select: none;
+    pointer-events: none;
+    cursor: default;
+    color: $textColor3;
+  }
+
+  &:not(&-active):hover {
+    text-shadow: 0 0 16px $textColor3;
+  }
 
 }
 
-.router-link-active {
-  color: $textColor3;
-}
 </style>

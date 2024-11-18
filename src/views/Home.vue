@@ -9,7 +9,7 @@
     <div class="home__soc-box">
       <div class="home__soc-box-wrapper pr">
         <a class="home__soc-link home__soc-link--fb" href="https://www.facebook.com/gevorg.gasparyan.7528/" target="_blank" aria-label="Facebook"
-           @mouseover="showTooltip($t('go to Facebook'), $event, 'right')"
+           @mouseover="showTooltip($t('Tart.item-1.name'), $event, 'right')"
            @mouseleave="hideTooltip"
         ></a>
         <a class="home__soc-link home__soc-link--ig" href="#" target="_blank" aria-label="Instagram"></a>
@@ -22,14 +22,14 @@
       <div class="home__cake-box-wrapper pr">
         <button
             class="home__cake-btn home__cake-btn--1"
-            @mouseover="showTooltip($t('Tartalet.item-1.name'), $event, 'left')"
+            @mouseover="showTooltip($t('Tart.item-1.name'), $event, 'left')"
             @mouseleave="hideTooltip"
             type="button"
-            @click="scrollToSection('tartalet')"
+            @click="scrollToSection('tart')"
         ></button>
         <button
             class="home__cake-btn home__cake-btn--2"
-            @mouseover="showTooltip($t('Tartalet.item-2.name'), $event, 'left')"
+            @mouseover="showTooltip($t('Tart.item-2.name'), $event, 'left')"
             @mouseleave="hideTooltip"
             type="button"
             @click="scrollToSection('cheesecake')"
@@ -39,14 +39,14 @@
             @mouseover="showTooltip($t('cake-2.name'), $event, 'left')"
             @mouseleave="hideTooltip"
             type="button"
-            @click="scrollToSection('tartalet')"
+            @click="scrollToSection('tart')"
         ></button>
 
       </div>
     </div>
 
 <!--    <span class="arrow-animate pa">go</span>-->
-    <div class="scroll-prompt" @click="scrollToSection('tartalet')">
+    <div class="scroll-prompt" @click="scrollToSection('tart')">
       <div class="scroll-prompt-arrow-container">
         <div class="scroll-prompt-arrow"><div></div></div>
         <div class="scroll-prompt-arrow"><div></div></div>
@@ -146,7 +146,6 @@ export default {
       }
     },
     showTooltip(text, event, position) {
-
       this.tooltipText = text;
       this.tooltipVisible = true;
       this.tooltipPositionClass = position;
@@ -161,22 +160,22 @@ export default {
           if (position === 'right') {
             this.tooltipPosition = {
               left: buttonRect.left + buttonRect.width + window.scrollX + 10 + 'px',
-              top: buttonRect.top + window.scrollY + (buttonRect.height - tooltipRect.height) / 2 + 'px',
+              top: buttonRect.top + (buttonRect.height - tooltipRect.height) / 2 + 'px',
             };
           } else if (position === 'left') {
             this.tooltipPosition = {
               left: buttonRect.left + window.scrollX - tooltipRect.width - 10 + 'px',
-              top: buttonRect.top + window.scrollY + (buttonRect.height - tooltipRect.height) / 2 + 'px',
+              top: buttonRect.top + (buttonRect.height - tooltipRect.height) / 2 + 'px',
             };
           } else if (position === 'top') {
             this.tooltipPosition = {
               left: buttonRect.left + window.scrollX + (buttonRect.width - tooltipRect.width) / 2 + 'px',
-              top: buttonRect.top + window.scrollY - tooltipRect.height - 10 + 'px',
+              top: buttonRect.top - tooltipRect.height - 10 + 'px',
             };
           } else if (position === 'bottom') {
             this.tooltipPosition = {
               left: buttonRect.left + window.scrollX + (buttonRect.width - tooltipRect.width) / 2 + 'px',
-              top: buttonRect.top + window.scrollY + buttonRect.height + 10 + 'px',
+              top: buttonRect.top + buttonRect.height + 10 + 'px',
             };
           } else {
             console.error('Invalid position specified.');

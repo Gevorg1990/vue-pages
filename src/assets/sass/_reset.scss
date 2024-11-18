@@ -48,7 +48,6 @@ table {
 }
 
 html {
-    scroll-padding-top: 140px;
     @include rootFontSize(16);
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
@@ -290,7 +289,7 @@ em,
 .center {
     margin: 0 auto;
     max-width: 1440px;
-    padding: 0 30px;
+    padding: 60px 120px;
 }
 
 .clear-fix:after {

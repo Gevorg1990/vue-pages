@@ -1,5 +1,5 @@
 <template>
-  <div class="tartalet cake center" style="padding-top: 200px;">
+  <div class="tart cake center" style="padding-top: 200px;">
 
     <div id="comments" class="  ">
 
@@ -555,7 +555,7 @@ export default {
 
 <style lang="scss">
 
-.tartalet {
+.tart {
   padding-bottom: 0 !important;
 }
 
