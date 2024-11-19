@@ -104,6 +104,7 @@
         </figure>
 <!--        <p>{{ item.sort[selectedTab - 1] }}</p>-->
         <button @click="saveItem">Save Item</button>
+
       </div>
     </div>
     <Count :buyNumber="buyNumber" />
@@ -113,9 +114,12 @@
 </template>
 
 <script>
+
 import { ref, computed, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import {useGlobalStore} from "../store/useGlobalStore";
+
 import i18n from "../i18n";
 import { v4 as uuidv4 } from 'uuid';
 import AnimatedButton from "../components/AnimatedButton";
@@ -143,6 +147,8 @@ function setCookie(name, value, days) {
 export default {
   components: {SuccessModal, AnimatedButton, Count},
   setup() {
+    // Use the global store
+    const globalStore = useGlobalStore();
     const store = useStore();
     const route = useRoute();
     const router = useRouter();
@@ -184,7 +190,7 @@ export default {
       router.push({ query: { tab: index + 1 } });
     };
 
-    return { items, item, selectedTab, changeTab, buyNumber };
+    return { items, item, selectedTab, changeTab, buyNumber, globalStore };
   },
   data() {
 
@@ -293,21 +299,42 @@ export default {
   },
   methods: {
     async saveItem() {
+      const selectedImage = this.item.images[this.selectedTab - 1];
+      const selectedText = this.item.sort[this.selectedTab - 1];
+      const selectedCount = this.item.count[this.selectedTab - 1];
+      const selectedMin = this.item.min[this.selectedTab - 1];
+      const selectedMax = this.item.max[this.selectedTab - 1];
+
+      const dataToSave = {
+        id: Date.now(), // Generates a unique id based on the current timestamp
+        image: selectedImage.src,
+        description: selectedText,
+        count: selectedCount,
+        min: selectedMin,
+        max: selectedMax
+      };
+
       try {
-        const response = await fetch('http://localhost:3000/api/items', {
+        const response = await fetch('http://localhost:3000/items', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(this.item),
+          body: JSON.stringify(dataToSave),
+
         });
+
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          throw new Error('Failed to save active tab content');
         }
-        const data = await response.json();
-        console.log(data.message);
+
+        const result = await response.json();
+        console.log('Save successful:', result);
+
+        this.globalStore.getitemsLangth();
+
       } catch (error) {
-        console.error('Error saving item:', error);
+        console.error('Error saving active tab content:', error);
       }
     },
     handleCommentInput() {

@@ -165,16 +165,48 @@ app.post('/global-rating', (req, res) => {
 const items = [];
 
 // Endpoint to save item data
-app.post('/api/items', (req, res) => {
+app.post('/items', (req, res) => {
     const newItem = req.body;
     items.push(newItem);
     res.status(201).json({ message: 'Item saved successfully!', item: newItem });
 });
 
 // Endpoint to retrieve saved items
-app.get('/api/items', (req, res) => {
+app.get('/items', (req, res) => {
     res.json(items);
+    console.log(items)
 });
+
+app.delete('/items/:id', (req, res) => {
+    let { id } = req.params;
+
+    // Optionally remove the 'item-' prefix if it's part of the ID format
+    // Uncomment the next line if your IDs have the 'item-' prefix.
+    // id = id.replace(/^item-/, '');
+
+    // Ensure that the id is treated as a string for comparison
+    id = String(id);
+
+    // Find the item by id
+    const itemIndex = items.findIndex(item => String(item.id) === id);
+
+    if (itemIndex === -1) {
+        // If the item isn't found, return a 404 error
+        return res.status(404).json({ message: 'Item not found' });
+    }
+
+    // Remove the item from the array
+    items.splice(itemIndex, 1);
+
+    // Send success response
+    res.status(200).json({ message: 'Item deleted successfully' });
+});
+
+
+
+
+
+
 
 const PORT = 3000;
 app.listen(PORT, () => {

@@ -9,34 +9,47 @@
     </div>
   </div>
 
+  <div style="display: flex; z-index: 11; position: absolute; right: 13.5px; width: 50px; height: 40px;">
+    <router-link class="router-link fs20" to="/shop">
+      <img src="../../public/love.gif" alt="love">
+    </router-link>
+    <!-- Display the global item count -->
+    <span>{{ globalStore.itemCount }} </span>
+  </div>
 </template>
+
 <script>
+import {useGlobalStore} from "../store/useGlobalStore";
+
 import LanguageSwitcher from "../LanguageSwitcher";
+
 export default {
+  setup() {
+    // Use the global store
+    const globalStore = useGlobalStore();
+
+    return { globalStore };
+  },
   components: {
     LanguageSwitcher,
   },
   data() {
     return {
-      lng : ''
-    }
+      items: [], // Stores fetched items
+    };
   },
+
   methods: {
+    // Fetch items from the server and update the global item count
+
     changeLanguage(lang) {
       this.$i18n.locale = lang;
     },
-
   },
-  computed: {
-    // lng() {
-    //   return this.$t('menu.home');
-    // },
-  },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-
 .header {
   position: absolute;
   left: 50%;
@@ -55,7 +68,6 @@ export default {
     position: absolute;
     height: 100%;
   }
-
 }
 
 .nav {
@@ -76,7 +88,5 @@ export default {
   &:not(&-active):hover {
     text-shadow: 0 0 16px $textColor3;
   }
-
 }
-
 </style>

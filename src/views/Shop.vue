@@ -1,17 +1,27 @@
 <template>
   <div class="shop-page">
-    <div v-for="(item, index) in items" :key="index" class="shop-item">
+    <div v-for="(item, index) in items" :id="item.id" :key="item.id" class="shop-item">
       <figure class="shop-item__img-box">
-        <img :src="item.images[0].src" alt="Shop Item Image" />
+        <img :src="item.image" alt="Shop Item Image" />
       </figure>
-      <p>{{ item.des[0] }}</p>
+      <p>{{ item.description }}</p>
+      <p>min {{ item.min }}</p>
+      <p>max {{ item.max }}</p>
+      <p>1 item count is {{item.count}}</p>
+      <button @click="deleteItem(item.id)">Delete Item</button>
     </div>
   </div>
-
 </template>
 
 <script>
+import {useGlobalStore} from "../store/useGlobalStore";
+
 export default {
+  setup() {
+    // Use the global store
+    const globalStore = useGlobalStore();
+    return { globalStore }
+  },
   data() {
     return {
       items: [],
@@ -21,18 +31,74 @@ export default {
     this.fetchItems();
   },
   methods: {
+    // Fetch all items from the server
     async fetchItems() {
       try {
-        const response = await fetch('http://localhost:3000/api/items');
+        const response = await fetch('http://localhost:3000/items');
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         this.items = await response.json();
+        console.log(this.items); // Log the items after fetching
       } catch (error) {
         console.error('Error fetching items:', error);
       }
     },
+
+    async deleteItem(itemId) {
+      try {
+        // Check if the item exists locally
+        const itemExists = this.items.some(item => item.id === itemId);
+        if (!itemExists) {
+          console.error('Item not found in local list');
+          return; // Exit early if the item doesn't exist in the local array
+        }
+
+        // Log the item ID for debugging
+        console.log('Attempting to delete item with ID:', itemId);
+
+        // Send the delete request to the backend
+        const response = await fetch(`http://localhost:3000/items/${itemId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          // If the deletion fails on the backend, log the error message
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to delete item');
+        }
+
+        // If deletion is successful, update the local list by removing the item
+        console.log('Item deleted successfully');
+        this.items = this.items.filter(item => item.id !== itemId); // Remove item from the local array
+
+        this.globalStore.getitemsLangth();
+
+      } catch (error) {
+        // Catch and log any errors
+        console.error('Error deleting item:', error.message);
+      }
+    }
   },
 };
-
 </script>
+
+<style lang="scss">
+.shop-page {
+  padding-top: 250px;
+}
+.shop-item {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 30px;
+  width: 100%;
+
+  figure {
+    width: 100px;
+    height: 100px;
+  }
+}
+</style>

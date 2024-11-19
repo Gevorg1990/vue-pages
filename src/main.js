@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import documentJs from './document';
+import { createPinia } from 'pinia';
 import i18n from './i18n';
 import $ from 'jquery';
 import Tooltip from "../tooltipPlugin";
@@ -13,9 +14,11 @@ window.jQuery = $;
 
 // Ensure jQuery is attached before app mounting
 const app = createApp(App);
+
 app.use(documentJs);
 app.use(store);
 app.use(router);
+app.use(createPinia());
 app.use(i18n);
 // app.use(Tooltip);
 

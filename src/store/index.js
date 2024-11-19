@@ -12,14 +12,21 @@ const store = createStore({
             'Tart.item-1.sundry-2',
             'Tart.item-1.sundry-3',
           ],
-          count:['1000', '800', '1000'],
+          min: [
+              4,5,6
+          ],
+
+          max: [
+              30,30
+          ],
+          count:['1000', '800', '650'],
           des: [
               'Tart.item-1.description-1',
               'Tart.item-1.description-2',
               'Tart.item-1.description-3'
           ],
           images: [
-            { src: 'https://picsum.photos/id/15/600/600/'},
+            { src: '/avatars-img/avatar1.png'},
             { src: 'https://picsum.photos/id/20/600/600/'},
             { src: 'https://picsum.photos/id/20/600/600/'}
           ]
@@ -27,6 +34,12 @@ const store = createStore({
         {
           id: 2,
           nameKey: 'Tart.item-2.name',
+          min: [
+            20,30
+          ],
+          max: [
+             10,20
+          ],
           sort: [
             'Tart.item-2.sundry-1',
             'Tart.item-2.sundry-2',

@@ -244,7 +244,7 @@ $bg: #faf2e8;
     width: 70%;
     content: attr(data-h2);
     @include font-size(32);
-    text-align: center;
+    text-align: center ;
     transform: translate(-49%, -50%) rotate(-29deg);
   }
   &.negr[data-h2]:before {
