@@ -7,14 +7,14 @@
       <img src="../../public/logo.svg" alt="logo">
       <router-link class="router-link fs20" to="/about">{{$t('menu.about')}}</router-link>
     </div>
-  </div>
 
   <div style="display: flex; z-index: 11; position: absolute; right: 13.5px; width: 50px; height: 40px;">
-    <router-link class="router-link fs20" to="/shop">
+    <router-link class="shop-link" to="/shop">
       <img src="../../public/love.gif" alt="love">
     </router-link>
     <!-- Display the global item count -->
     <span>{{ globalStore.itemCount }} </span>
+  </div>
   </div>
 </template>
 

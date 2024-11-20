@@ -64,7 +64,7 @@ const store = createStore({
           sort: [
             'Cheesecake.item-1.sundry-1',
             'Cheesecake.item-1.sundry-2',
-            'Cheesecake.item-1.sundry-2',
+            'Cheesecake.item-1.sundry-1',
           ],
           count:['450', '900', '1280'],
           des: [

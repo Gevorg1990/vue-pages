@@ -8,7 +8,7 @@
       <p>min {{ item.min }}</p>
       <p>max {{ item.max }}</p>
       <p>1 item count is {{item.count}}</p>
-      <button @click="deleteItem(item.id)">Delete Item</button>
+      <button @click="deleteItem($event,item.id)" :data-target="item.description">Delete Item</button>
     </div>
   </div>
 </template>
@@ -45,17 +45,32 @@ export default {
       }
     },
 
-    async deleteItem(itemId) {
+    async deleteItem($event,itemId) {
       try {
-        // Check if the item exists locally
+
         const itemExists = this.items.some(item => item.id === itemId);
+
         if (!itemExists) {
-          console.error('Item not found in local list');
-          return; // Exit early if the item doesn't exist in the local array
+          return;
         }
 
-        // Log the item ID for debugging
-        console.log('Attempting to delete item with ID:', itemId);
+        // Access the clicked button (via event.target)
+        const clickedButton = event.target.closest('button'); // Use closest to ensure you get the button element
+        const clickedButtonAttr = clickedButton.getAttribute('data-target');
+
+        let targetArray = JSON.parse(localStorage.getItem('data-target'));
+
+        if (Array.isArray(targetArray)) {
+          const index = targetArray.indexOf(clickedButtonAttr);
+          if (index !== -1) {
+            targetArray.splice(index, 1); // Remove 'Malinas' from the array
+            console.log('Malinas removed from the array');
+          } else {
+            console.log('Malinas not found in the array');
+          }
+
+          localStorage.setItem('data-target', JSON.stringify(targetArray));
+        }
 
         // Send the delete request to the backend
         const response = await fetch(`http://localhost:3000/items/${itemId}`, {

@@ -33,7 +33,7 @@
 .tabs {
   margin-bottom: 40px;
 
-  button {
+  .tab-btn {
     @include font-size(18);
     border: 1px solid transparent;
     height: 40px;
@@ -49,12 +49,12 @@
 
   }
 
-  button.active {
+  .tab-btn.active {
     border-color: $bdColor2;
     color: $textColor3;
   }
 
-  button:not(button.active):hover {
+  .tab-btn:not(button.active):hover {
     box-shadow: 0 0 15px 0 $bgColor4;
   }
 
@@ -75,5 +75,8 @@
 }
 
 
-
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
 

@@ -80,7 +80,7 @@
       </transition>
     </div>
 
-    <div class="" v-if="item">
+    <div class="pr" v-if="item">
       <h3 class="item__name fs28">{{ item.name }}</h3> <!-- Display the translated name -->
 
       <!-- Tab navigation -->
@@ -96,16 +96,37 @@
           {{ item.sort[index] }} <!-- Display text corresponding to each tab index -->
         </button>
 
+
+
       </div>
       <!-- Tab content -->
       <div class="tab-content">
-        <figure class="tab-content__img-box">
+        <figure class="tab-content__img-box pr">
           <img :src="item.images[selectedTab - 1].src" :alt="`Image ${selectedTab + 1}`" />
+          <button
+              class="btn btn--save pa"
+              v-for="(image, index) in item.images"
+              :key="index"
+              ref="saveButton"
+              :class="{ hide: selectedTab !== index + 1 }"
+              :data-target="item.sort[index]"
+              @click="saveItem($event)"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="64px" height="64px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" stroke="#c21919">
+
+              <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <g id="SVGRepo_iconCarrier"> <path d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </g>
+
+            </svg>
+          </button>
         </figure>
-<!--        <p>{{ item.sort[selectedTab - 1] }}</p>-->
-        <button @click="saveItem">Save Item</button>
+        <!--<p>{{ item.sort[selectedTab - 1] }}</p>-->
 
       </div>
+
     </div>
     <Count :buyNumber="buyNumber" />
 
@@ -199,6 +220,7 @@ export default {
       globalRating: 5,
       tempRating: 5,
       comments: [],
+      isActive: false,
       commentCount: 0,
       averageRating: 0,
       frontUserId: getCookie('frontUserId') || uuidv4(),
@@ -246,6 +268,7 @@ export default {
       commentText: '',
       commentLength: 0,
       maxCommentLength: 300,
+      targets: [],
       isSuccessModalOpen: false // New state for success modal
 
     };
@@ -298,20 +321,39 @@ export default {
     }
   },
   methods: {
-    async saveItem() {
+    async saveItem(event) {
+
+        // Access the clicked button (via event.target)
+        const clickedButton = event.target.closest('button'); // Use closest to ensure you get the button element
+        const clickedButtonAttr = clickedButton.getAttribute('data-target');
+
+        // Get existing targets from localStorage, or initialize as empty array
+        const storedTargets = JSON.parse(localStorage.getItem("data-target")) || [];
+
+        // Add the clicked button's target to the list if it's not already present
+        if (!storedTargets.includes(clickedButtonAttr)) {
+          storedTargets.push(clickedButtonAttr);
+          localStorage.setItem("data-target", JSON.stringify(storedTargets));
+        }
+
+        // Add the 'active' class to the clicked button
+        clickedButton.setAttribute('active','true');
+
       const selectedImage = this.item.images[this.selectedTab - 1];
       const selectedText = this.item.sort[this.selectedTab - 1];
       const selectedCount = this.item.count[this.selectedTab - 1];
       const selectedMin = this.item.min[this.selectedTab - 1];
       const selectedMax = this.item.max[this.selectedTab - 1];
+      // const selectedTab = this.selectedTab - 1
 
       const dataToSave = {
-        id: Date.now(), // Generates a unique id based on the current timestamp
+        id: Date.now(),
         image: selectedImage.src,
         description: selectedText,
         count: selectedCount,
         min: selectedMin,
-        max: selectedMax
+        max: selectedMax,
+        // selected : selectedTab
       };
 
       try {
@@ -593,6 +635,21 @@ export default {
       this.currentPage = 1;
     });
 
+    // Retrieve stored active target(s) from localStorage
+    const storedTargets = JSON.parse(localStorage.getItem("data-target")) || [];
+    this.storedTargets = storedTargets;
+
+    // Loop through each button and check if its data-target matches any stored target
+    const buttons = this.$refs.saveButton;
+
+    buttons.forEach(button => {
+      const target = button.getAttribute('data-target');
+      console.log(this.storedTargets.includes(target))
+      if (this.storedTargets.includes(target)) {
+        // Add the 'active' class to the button if its target is in storedTargets
+        button.setAttribute('active','true')
+      }
+    });
 
   }
 };
