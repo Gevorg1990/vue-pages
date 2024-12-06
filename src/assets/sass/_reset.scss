@@ -57,6 +57,18 @@ html {
 html, body {
     scroll-behavior: smooth;
     height: 100%;
+    //scroll-padding-top: 80px; /* Adjust the scroll position by 180px */
+
+}
+
+html:has(body.fixed){
+    scroll-padding-top: 180px;
+}
+
+body.fixed {
+    scroll-behavior: smooth;
+    overflow: hidden;
+
 }
 
 body {

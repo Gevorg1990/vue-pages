@@ -1,11 +1,12 @@
 <template>
   <div class="hex-wrap">
-    <div class='hex negr' data-h2='Tim Lake'></div>
-
     <div class="hex hex-layer" id='m6'>
       <div class='hex slide-reveal' data-h3='test 2'></div>
-      <a class='hex' href='#m6' style='background-image:url("https://picsum.photos/500/500")'></a>
+      <a class='hex' href='#m6' @click="f" style='background-image:url("https://picsum.photos/500/500")'></a>
     </div>
+    <div class='hex negr' data-h2='Tim Lake'></div>
+
+
     <div class='hex a2'>
       <img class="img" src="../assets/icons/bee.gif" alt="bee">
     </div>
@@ -68,11 +69,12 @@
 export default {
   methods: {
     removeHash() {
+
       // Let the browser scroll, but reset the scroll position afterward
       this.$nextTick(() => {
         const scrollX = window.scrollX; // Save current horizontal scroll position
         const scrollY = window.scrollY; // Save current vertical scroll position
-
+        $('body').removeClass('fixed')
         setTimeout(() => {
           // Remove the hash from the URL
           let currentUrl = window.location.href;
@@ -83,6 +85,10 @@ export default {
           window.scrollTo(scrollX, scrollY);
         }, 0);
       });
+    },
+
+    f() {
+      $('body').addClass('fixed')
     }
   }
 }

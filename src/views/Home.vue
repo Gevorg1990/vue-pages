@@ -398,8 +398,8 @@ export default {
     .scroll-prompt-arrow > div {
       width: 30px;
       height: 30px;
-      border-right: 8px solid $bdColor2;
-      border-bottom: 8px solid $bdColor2;
+      border-right: 4px solid $bdColor2;
+      border-bottom: 4px solid $bdColor2;
       transform: rotate(45deg) translateZ(1px);
     }
   }

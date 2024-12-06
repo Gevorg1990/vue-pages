@@ -134,7 +134,7 @@
             <span class="comment__date">{{ formatDate(comment.date) }}</span>
           </div>
         </div>
-        <button class="comment__delete-btn" v-if="comment.userId === frontUserId" @click="deleteComment(comment.id)">
+        <button class="comment__delete-btn animate-btn" v-if="comment.userId === frontUserId" @click="deleteComment(comment.id)">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
             <path d="M13.2798 13.6799V27.8C13.2798 28.3522 13.7275 28.8 14.2798 28.8H25.7198C26.2721 28.8 26.7198 28.3522 26.7198 27.8V13.6799M16.6398      17.5341V25.5388M20.3731 17.5341V25.5388M23.7331 17.5341V21.5364C23.7331 23.0994 23.7331 23.9758 23.7331 25.5388" stroke="#F30F0F"/>
             <rect x="10.8999" y="11.5117" width="18.2" height="1.88001" rx="0.940003" stroke="#F30F0F"/>
@@ -909,7 +909,7 @@ form {
   top: 12px;
 }
 
-.comment__delete-btn:hover svg rect {
+.animate-btn:hover svg rect {
   transition: transform 0.3s ease ;
   transform: translateY(-6px) translateX(5px) rotate(15deg);
 }
