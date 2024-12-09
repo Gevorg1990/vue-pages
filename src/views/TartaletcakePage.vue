@@ -1,5 +1,5 @@
 <template>
-  <div class="tart cake center" style="padding-top: 200px;">
+  <div class="tart cake center df f-dir-clmn j-spc-btwn" style="padding-top: 150px; min-height: 100vh">
 
     <div id="comments" class="  ">
 
@@ -123,7 +123,13 @@
             </svg>
           </button>
         </figure>
-        <!--<p>{{ item.sort[selectedTab - 1] }}</p>-->
+
+        <transition name="fade">
+          <div v-if="saved" class="info-save">
+            Item is saved successfully in wishlist
+          </div>
+        </transition>
+        <p>{{ item.sort[selectedTab - 1] }}</p>
 
       </div>
 
@@ -216,6 +222,7 @@ export default {
   data() {
 
     return {
+      saved: false,
       pageId : "tartalet/" + this.item.id,
       globalRating: 5,
       tempRating: 5,
@@ -335,6 +342,10 @@ export default {
           storedTargets.push(clickedButtonAttr);
           localStorage.setItem("data-target", JSON.stringify(storedTargets));
         }
+
+        this.saved = true
+        setTimeout( ()=> this.saved = false, 3000)
+
 
         // Add the 'active' class to the clicked button
         clickedButton.setAttribute('active','true');
@@ -644,7 +655,6 @@ export default {
 
     buttons.forEach(button => {
       const target = button.getAttribute('data-target');
-      console.log(this.storedTargets.includes(target))
       if (this.storedTargets.includes(target)) {
         // Add the 'active' class to the button if its target is in storedTargets
         button.setAttribute('active','true')
@@ -663,6 +673,33 @@ export default {
 
 .item__name {
   margin-bottom: 20px;
+}
+
+.info-save {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, .5);
+  transition: all 0.3s ease;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease-in-out; /* Adjust duration as needed */
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0; /* Start or end with opacity 0 */
+}
+
+.fade-enter-to, .fade-leave-from {
+  opacity: 1; /* Fully visible */
 }
 
 

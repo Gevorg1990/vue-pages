@@ -59,5 +59,8 @@
   },
   "modal-success" : {
     "info-text" : "Comment added successfully."
-  }
+  },
+  "empty-box-text": "Selected sweets are not available",
+  "go-home": "Return to the homepage"
+
 }

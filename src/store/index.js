@@ -66,6 +66,13 @@ const store = createStore({
             'Cheesecake.item-1.sundry-2',
             'Cheesecake.item-1.sundry-1',
           ],
+          min: [
+            4,5,6
+          ],
+
+          max: [
+            30,30
+          ],
           count:['450', '900', '1280'],
           des: [
             'Cheesecake.item-1.description-1',
@@ -84,6 +91,13 @@ const store = createStore({
           sort: [
             'Cheesecake.item-2.sundry-1',
             'Cheesecake.item-2.sundry-2',
+          ],
+          min: [
+            4,5,6
+          ],
+
+          max: [
+            30,30
           ],
           count:['1600', '200', '1200'],
           des: [

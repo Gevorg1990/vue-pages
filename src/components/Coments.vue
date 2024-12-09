@@ -662,7 +662,7 @@
 }
 
 .pagination {
-  padding: 30px 0;
+  padding: 80px 0 0;
   display: flex;
   justify-content: center;
   gap: 5px;

@@ -95,8 +95,13 @@ export default {
       color: white !important;
     }
 
+    svg {
+      transition: transform 0.3s ease;
+    }
+
     svg:hover {
-      animation: pulse 1s ease infinite;
+      //animation: pulse 1s ease infinite;
+      transform: scale(1.1);
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="center" style="padding-top: 200px;">
+  <div class="center chess-cake df f-dir-clmn j-spc-btwn" style="padding-top: 150px; min-height: 100vh">
 
     <div id="comments" class="">
 
@@ -98,9 +98,34 @@
 
       <!-- Tab content -->
       <div class="tab-content">
-        <figure class="tab-content__img-box">
+        <figure class="tab-content__img-box pr">
           <img :src="item.images[selectedTab - 1].src" :alt="`Image ${selectedTab + 1}`" />
+          <button
+              class="btn btn--save pa"
+              v-for="(image, index) in item.images"
+              :key="index"
+              ref="saveButton"
+              :class="{ hide: selectedTab !== index + 1 }"
+              :data-target="item.sort[index]"
+              @click="saveItem($event)"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="64px" height="64px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" stroke="#c21919">
+
+              <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <g id="SVGRepo_iconCarrier"> <path d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </g>
+
+            </svg>
+          </button>
         </figure>
+
+        <transition name="fade">
+          <div v-if="saved" class="info-save">
+            Item is saved successfully in wishlist
+          </div>
+        </transition>
 
         <p>{{ item.des[selectedTab - 1] }}</p>
       </div>
@@ -113,6 +138,8 @@
 import { ref, computed, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import {useGlobalStore} from "../store/useGlobalStore";
+
 import i18n from "../i18n";
 import { v4 as uuidv4 } from 'uuid';
 import AnimatedButton from "../components/AnimatedButton";
@@ -140,6 +167,7 @@ function setCookie(name, value, days) {
 export default {
   components: {SuccessModal, AnimatedButton, Count},
   setup() {
+    const globalStore = useGlobalStore();
     const store = useStore();
     const route = useRoute();
     const router = useRouter();
@@ -181,10 +209,11 @@ export default {
       router.push({ query: { tab: index + 1 } });
     };
 
-    return { items, item, selectedTab, changeTab, buyNumber };
+    return { items, item, selectedTab, changeTab, buyNumber, globalStore };
   },
   data() {
     return {
+      saved: false,
       pageId : 'cheesecake/'+ this.item.id,
       globalRating: 5,
       tempRating: 5,
@@ -288,6 +317,69 @@ export default {
     }
   },
   methods: {
+
+    async saveItem(event) {
+
+      // Access the clicked button (via event.target)
+      const clickedButton = event.target.closest('button'); // Use closest to ensure you get the button element
+      const clickedButtonAttr = clickedButton.getAttribute('data-target');
+
+      // Get existing targets from localStorage, or initialize as empty array
+      const storedTargets = JSON.parse(localStorage.getItem("data-target")) || [];
+
+      // Add the clicked button's target to the list if it's not already present
+      if (!storedTargets.includes(clickedButtonAttr)) {
+        storedTargets.push(clickedButtonAttr);
+        localStorage.setItem("data-target", JSON.stringify(storedTargets));
+      }
+
+      this.saved = true
+      setTimeout( ()=> this.saved = false, 3000)
+
+
+      // Add the 'active' class to the clicked button
+      clickedButton.setAttribute('active','true');
+
+      const selectedImage = this.item.images[this.selectedTab - 1];
+      const selectedText = this.item.sort[this.selectedTab - 1];
+      const selectedCount = this.item.count[this.selectedTab - 1];
+      const selectedMin = this.item.min[this.selectedTab - 1];
+      const selectedMax = this.item.max[this.selectedTab - 1];
+      // const selectedTab = this.selectedTab - 1
+
+      const dataToSave = {
+        id: Date.now(),
+        image: selectedImage.src,
+        description: selectedText,
+        count: selectedCount,
+        min: selectedMin,
+        max: selectedMax,
+        // selected : selectedTab
+      };
+
+      try {
+        const response = await fetch('http://localhost:3000/items', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSave),
+
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to save active tab content');
+        }
+
+        const result = await response.json();
+        console.log('Save successful:', result);
+
+        this.globalStore.getitemsLangth();
+
+      } catch (error) {
+        console.error('Error saving active tab content:', error);
+      }
+    },
 
     handleCommentInput() {
       this.commentText = this.$refs.editableDiv.innerText;
@@ -545,6 +637,21 @@ export default {
       this.currentPage = 1;
     });
 
+    // Retrieve stored active target(s) from localStorage
+    const storedTargets = JSON.parse(localStorage.getItem("data-target")) || [];
+    this.storedTargets = storedTargets;
+
+    // Loop through each button and check if its data-target matches any stored target
+    const buttons = this.$refs.saveButton;
+
+    buttons.forEach(button => {
+      const target = button.getAttribute('data-target');
+      if (this.storedTargets.includes(target)) {
+        // Add the 'active' class to the button if its target is in storedTargets
+        button.setAttribute('active','true')
+      }
+    });
+
 
   }
 };
@@ -552,10 +659,39 @@ export default {
 
 <style lang="scss">
 
+.chess-cake {
+  padding-bottom: 0 !important;
+}
+
 .item__name {
   margin-bottom: 20px;
 }
 
+.info-save {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, .5);
+  transition: all 0.3s ease;
+}
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease-in-out; /* Adjust duration as needed */
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0; /* Start or end with opacity 0 */
+}
+
+.fade-enter-to, .fade-leave-from {
+  opacity: 1; /* Fully visible */
+}
 
 </style>

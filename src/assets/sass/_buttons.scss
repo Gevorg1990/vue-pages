@@ -39,6 +39,7 @@
     height: 40px;
     right: 10px;
     top: 10px;
+    transition: transform 0.3s ease;
 
     svg {
       width: 100%;
@@ -53,7 +54,11 @@
       svg #SVGRepo_iconCarrier{
         fill: red;
       }
-    } 
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
 
