@@ -7,6 +7,5 @@ module.exports = {
             }
         },
         extract: process.env.NODE_ENV === 'production', // Extract CSS in production
-
     },
 }
