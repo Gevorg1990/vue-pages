@@ -349,4 +349,6 @@ $bg: #faf2e8;
   bottom: 0;
   left: 60%;
 }
+
+
 </style>
