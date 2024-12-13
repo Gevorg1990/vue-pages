@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: 'https://gevorg1990.github.io/vue-pages/', // for github https://gevorg1990.github.io/vue-pages/
+    publicPath: '/', // for github https://gevorg1990.github.io/vue-pages/
     css: {
         loaderOptions: {
             sass: {
@@ -7,5 +7,6 @@ module.exports = {
             }
         },
         extract: process.env.NODE_ENV === 'production', // Extract CSS in production
+
     },
 }
