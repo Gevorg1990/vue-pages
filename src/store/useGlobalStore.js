@@ -9,7 +9,7 @@ export const useGlobalStore = defineStore('global', () => {
     // Fetch items from the API
     const fetchItems = async () => {
         try {
-            const response = await fetch('http://localhost:3000/items');
+            const response = await fetch(process.env.VUE_APP_SAVE_ITEMS_API_URL);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }

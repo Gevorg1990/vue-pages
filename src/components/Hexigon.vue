@@ -63,13 +63,14 @@
     <div class='hex a1'></div>
 
 
-    <a href="#empty" class="overlay" style="width: 0; height: 0;" @click="removeHash"></a>
-    <div id="empty"></div>
+    <a href="#" class="overlay" style="width: 0; height: 0;" @click="removeHash"></a>
+
   </div>
 </template>
 
 <script>
 export default {
+
   methods: {
     removeHash() {
 
@@ -95,9 +96,16 @@ export default {
     },
     removeFixed() {
       $('body').removeClass('fixed');
+    }
+  },
+  mounted() {
+    const currentUrl = window.location.href;
 
+    if (currentUrl.includes('#')) {
+      $('body').addClass('fixed')
     }
   }
+
 }
 </script>
 

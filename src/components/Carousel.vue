@@ -37,7 +37,7 @@ export default defineComponent({
     onMounted(() => {
       const interval = setInterval(() => {
         carousel.value.next(); // move to the next slide
-      }, Math.floor(Math.random() * (14000 - 8000 + 1)) + 8000); // autoplay interval in milliseconds
+      }, Math.floor(Math.random() * (14000 - 8000 + 1)) + 5000); // autoplay interval in milliseconds
 
       onBeforeUnmount(() => {
         clearInterval(interval); // clear interval on component unmount

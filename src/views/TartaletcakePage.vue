@@ -154,6 +154,7 @@ import Count from "../components/Count";
 import SuccessModal from "../components/Modal-Success";
 
 
+
 // Helper functions for cookie management
 function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -368,7 +369,7 @@ export default {
       };
 
       try {
-        const response = await fetch('http://localhost:3000/items', {
+        const response = await fetch(process.env.VUE_APP_SAVE_ITEMS_API_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -376,6 +377,8 @@ export default {
           body: JSON.stringify(dataToSave),
 
         });
+
+
 
         if (!response.ok) {
           throw new Error('Failed to save active tab content');
@@ -442,6 +445,10 @@ export default {
 
     // Call this method when the user types in the name field
     handleNameInput() {
+      const value = event.target.value;
+      if (/[^a-zA-Z\s]/.test(value)) {
+        this.userName = value.replace(/[^a-zA-Z\s]/g, '');
+      }
       this.clearNameError();
     },
     // Existing methods...
@@ -481,7 +488,7 @@ export default {
             formData.append('avatar', this.userAvatar); // If using URL, though this should not be the case
           }
 
-          const response = await fetch('http://localhost:3000/comments', {
+          const response = await fetch(process.env.VUE_APP_COMMENTS_API_URL, {
             method: 'POST',
             body: formData
           });
@@ -514,7 +521,7 @@ export default {
     },
     async fetchComments() {
       try {
-        const response = await fetch('http://localhost:3000/comments');
+        const response = await fetch(process.env.VUE_APP_COMMENTS_API_URL);
         if (!response.ok) throw new Error('Failed to fetch comments');
         const data = await response.json();
         this.comments = data.comments;
@@ -533,7 +540,7 @@ export default {
     },
     async saveGlobalRating() {
       try {
-        const response = await fetch('http://localhost:3000/global-rating', {
+        const response = await fetch(process.env.VUE_APP_GLOBAL_RATING_API_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

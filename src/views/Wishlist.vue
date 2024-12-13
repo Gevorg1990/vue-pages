@@ -92,7 +92,7 @@ export default {
     // Fetch all items from the server
     async fetchItems() {
       try {
-        const response = await fetch('http://localhost:3000/items');
+        const response = await fetch(process.env.VUE_APP_SAVE_ITEMS_API_URL);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -131,7 +131,7 @@ export default {
         }
 
         // Send the delete request to the backend
-        const response = await fetch(`http://localhost:3000/items/${itemId}`, {
+        const response = await fetch(`${process.env.VUE_APP_SAVE_ITEMS_API_URL}/${itemId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

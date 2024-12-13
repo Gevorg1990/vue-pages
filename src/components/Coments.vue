@@ -171,10 +171,6 @@
 
 <script>
   import AnimatedButton from "./AnimatedButton";
-  import i18n from "../i18n";
-
-
-
   import { v4 as uuidv4 } from 'uuid';
   import SuccessModal from "./Modal-Success";
 
@@ -357,6 +353,10 @@
 
         // Call this method when the user types in the name field
         handleNameInput() {
+          const value = event.target.value;
+          if (/[^a-zA-Z\s]/.test(value)) {
+            this.userName = value.replace(/[^a-zA-Z\s]/g, '');
+          }
           this.clearNameError();
         },
         async addComment() {
@@ -392,7 +392,7 @@
                 formData.append('avatar', this.userAvatar); // If using URL, though this should not be the case
               }
 
-              const response = await fetch('http://localhost:3000/comments', {
+              const response = await fetch(process.env.VUE_APP_COMMENTS_API_URL, {
                 method: 'POST',
                 body: formData
               });
@@ -412,6 +412,8 @@
               this.currentPage = this.totalPages;
               // Open success modal
               this.isSuccessModalOpen = true;
+
+              setTimeout(()=> this.isSuccessModalOpen = false,5000);
             } catch (error) {
               console.error('Error adding comment:', error);
               alert(`Error adding comment: ${error.message}`);
@@ -423,7 +425,7 @@
         },
         async fetchComments() {
           try {
-            const response = await fetch('http://localhost:3000/comments');
+            const response = await fetch(process.env.VUE_APP_COMMENTS_API_URL);
             if (!response.ok) throw new Error('Failed to fetch comments');
             const data = await response.json();
             this.comments = data.comments;
@@ -455,7 +457,7 @@
             }
 
             try {
-              const response = await fetch(`http://localhost:3000/comments/${commentId}`, {
+              const response = await fetch(`${process.env.VUE_APP_COMMENTS_API_URL}/${commentId}`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json'
@@ -484,7 +486,7 @@
         },
         async saveGlobalRating() {
           try {
-            const response = await fetch('http://localhost:3000/global-rating', {
+            const response = await fetch(process.env.VUE_APP_SAVE_ITEMS_API_URL, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -585,13 +587,18 @@
           // Ensure the dateString is a valid ISO 8601 date string
           const date = new Date(dateString);
 
-          // Check if date is valid
+          // Check if the date is valid
           if (isNaN(date.getTime())) {
             return 'Invalid Date';
           }
 
-          // Return formatted date in locale format
-          return date.toLocaleDateString();
+          // Extract day, month, and year
+          const day = String(date.getDate()).padStart(2, '0'); // Add leading zero if needed
+          const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+          const year = date.getFullYear();
+
+          // Return formatted date in "day-month-year" format
+          return `${day}/${month}/${year}`;
         }
       },
       mounted() {
